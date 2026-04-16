@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Restaurant - Self Ordering</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            text-align: center;
+            color: white;
+            padding: 40px;
+        }
+        h1 { font-size: 3rem; margin-bottom: 10px; color: #00d4ff; }
+        .subtitle { font-size: 1.2rem; color: #aaa; margin-bottom: 40px; }
+        .btn {
+            display: inline-block;
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            background: #00d4ff;
+            color: #1a1a2e;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+        }
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #00d4ff;
+            color: #00d4ff;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: #1a1a2e;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: left;
+            max-width: 400px;
+            width: 90%;
+        }
+        .modal h2 { color: #00d4ff; margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; color: #aaa; }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background: #0f0f23;
+            color: white;
+            font-size: 1rem;
+        }
+        .modal-buttons { display: flex; gap: 10px; margin-top: 20px; }
+        .modal-buttons .btn { padding: 12px 24px; font-size: 1rem; }
+        .success-msg { color: #00ff88; margin-top: 15px; display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome</h1>
+        <p class="subtitle">Self-Service Ordering Terminal</p>
+        <a href="/order" class="btn">Order Now</a>
+        <button class="btn btn-secondary" onclick="openReserveModal()">Reserve Table</button>
+    </div>
+
+    <div id="reserveModal" class="modal">
+        <div class="modal-content">
+            <h2>Reserve Table</h2>
+            <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" id="reserveName" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" id="reservePhone" placeholder="Enter phone number">
+            </div>
+            <div class="form-group">
+                <label>Party Size</label>
+                <select id="reservePartySize">
+                    <option value="1">1 Person</option>
+                    <option value="2">2 People</option>
+                    <option value="3">3 People</option>
+                    <option value="4">4 People</option>
+                    <option value="5">5 People</option>
+                    <option value="6">6 People</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Available Tables</label>
+                <select id="reserveTableSelect">
+                    <option value="">Loading tables...</option>
+                </select>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn" onclick="submitReservation()">Confirm</button>
+                <button class="btn btn-secondary" onclick="closeReserveModal()">Cancel</button>
+            </div>
+            <p id="reserveSuccess" class="success-msg">Table reserved successfully!</p>
+        </div>
+    </div>
+
+    <script>
+        function openReserveModal() {
+            document.getElementById('reserveModal').style.display = 'flex';
+            loadAvailableTables();
+        }
+        function closeReserveModal() {
+            document.getElementById('reserveModal').style.display = 'none';
+            document.getElementById('reserveSuccess').style.display = 'none';
+        }
+        async function loadAvailableTables() {
+            try {
+                const res = await fetch('/api/tables/available');
+                const d = await res.json();
+                const select = document.getElementById('reserveTableSelect');
+                select.innerHTML = d.data.map(t => 
+                    `<option value="${t.id}">Table ${t.table_number} (Capacity: ${t.capacity})</option>`
+                ).join('');
+            } catch(e) { console.error(e); }
+        }
+        async function submitReservation() {
+            const name = document.getElementById('reserveName').value;
+            const phone = document.getElementById('reservePhone').value;
+            const tableId = document.getElementById('reserveTableSelect').value;
+            
+            if (!name || !phone || !tableId) {
+                alert('Please fill all fields');
+                return;
+            }
+            
+            try {
+                const res = await fetch(`/api/customer/tables/${tableId}/reserve`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({name, phone})
+                });
+                const data = await res.json();
+                if (data.success) {
+                    document.getElementById('reserveSuccess').style.display = 'block';
+                    setTimeout(closeReserveModal, 2000);
+                } else {
+                    alert(data.message || 'Reservation failed');
+                }
+            } catch(e) { alert('Error: ' + e.message); }
+        }
+    </script>
+</body>
+</html>

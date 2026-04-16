@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <title>Restaurant Order</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.4/socket.io.min.js"></script>
+    <style>
+        :root {
+            --primary: #e94560;
+            --primary-dark: #c73e54;
+            --secondary: #16213e;
+            --bg: #0f0f23;
+            --card: #1a1a2e;
+            --text: #ffffff;
+            --text-muted: #8b8b9e;
+            --success: #4caf50;
+            --warning: #ffc107;
+            --danger: #f44336;
+            --info: #2196f3;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .app { max-width: 480px; margin: 0 auto; min-height: 100vh; position: relative; }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            padding: 25px 20px;
+            text-align: center;
+            border-radius: 0 0 25px 25px;
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+        }
+        
+        .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 5px; }
+        .header p { color: rgba(255,255,255,0.8); font-size: 14px; }
+        
+        .connection-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 20px;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+        
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; }
+        .status-dot.connected { background: var(--success); animation: pulse 2s infinite; }
+        .status-dot.disconnected { background: var(--danger); }
+        
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        
+        .screen { display: none; padding: 20px; animation: fadeIn 0.3s ease; }
+        .screen.active { display: block; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .input-group { margin-bottom: 15px; }
+        
+        .input-group label {
+            display: block;
+            color: var(--text-muted);
+            font-size: 12px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        input[type="text"], input[type="tel"], input[type="number"] {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #2a2a4a;
+            border-radius: 12px;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus { outline: none; border-color: var(--primary); }
+        
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn:active { transform: scale(0.98); }
+        
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4); }
+        .btn-primary:active { box-shadow: 0 2px 10px rgba(233, 69, 96, 0.4); }
+        
+        .btn-secondary { background: var(--secondary); color: var(--text); border: 2px solid #2a2a4a; }
+        .btn-secondary:active { background: #1f2a4e; }
+        
+        .btn-success { background: linear-gradient(135deg, var(--success), #388e3c); color: white; box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4); }
+        .btn-danger { background: linear-gradient(135deg, var(--danger), #d32f2f); color: white; }
+        
+        .btn-small { padding: 12px; font-size: 14px; }
+        
+        .btn-row { display: flex; gap: 10px; }
+        .btn-row .btn { flex: 1; }
+        
+        .category-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        
+        .category-card {
+            background: var(--secondary);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .category-card:active { border-color: var(--primary); transform: scale(0.98); }
+        
+        .category-card .icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .category-card h3 { font-size: 14px; margin-bottom: 5px; }
+        .category-card p { font-size: 11px; color: var(--text-muted); }
+        
+        .menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        
+        .menu-item-card {
+            background: var(--secondary);
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .menu-item-card:active { border-color: var(--primary); transform: scale(0.98); }
+        
+        .menu-item-card .image {
+            height: 80px;
+            background: linear-gradient(135deg, #2a2a4a, #1a1a2e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+        
+        .menu-item-card .info { padding: 12px; }
+        .menu-item-card .name { font-weight: 600; font-size: 14px; margin-bottom: 5px; }
+        .menu-item-card .price { color: var(--success); font-weight: 700; }
+        
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--secondary);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .item-row .details { flex: 1; }
+        .item-row .name { font-weight: 600; }
+        .item-row .price { color: var(--success); }
+        
+        .qty-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .qty-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary);
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .qty-value { font-size: 18px; font-weight: 600; min-width: 30px; text-align: center; }
+        
+        .table-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        
+        .table-card {
+            background: var(--secondary);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .table-card:active { border-color: var(--primary); transform: scale(0.98); }
+        
+        .table-card.selected { border-color: var(--success); background: rgba(76, 175, 80, 0.1); }
+        .table-card.occupied { opacity: 0.4; cursor: not-allowed; }
+        
+        .table-card .number { font-size: 24px; font-weight: 700; color: var(--primary); }
+        .table-card .capacity { font-size: 12px; color: var(--text-muted); }
+        
+        .order-summary {
+            background: var(--secondary);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .order-summary .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #2a2a4a;
+        }
+        
+        .order-summary .item:last-child { border-bottom: none; }
+        
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            margin-top: 15px;
+            border-top: 2px solid var(--primary);
+        }
+        
+        .total-row .label { font-size: 18px; font-weight: 600; }
+        .total-row .amount { font-size: 28px; font-weight: 700; color: var(--success); }
+        
+        .progress-bar {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .progress-step {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #2a2a4a;
+        }
+        
+        .progress-step.active { background: var(--primary); }
+        .progress-step.completed { background: var(--success); }
+        
+        .status-screen {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .status-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        
+        .status-title { font-size: 24px; font-weight: 700; margin-bottom: 10px; }
+        .status-message { color: var(--text-muted); margin-bottom: 20px; }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #2a2a4a;
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 30px auto;
+        }
+        
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        .toast {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 12px;
+            text-align: center;
+            z-index: 1000;
+            animation: slideDown 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+        
+        .toast.error { background: var(--danger); }
+        .toast.success { background: var(--success); }
+        .toast.info { background: var(--info); }
+        .toast.warning { background: var(--warning); color: #000; }
+        
+        .cart-badge {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            box-shadow: 0 5px 20px rgba(233, 69, 96, 0.5);
+            cursor: pointer;
+            z-index: 100;
+        }
+        
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        
+        .back-btn:active { color: var(--primary); }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+        }
+        
+        .empty-state .icon { font-size: 48px; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <div class="header">
+            <h1>🍽️ Restaurant</h1>
+            <p>Smart Ordering System</p>
+            <div class="connection-status">
+                <span class="status-dot" id="status-dot"></span>
+                <span id="status-text">Connecting...</span>
+            </div>
+        </div>
+        
+        <div id="screen-login" class="screen active">
+            <div class="card">
+                <div class="card-title">Welcome</div>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">Enter your device ID to connect to the restaurant system</p>
+                
+                <div class="input-group">
+                    <label>Device ID</label>
+                    <input type="text" id="phone-id" placeholder="e.g., TABLET-001" onkeypress="if(event.key==='Enter')connect()">
+                </div>
+            </div>
+            
+            <button type="button" class="btn btn-primary" onclick="connect()">Connect</button>
+        </div>
+        
+        <div id="screen-home" class="screen">
+            <div class="progress-bar">
+                <div class="progress-step completed" id="step-1"></div>
+                <div class="progress-step" id="step-2"></div>
+                <div class="progress-step" id="step-3"></div>
+                <div class="progress-step" id="step-4"></div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">Menu Categories</div>
+                <div class="category-grid" id="menu-categories"></div>
+            </div>
+        </div>
+        
+        <div id="screen-category" class="screen">
+            <div class="back-btn" onclick="showScreen('home')">← Back to Categories</div>
+            
+            <div class="progress-bar">
+                <div class="progress-step completed"></div>
+                <div class="progress-step completed" id="step-2-cat"></div>
+                <div class="progress-step" id="step-3-cat"></div>
+                <div class="progress-step" id="step-4-cat"></div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title" id="category-title">Category</div>
+                <div class="menu-grid" id="category-items"></div>
+            </div>
+            
+            <div class="btn-row">
+                <button class="btn btn-secondary" onclick="showScreen('home')">← Categories</button>
+                <button class="btn btn-primary" onclick="showDrinks()">Next: Drinks →</button>
+            </div>
+        </div>
+        
+        <div id="screen-drinks" class="screen">
+            <div class="back-btn" onclick="showScreen('home')">← Back to Food</div>
+            
+            <div class="progress-bar">
+                <div class="progress-step completed"></div>
+                <div class="progress-step completed" id="step-2-drinks"></div>
+                <div class="progress-step" id="step-3-drinks"></div>
+                <div class="progress-step" id="step-4-drinks"></div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">🥤 Drinks</div>
+                <div class="menu-grid" id="drink-items"></div>
+            </div>
+            
+            <div class="btn-row">
+                <button class="btn btn-secondary" onclick="showScreen('home')">← Food</button>
+                <button class="btn btn-primary" onclick="showScreen('tables')">Next: Table →</button>
+            </div>
+        </div>
+        
+        <div id="screen-tables" class="screen">
+            <div class="back-btn" onclick="showDrinks()">← Back to Drinks</div>
+            
+            <div class="progress-bar">
+                <div class="progress-step completed"></div>
+                <div class="progress-step completed"></div>
+                <div class="progress-step completed" id="step-3-table"></div>
+                <div class="progress-step" id="step-4-table"></div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">🪑 Select Your Table</div>
+                <div class="table-grid" id="table-list"></div>
+            </div>
+            
+            <div class="btn-row">
+                <button class="btn btn-secondary" onclick="showDrinks()">← Back to Drinks</button>
+                <button class="btn btn-primary" onclick="showScreen('cart')">Review Order →</button>
+            </div>
+        </div>
+        
+        <div id="screen-cart" class="screen">
+            <div class="back-btn" onclick="showScreen('tables')">← Back to Tables</div>
+            
+            <div class="card">
+                <div class="card-title">🛒 Your Order</div>
+                <div id="cart-items"></div>
+            </div>
+            
+            <div class="order-summary" id="order-summary"></div>
+            
+            <div class="btn-row">
+                <button class="btn btn-secondary" onclick="showScreen('tables')">← Tables</button>
+                <button class="btn btn-success" onclick="submitOrder()">Submit Order</button>
+            </div>
+        </div>
+        
+        <div id="screen-status" class="screen">
+            <div class="status-screen" id="status-display">
+                <div class="spinner" id="status-spinner"></div>
+                <div class="status-icon" id="status-icon">⏳</div>
+                <div class="status-title" id="status-title">Order Pending</div>
+                <div class="status-message" id="status-message">Waiting for master confirmation...</div>
+            </div>
+            
+            <button class="btn btn-secondary" onclick="resetOrder()">Start New Order</button>
+        </div>
+    </div>
+    
+    <div id="cart-badge" class="cart-badge" onclick="showScreen('cart')" style="display: none;">0</div>
+    <div id="toast" class="toast" style="display: none;"></div>
+    
+    <script>
+        const LOG_PREFIX = '[PHONE]';
+        let socket = null;
+        let phoneId = '';
+        let cart = [];
+        let selectedTable = null;
+        let categories = [];
+        let menuItemsCache = {};
+        let availableTables = [];
+        let serverUrl = '';
+        
+        function log(level, message, data = null) {
+            const timestamp = new Date().toISOString();
+            const logEntry = `[${timestamp}] [${level}] ${LOG_PREFIX} ${message}${data ? ' ' + JSON.stringify(data) : ''}`;
+            console.log(logEntry);
+            
+            if (level === 'ERROR') {
+                console.error(logEntry);
+            }
+        }
+        
+        function showScreen(name) {
+            log('INFO', 'Screen transition', { from: document.querySelector('.screen.active')?.id, to: name });
+            
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('screen-' + name).classList.add('active');
+            
+            updateProgressBar(name);
+            
+            switch(name) {
+                case 'home': loadCategories(); break;
+                case 'category': /* handled in showCategoryItems */ break;
+                case 'tables': loadTables(); break;
+                case 'cart': updateCart(); break;
+            }
+            
+            updateCartBadge();
+        }
+        
+        function updateProgressBar(screen) {
+            const steps = {
+                'home': 1,
+                'drinks': 2,
+                'tables': 3,
+                'cart': 4
+            };
+            
+            const currentStep = steps[screen] || 0;
+            for (let i = 1; i <= 4; i++) {
+                const el = document.getElementById('step-' + i);
+                if (el) {
+                    el.classList.remove('active', 'completed');
+                    if (i < currentStep) el.classList.add('completed');
+                    if (i === currentStep) el.classList.add('active');
+                }
+            }
+        }
+        
+        function showToast(message, type = 'info') {
+            log('INFO', 'Toast shown', { type, message });
+            
+            const el = document.getElementById('toast');
+            el.textContent = message;
+            el.className = 'toast ' + type;
+            el.style.display = 'block';
+            
+            setTimeout(() => el.style.display = 'none', 3000);
+        }
+        
+        function updateConnectionStatus(connected) {
+            const dot = document.getElementById('status-dot');
+            const text = document.getElementById('status-text');
+            
+            if (connected) {
+                dot.className = 'status-dot connected';
+                text.textContent = 'Connected';
+                log('INFO', 'WebSocket connected');
+            } else {
+                dot.className = 'status-dot disconnected';
+                text.textContent = 'Disconnected';
+                log('WARN', 'WebSocket disconnected');
+            }
+        }
+        
+        async function connect() {
+            try {
+                console.log('Connect function started');
+                phoneId = document.getElementById('phone-id').value.trim();
+                if (!phoneId) {
+                    showToast('Please enter your device ID', 'error');
+                    log('ERROR', 'Missing device ID');
+                    return;
+                }
+                
+                // Use current server
+                serverUrl = window.location.origin;
+                
+                log('INFO', 'Connecting to server', { phoneId, serverUrl });
+                
+                // Check if device is registered
+                const response = await fetch(serverUrl + '/api/phones?all=true');
+                console.log('Response status:', response.status);
+                const data = await response.json();
+                console.log('Phones data:', data);
+                const device = data.data.find(d => d.unique_id === phoneId);
+                
+                if (!device) {
+                    showToast('Device not registered. Please contact staff.', 'error');
+                    log('ERROR', 'Device not found', { phoneId });
+                    return;
+                }
+                
+                if (device.is_active === false) {
+                    showToast('Device is disabled. Please contact staff.', 'error');
+                    log('ERROR', 'Device disabled', { phoneId });
+                    return;
+                }
+                
+                // Device is valid - proceed to home screen
+                log('INFO', 'Device verified', device);
+                showToast('Device verified!', 'success');
+                
+                // Initialize socket connection
+                socket = io(serverUrl, {
+                    reconnection: true,
+                    reconnectionAttempts: 10,
+                    reconnectionDelay: 1000
+                });
+                
+                socket.on('connect', () => {
+                    updateConnectionStatus(true);
+                    showToast('Connected to server', 'success');
+                    log('INFO', 'Socket reconnected');
+                });
+                
+                socket.on('disconnect', () => {
+                    updateConnectionStatus(false);
+                    showToast('Connection lost. Reconnecting...', 'warning');
+                    log('WARN', 'Socket disconnected');
+                });
+                
+                socket.on('reconnect', (attemptNumber) => {
+                    showToast('Reconnected after ' + attemptNumber + ' attempts', 'success');
+                    log('INFO', 'Socket reconnected', { attempt: attemptNumber });
+                });
+                
+                socket.on('connect_error', (error) => {
+                    log('ERROR', 'Socket connection error', { error: error.message });
+                });
+                
+                socket.on('order_confirmed', (data) => {
+                    updateStatusDisplay('success', '✓', 'Order Confirmed', 'Your order is being prepared!');
+                });
+                socket.on('order_rejected', (data) => {
+                    showToast('Order rejected: ' + data.reason, 'error');
+                });
+                
+                showScreen('home');
+                loadCategories();
+            } catch (err) {
+                console.error('Connect error:', err);
+                log('ERROR', 'Connection error', err);
+                showToast('Connection error. Please try again.', 'error');
+            }
+        }
+        
+        function updateStatusDisplay(type, icon, title, message) {
+            const spinner = document.getElementById('status-spinner');
+            const iconEl = document.getElementById('status-icon');
+            const titleEl = document.getElementById('status-title');
+            const msgEl = document.getElementById('status-message');
+            
+            spinner.style.display = type === 'pending' ? 'block' : 'none';
+            iconEl.textContent = icon;
+            titleEl.textContent = title;
+            msgEl.textContent = message;
+            
+            showScreen('status');
+        }
+        
+        async function fetchAPI(url) {
+            try {
+                const res = await fetch(url);
+                const data = await res.json();
+                return data;
+            } catch (e) {
+                log('ERROR', 'API fetch failed', { url, error: e.message });
+                return { data: [] };
+            }
+        }
+        
+        let currentCategoryIndex = 0;
+        
+        async function loadCategories() {
+            log('INFO', 'Loading menu categories');
+            const catResponse = await fetchAPI(serverUrl + '/api/categories');
+            categories = catResponse.data || [];
+            
+            currentCategoryIndex = 0;
+            showCategoryPage();
+        }
+        
+        function showCategoryPage() {
+            const container = document.getElementById('menu-categories');
+            
+            const activeCategories = categories
+                .filter(c => (c.is_active !== false))
+                .sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
+            
+            if (activeCategories.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-muted); text-align: center;">No categories available</p>';
+                return;
+            }
+            
+            if (currentCategoryIndex >= activeCategories.length) currentCategoryIndex = activeCategories.length - 1;
+            if (currentCategoryIndex < 0) currentCategoryIndex = 0;
+            
+            const cat = activeCategories[currentCategoryIndex];
+            const icons = ['🍕', '🍔', '🌮', '🍜', '🥗', '🍝', '🥤', '🍰', '☕', '🍟'];
+            
+            container.innerHTML = `
+                <div class="category-card" onclick="showCategoryItems(${cat.id}, '${cat.name}')">
+                    <div class="icon">${icons[currentCategoryIndex % icons.length]}</div>
+                    <h3>${cat.name}</h3>
+                    <p>${cat.description || 'Tap to browse'}</p>
+                </div>
+            `;
+            
+            log('INFO', 'Category shown', { index: currentCategoryIndex, name: cat.name });
+        }
+        
+        async function showCategoryItems(categoryId, categoryName) {
+            log('INFO', 'Loading menu items', { categoryId, categoryName });
+            
+            document.getElementById('category-title').textContent = categoryName;
+            
+            const catResponse = await fetchAPI(serverUrl + '/api/menu-items/category/' + categoryId);
+            const allItems = catResponse.data || [];
+            const items = allItems.filter(i => i.is_available !== false);
+            menuItemsCache[categoryName] = items;
+            
+            showMenuItemsScreen(categoryName, items);
+        }
+        
+        function showMenuItemsScreen(categoryName, items) {
+            const container = document.getElementById('category-items');
+            container.innerHTML = '';
+            
+            if (items.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-muted); text-align: center;">No items available in this category</p>';
+                showScreen('category');
+                return;
+            }
+            
+            items.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'menu-item-card';
+                const price = item.price || 0;
+                div.innerHTML = `
+                    <div class="image">🍽️</div>
+                    <div class="info">
+                        <div class="name">${item.name}</div>
+                        <div class="price">$${price.toFixed(2)}</div>
+                    </div>
+                `;
+                div.onclick = () => addToCart(item.id, item.name, price);
+                container.appendChild(div);
+            });
+            
+            showScreen('category');
+        }
+        
+        async function loadDrinks() {
+            log('INFO', 'Loading drinks');
+            
+            const beveragesCat = categories.find(c => c.name.toLowerCase() === 'beverages');
+            if (!beveragesCat) {
+                log('WARN', 'Beverages category not found');
+                return;
+            }
+            
+            const drinkResponse = await fetchAPI(serverUrl + '/api/menu-items/category/' + beveragesCat.id);
+            const allDrinks = drinkResponse.data || [];
+            const drinks = allDrinks.filter(d => d.is_available !== false);
+            menuItemsCache['drinks'] = drinks;
+            
+            const container = document.getElementById('drink-items');
+            container.innerHTML = '';
+            
+            const drinkIcons = ['🥤', '☕', '🧃', '🫐', '🍵', '🥛'];
+            
+            drinks.forEach((drink, i) => {
+                const price = drink.price || 0;
+                const div = document.createElement('div');
+                div.className = 'menu-item-card';
+                div.innerHTML = `
+                    <div class="image">${drinkIcons[i % drinkIcons.length]}</div>
+                    <div class="info">
+                        <div class="name">${drink.name}</div>
+                        <div class="price">$${price.toFixed(2)}</div>
+                    </div>
+                `;
+                div.onclick = () => addToCart(drink.id, drink.name, price);
+                container.appendChild(div);
+            });
+            
+            log('INFO', 'Drinks loaded', { count: drinks.length });
+        }
+        
+        async function showDrinks() {
+            log('INFO', 'Showing drinks');
+            
+            const activeCategories = categories
+                .filter(c => (c.is_active !== false))
+                .sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
+            
+            const drinkCat = activeCategories.find(c => c.name.toLowerCase() === 'drink');
+            if (!drinkCat) {
+                showToast('No drinks category found', 'error');
+                return;
+            }
+            
+            const drinkResponse = await fetchAPI(serverUrl + '/api/menu-items/category/' + drinkCat.id);
+            const allDrinks = drinkResponse.data || [];
+            const drinks = allDrinks.filter(d => d.is_available !== false);
+            
+            const container = document.getElementById('drink-items');
+            container.innerHTML = '';
+            
+            const drinkIcons = ['🥤', '☕', '🧃', '🫐', '🍵', '🥛'];
+            
+            if (drinks.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-muted); text-align: center;">No drinks available</p>';
+            } else {
+                drinks.forEach((drink, i) => {
+                    const price = drink.price || 0;
+                    const div = document.createElement('div');
+                    div.className = 'menu-item-card';
+                    div.innerHTML = `
+                        <div class="image">${drinkIcons[i % drinkIcons.length]}</div>
+                        <div class="info">
+                            <div class="name">${drink.name}</div>
+                            <div class="price">$${price.toFixed(2)}</div>
+                        </div>
+                    `;
+                    div.onclick = () => addToCart(drink.id, drink.name, price);
+                    container.appendChild(div);
+                });
+            }
+            
+            showScreen('drinks');
+        }
+        
+        async function loadTables() {
+            log('INFO', 'Loading tables');
+            
+            try {
+                const allTablesResponse = await fetchAPI(serverUrl + '/api/tables');
+                log('INFO', 'All tables response', allTablesResponse);
+                const allTables = allTablesResponse.data || [];
+                
+                const occupiedIds = allTables.filter(t => t.status !== 'free').map(t => t.id);
+                
+                const container = document.getElementById('table-list');
+                container.innerHTML = '';
+                
+                const tablesToShow = allTables;
+                
+                if (tablesToShow.length === 0) {
+                    container.innerHTML = '<p style="color: var(--text-muted); text-align: center;">No tables available</p>';
+                    return;
+                }
+                
+                tablesToShow.forEach(table => {
+                const isOccupied = occupiedIds.includes(table.id);
+                const isSelected = selectedTable === table.id;
+                
+                const div = document.createElement('div');
+                div.className = 'table-card' + (isSelected ? ' selected' : '') + (isOccupied ? ' occupied' : '');
+                div.innerHTML = `
+                    <div class="number">${table.table_number}</div>
+                    <div class="capacity">${table.capacity} seats</div>
+                `;
+                
+                if (!isOccupied) {
+                    div.onclick = () => selectTable(table.id, table.table_number);
+                }
+                
+                container.appendChild(div);
+            });
+            
+            log('INFO', 'Tables loaded', { total: tablesToShow.length, available: availableTables.length });
+            } catch (e) {
+                log('ERROR', 'Error loading tables', e);
+            }
+        }
+        
+        function selectTable(tableId, tableNumber) {
+            log('INFO', 'Table selected', { tableId, tableNumber });
+            selectedTable = tableId;
+            
+            document.querySelectorAll('.table-card').forEach(el => el.classList.remove('selected'));
+            event.target.closest('.table-card').classList.add('selected');
+            
+            showToast('Table ' + tableNumber + ' selected', 'success');
+        }
+        
+        function addToCart(itemId, name, price) {
+            const existing = cart.find(i => i.menu_item_id === itemId);
+            
+            if (existing) {
+                existing.quantity++;
+                log('INFO', 'Item quantity increased', { name, quantity: existing.quantity });
+            } else {
+                cart.push({
+                    menu_item_id: itemId,
+                    name: name,
+                    price: price,
+                    quantity: 1
+                });
+                log('INFO', 'Item added to cart', { name, price });
+            }
+            
+            showToast('Added: ' + name, 'success');
+            updateCartBadge();
+        }
+        
+        function updateCartQuantity(index, delta) {
+            cart[index].quantity += delta;
+            
+            if (cart[index].quantity <= 0) {
+                log('INFO', 'Item removed from cart', { name: cart[index].name });
+                cart.splice(index, 1);
+            } else {
+                log('INFO', 'Item quantity updated', { name: cart[index].name, quantity: cart[index].quantity });
+            }
+            
+            updateCart();
+            updateCartBadge();
+        }
+        
+        function removeFromCart(index) {
+            log('INFO', 'Item removed', { name: cart[index].name });
+            cart.splice(index, 1);
+            updateCart();
+            updateCartBadge();
+        }
+        
+        function updateCartBadge() {
+            const badge = document.getElementById('cart-badge');
+            const totalQty = cart.reduce((sum, i) => sum + i.quantity, 0);
+            
+            if (totalQty > 0) {
+                badge.style.display = 'flex';
+                badge.textContent = totalQty;
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+        
+        function updateCart() {
+            const container = document.getElementById('cart-items');
+            const summary = document.getElementById('order-summary');
+            
+            if (cart.length === 0) {
+                container.innerHTML = '<div class="empty-state"><div class="icon">🛒</div><p>Your cart is empty</p></div>';
+                summary.style.display = 'none';
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            cart.forEach((item, i) => {
+                const itemTotal = item.price * item.quantity;
+                
+                const div = document.createElement('div');
+                div.className = 'item-row';
+                div.innerHTML = `
+                    <div class="details">
+                        <div class="name">${item.name}</div>
+                        <div class="price">$${item.price.toFixed(2)} x ${item.quantity}</div>
+                    </div>
+                    <div class="qty-control">
+                        <button class="qty-btn" onclick="updateCartQuantity(${i}, -1)">−</button>
+                        <span class="qty-value">${item.quantity}</span>
+                        <button class="qty-btn" onclick="updateCartQuantity(${i}, 1)">+</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+            
+            const total = cart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
+            
+            summary.innerHTML = `
+                <div class="total-row">
+                    <span class="label">Total</span>
+                    <span class="amount">$${total.toFixed(2)}</span>
+                </div>
+            `;
+            summary.style.display = 'block';
+            
+            log('INFO', 'Cart updated', { items: cart.length, total: total });
+        }
+        
+        function submitOrder() {
+            if (cart.length === 0) {
+                showToast('Cart is empty!', 'error');
+                log('WARN', 'Submit attempt with empty cart');
+                return;
+            }
+            
+            if (!selectedTable) {
+                showToast('Please select a table!', 'error');
+                log('WARN', 'Submit attempt without table');
+                return;
+            }
+            
+            log('INFO', 'Submitting order', { items: cart.length, table: selectedTable });
+            
+            // Submit order via socket
+            socket.emit('order_submit', {
+                phone_id: phoneId,
+                table_id: selectedTable,
+                items: cart
+            });
+            
+            // Listen for response
+            socket.once('order_response', function(data) {
+                if (data.success) {
+                    log('INFO', 'Order created', data);
+                    updateStatusDisplay('success', '✓', 'Order Submitted', 'Order placed successfully!');
+                } else {
+                    showToast('Order failed: ' + data.message, 'error');
+                }
+            });
+            
+            // Listen for table update to refresh table list
+            socket.on('table_updated', function(data) {
+                log('INFO', 'Table updated', data);
+                if (data.table_id === selectedTable && data.status === 'occupied') {
+                    loadTables();
+                }
+            });
+        }
+        
+        function resetOrder() {
+            log('INFO', 'Resetting order');
+            
+            cart = [];
+            selectedTable = null;
+            updateCartBadge();
+            showScreen('home');
+        }
+        
+        if (!window.fetch) {
+            window.fetch = function(url) {
+                return new Promise((resolve, reject) => {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('GET', url);
+                    xhr.onload = () => resolve({
+                        json: () => JSON.parse(xhr.responseText),
+                        ok: xhr.status >= 200 && xhr.status < 300
+                    });
+                    xhr.onerror = reject;
+                    xhr.send();
+                });
+            };
+        }
+        
+        log('INFO', 'Phone client initialized');
+    </script>
+</body>
+</html>

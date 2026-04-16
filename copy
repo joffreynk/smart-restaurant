@@ -1,0 +1,7 @@
+# Log into 192.168.2.9 first
+ssh refugee@192.168.2.9
+
+# Then copy to 192.168.2.6
+scp -r ~/venv/lib/python3.13/site-packages/cv2 restaurant@192.168.2.6:~/venv/lib/python3.13/site-packages/
+scp -r ~/venv/lib/python3.13/site-packages/opencv_python-4.13.0.92.dist-info restaurant@192.168.2.6:~/venv/lib/python3.13/site-packages/
+scp -r ~/venv/lib/python3.13/site-packages/opencv_python.libs restaurant@192.168.2.6:~/venv/lib/python3.13/site-packages/

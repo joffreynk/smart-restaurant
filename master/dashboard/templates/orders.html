@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders - Smart Restaurant</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: #f5f5f5; }
+        .sidebar { position: fixed; left: 0; top: 0; width: 250px; height: 100vh; background: #1a1a2e; color: white; padding: 20px; }
+        .sidebar h2 { color: #e94560; margin-bottom: 30px; text-align: center; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 10px; }
+        .sidebar a { color: #ddd; text-decoration: none; display: block; padding: 12px 15px; border-radius: 5px; transition: 0.3s; }
+        .sidebar a:hover, .sidebar a.active { background: #e94560; color: white; }
+        .main { margin-left: 250px; padding: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .header h1 { color: #333; }
+        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .card h2 { color: #333; margin-bottom: 15px; font-size: 18px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; color: #666; font-weight: 600; }
+        .status { padding: 5px 10px; border-radius: 20px; font-size: 12px; }
+        .status.pending { background: #fff3cd; color: #856404; }
+        .status.preparing { background: #cce5ff; color: #004085; }
+        .status.ready { background: #d4edda; color: #155724; }
+        .status.delivering { background: #e2e3e5; color: #383d41; }
+        .status.completed { background: #d1ecf1; color: #0c5460; }
+        .btn { padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-size: 13px; }
+        .btn-primary { background: #e94560; color: white; }
+        .btn-secondary { background: #6c757d; color: white; }
+        .filters { display: flex; gap: 10px; margin-bottom: 20px; }
+        .filters select { padding: 8px; border: 1px solid #ddd; border-radius: 5px; }
+        .status.pending { background: #ffc107; color: #000; }
+        .status.confirmed { background: #28a745; color: #fff; }
+        .status.rejected { background: #dc3545; color: #fff; }
+        
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .sidebar { width: 200px; transform: translateX(-100%); transition: transform 0.3s; z-index: 100; }
+            .sidebar.open { transform: translateX(0); }
+            .main { margin-left: 0; padding: 60px 15px 20px; }
+            table { font-size: 12px; }
+            th, td { padding: 8px; }
+        }
+        
+        @media (max-width: 480px) {
+            .sidebar { width: 100%; }
+            table { font-size: 10px; }
+            th, td { padding: 5px; }
+            .btn { padding: 5px 8px; font-size: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰ Menu</button>
+    <div class="sidebar">
+        <h2>Smart Restaurant</h2>
+        <ul>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/menu">Menu Management</a></li>
+            <li><a href="/orders" class="active">Orders</a></li>
+            <li><a href="/tables">Tables</a></li>
+            <li><a href="/robots">Robot Telemetry</a></li>
+            <li><a href="/robot-subscription">Robot Subscription</a></li>
+            <li><a href="/analytics">Analytics</a></li>
+            <li><a href="/devices">Client Devices</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+    <div class="main">
+        <div class="header">
+            <h1>Orders</h1>
+        </div>
+        <div class="filters">
+            <select id="status-filter" onchange="loadOrders()">
+                <option value="">All Status</option>
+                <option value="pending">Pending</option>
+                <option value="confirmed">Confirmed</option>
+                <option value="rejected">Rejected</option>
+                <option value="preparing">Preparing</option>
+                <option value="ready">Ready</option>
+                <option value="delivering">Delivering</option>
+                <option value="completed">Completed</option>
+            </select>
+        </div>
+        <div class="card">
+            <h2>All Orders</h2>
+            <table>
+                <thead>
+                    <tr><th>ID</th><th>Table</th><th>Total</th><th>Status</th><th>Robot</th><th>Time</th><th>Actions</th></tr>
+                </thead>
+                <tbody id="orders-list"></tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        function loadOrders() {
+            const status = document.getElementById('status-filter').value;
+            const url = status ? '/api/orders?status=' + status : '/api/orders';
+            fetch(url).then(r => r.json()).then(d => {
+                document.getElementById('orders-list').innerHTML = d.data.map(o => `
+                    <tr>
+                        <td>#${o.id}</td>
+                        <td>Table ${o.table_number || 'N/A'}</td>
+                        <td>$${o.total_amount}</td>
+                        <td><span class="status ${o.status}">${o.status}</span></td>
+                        <td>-</td>
+                        <td>${o.created_at ? new Date(o.created_at).toLocaleString() : '-'}</td>
+                        <td>
+                            ${o.status === 'pending' ? `
+                                <button class="btn btn-primary" onclick="confirmOrder(${o.id})">Confirm</button>
+                                <button class="btn btn-secondary" onclick="rejectOrder(${o.id})">Reject</button>
+                            ` : o.status === 'confirmed' ? `
+                                <button class="btn btn-primary" onclick="updateStatus(${o.id}, 'preparing')">Prep</button>
+                                <button class="btn btn-secondary" onclick="updateStatus(${o.id}, 'completed')">Done</button>
+                            ` : o.status === 'preparing' ? `
+                                <button class="btn btn-primary" onclick="updateStatus(${o.id}, 'ready')">Ready</button>
+                            ` : o.status === 'ready' ? `
+                                <button class="btn btn-primary" onclick="updateStatus(${o.id}, 'delivering')">Deliver</button>
+                            ` : ''}
+                        </td>
+                    </tr>
+                `).join('');
+            });
+        }
+        function confirmOrder(id) {
+            if (confirm('Confirm this order? Robot will deliver.')) {
+                fetch('/api/orders/' + id + '/confirm', { method: 'POST' }).then(() => loadOrders());
+            }
+        }
+        function rejectOrder(id) {
+            const reason = prompt('Rejection reason:');
+            if (reason !== null) {
+                fetch('/api/orders/' + id + '/reject', { 
+                    method: 'POST', 
+                    headers: {'Content-Type': 'application/json'}, 
+                    body: JSON.stringify({ reason }) 
+                }).then(() => loadOrders());
+            }
+        }
+        function updateStatus(id, status) {
+            fetch('/api/orders/' + id, { method: 'PUT', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ status }) }).then(() => loadOrders());
+        }
+        loadOrders();
+        setInterval(loadOrders, 5000);
+    </script>
+</body>
+</html>

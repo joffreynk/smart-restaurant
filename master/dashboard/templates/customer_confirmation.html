@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed - Smart Restaurant</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: #16213e;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 { color: #00ff88; font-size: 2rem; margin-bottom: 10px; }
+        .order-id { color: #888; margin-bottom: 30px; }
+        .order-id span { color: #00d4ff; font-size: 1.3rem; }
+        
+        .items { 
+            background: #1a1a2e; 
+            padding: 20px; 
+            border-radius: 10px; 
+            margin: 20px 0;
+            text-align: left;
+        }
+        .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #333;
+        }
+        .item:last-child { border-bottom: none; }
+        
+        .total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.5rem;
+            color: #00d4ff;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #333;
+        }
+        
+        .status {
+            background: #1a1a2e;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .status-value {
+            color: #00ff88;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #00d4ff;
+            color: #1a1a2e;
+            text-decoration: none;
+            border-radius: 50px;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+        .btn:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Order Confirmed!</h1>
+        <p class="order-id">Order #<span>{{ order.id }}</span></p>
+        
+        <div class="items">
+            {% for item in items %}
+            <div class="item">
+                <span>{{ item.name }} x{{ item.quantity }}</span>
+                <span>${{ "%.2f"|format(item.price_at_time * item.quantity) }}</span>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="total">
+            <span>Total:</span>
+            <span>${{ "%.2f"|format(total) }}</span>
+        </div>
+        
+        <div class="status">
+            <p>Status:</p>
+            <p class="status-value">{{ order.status.upper() }}</p>
+        </div>
+        
+        <a href="/" class="btn">Order More</a>
+    </div>
+    
+    <script>
+        const orderId = "{{ order.id }}";
+        
+        setInterval(async () => {
+            const response = await fetch('/api/order/' + orderId + '/status');
+            const result = await response.json();
+            if (result.success) {
+                document.querySelector('.status-value').textContent = result.status.toUpperCase();
+                if (result.status === 'completed') {
+                    document.querySelector('.status-value').style.color = '#00d4ff';
+                }
+            }
+        }, 5000);
+    </script>
+</body>
+</html>

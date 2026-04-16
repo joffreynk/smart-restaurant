@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Food - Smart Restaurant</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.4/socket.io.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background: #1a1a2e;
+            color: white;
+            min-height: 100vh;
+        }
+        .header {
+            background: #16213e;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 2px solid #00d4ff;
+        }
+        .header h1 { color: #00d4ff; font-size: 1.5rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 15px; }
+        .section { margin-bottom: 25px; }
+        .section h2 { color: #00d4ff; margin-bottom: 15px; font-size: 1.2rem; }
+        
+        .categories { display: flex; flex-wrap: wrap; gap: 10px; }
+        .category-btn {
+            flex: 1;
+            min-width: 100px;
+            padding: 15px;
+            background: #16213e;
+            border: 2px solid #00d4ff;
+            color: #00d4ff;
+            font-size: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .category-btn:hover, .category-btn.active {
+            background: #00d4ff;
+            color: #1a1a2e;
+        }
+        
+        .tables { display: flex; flex-wrap: wrap; gap: 10px; }
+        .table-btn {
+            padding: 12px 20px;
+            background: #16213e;
+            border: 2px solid #00d4ff;
+            color: #00d4ff;
+            font-size: 0.9rem;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .table-btn.occupied {
+            background: #333;
+            border-color: #666;
+            color: #666;
+            cursor: not-allowed;
+        }
+        .table-btn.selected {
+            background: #00d4ff;
+            color: #1a1a2e;
+        }
+        
+        .menu-items { display: none; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+        .menu-items.show { display: grid; }
+        .menu-item {
+            background: #16213e;
+            padding: 12px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .menu-item .name { font-weight: 600; margin-bottom: 5px; }
+        .menu-item .price { color: #4caf50; }
+        .menu-item button {
+            margin-top: 8px;
+            padding: 8px 15px;
+            background: #00d4ff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .cart {
+            background: #16213e;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .cart h2 { color: #00d4ff; margin-bottom: 15px; }
+        .cart-items { margin-bottom: 15px; }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #333;
+        }
+        .cart-item:last-child { border-bottom: none; }
+        .cart-item button {
+            padding: 5px 10px;
+            background: #e94560;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-top: 2px solid #00d4ff;
+        }
+        .checkout-form { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+        .checkout-form input {
+            padding: 12px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            background: #1a1a2e;
+            color: white;
+        }
+        .checkout-form button {
+            padding: 15px;
+            background: #00d4ff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #00d4ff;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 10px; }
+            .header { padding: 12px; }
+            .header h1 { font-size: 1.3rem; }
+            .category-btn { min-width: 80px; padding: 12px; font-size: 0.9rem; }
+            .table-btn { padding: 10px 15px; font-size: 0.85rem; }
+            .menu-items { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
+            .menu-item { padding: 10px; }
+            .menu-item .name { font-size: 0.9rem; }
+            .cart { padding: 12px; }
+            .cart-total { font-size: 1rem; }
+            .checkout-form input, .checkout-form button { padding: 10px; }
+        }
+        
+        @media (max-width: 480px) {
+            .container { padding: 8px; }
+            .header { padding: 10px; }
+            .header h1 { font-size: 1.1rem; }
+            .section h2 { font-size: 1rem; }
+            .category-btn { min-width: 70px; padding: 10px; font-size: 0.8rem; }
+            .table-btn { padding: 8px 12px; font-size: 0.8rem; }
+            .menu-items { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .menu-item { padding: 8px; }
+            .menu-item .name { font-size: 0.8rem; }
+            .menu-item .price { font-size: 0.85rem; }
+            .menu-item button { padding: 6px 10px; font-size: 0.8rem; }
+            .cart { padding: 10px; }
+            .cart h2 { font-size: 1rem; }
+            .cart-item { padding: 8px; font-size: 0.9rem; }
+            .cart-total { font-size: 0.9rem; padding: 10px; }
+            .checkout-form input { padding: 8px; font-size: 0.9rem; }
+            .checkout-form button { padding: 12px; font-size: 1rem; }
+        }
+    </style>
+            border-bottom: 2px solid #00d4ff;
+        }
+        .header h1 { color: #00d4ff; font-size: 1.8rem; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .section { margin-bottom: 30px; }
+        .section h2 { color: #00d4ff; margin-bottom: 15px; font-size: 1.3rem; }
+        
+        .categories { display: flex; flex-wrap: wrap; gap: 10px; }
+        .category-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 20px;
+            background: #16213e;
+            border: 2px solid #00d4ff;
+            color: #00d4ff;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .category-btn:hover, .category-btn.active {
+            background: #00d4ff;
+            color: #1a1a2e;
+        }
+        
+        .menu-items { display: none; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+        .menu-items.show { display: grid; }
+        .menu-item {
+            background: #16213e;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .menu-item h3 { color: #fff; margin-bottom: 5px; }
+        .menu-item .price { color: #00d4ff; font-size: 1.2rem; margin-bottom: 10px; }
+        .menu-item .desc { color: #888; font-size: 0.85rem; margin-bottom: 10px; }
+        .menu-item button {
+            padding: 8px 20px;
+            background: #00d4ff;
+            border: none;
+            color: #1a1a2e;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .cart {
+            background: #16213e;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .cart-items { margin: 15px 0; }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #333;
+        }
+        .cart-item .qty { color: #00d4ff; }
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            color: #00d4ff;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #333;
+        }
+        .checkout-form { margin-top: 20px; }
+        .checkout-form input {
+            width: 100%;
+            padding: 12px;
+            margin: 5px 0;
+            background: #1a1a2e;
+            border: 1px solid #333;
+            color: white;
+            border-radius: 5px;
+        }
+        .checkout-form button {
+            width: 100%;
+            padding: 15px;
+            background: #00d4ff;
+            border: none;
+            color: #1a1a2e;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #00d4ff;
+            text-decoration: none;
+        }
+        .tables { display: flex; flex-wrap: wrap; gap: 10px; }
+        .table-btn {
+            padding: 15px 25px;
+            background: #16213e;
+            border: 2px solid #00d4ff;
+            color: #00d4ff;
+            font-size: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .table-btn.occupied {
+            background: #333;
+            border-color: #666;
+            color: #666;
+            cursor: not-allowed;
+        }
+        .table-btn.selected {
+            background: #00d4ff;
+            color: #1a1a2e;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="/" class="back-btn">&larr; Home</a>
+        <h1>Order Food</h1>
+    </div>
+    
+    <div class="container">
+        <div class="section">
+            <h2>Select Category</h2>
+            <div class="categories">
+                {% for cat in categories %}
+                <button class="category-btn" data-id="{{ cat.id }}" onclick="handleCategoryClick(this)">{{ cat.name }}</button>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Select Table</h2>
+            <div class="tables" id="table-list"></div>
+        </div>
+        
+        <div id="menu-items" class="menu-items"></div>
+        
+        <div class="cart">
+            <h2>Your Order</h2>
+            <div id="cart-items" class="cart-items"></div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <div class="checkout-form">
+                <input type="text" id="customer-name" placeholder="Your Name">
+                <input type="tel" id="customer-phone" placeholder="Phone Number (optional)">
+                <button onclick="placeOrder()">Place Order</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let cart = [];
+        let currentCategory = null;
+        let selectedTableId = null;
+        
+        async function loadTables() {
+            console.log('loadTables called');
+            try {
+                const response = await fetch('/api/tables');
+                console.log('Response status:', response.status);
+                const data = await response.json();
+                console.log('Tables data:', data);
+                const tables = data.data || [];
+                console.log('Tables:', tables);
+                
+                const container = document.getElementById('table-list');
+                if (tables.length === 0) {
+                    container.innerHTML = '<p style="color: #888;">No tables available</p>';
+                    return;
+                }
+                
+                container.innerHTML = tables.map(t => `
+                    <button class="table-btn ${t.status === 'occupied' ? 'occupied' : ''}" 
+                        onclick="selectTable(${t.id}, ${t.table_number})" 
+                        ${t.status === 'occupied' ? 'disabled' : ''}>
+                        Table ${t.table_number} (${t.capacity} seats)
+                    </button>
+                `).join('');
+            } catch (e) {
+                console.error('Error loading tables:', e);
+            }
+        }
+        
+        function selectTable(id, number) {
+            document.querySelectorAll('.table-btn').forEach(b => b.classList.remove('selected'));
+            event.target.classList.add('selected');
+            selectedTableId = id;
+        }
+        
+        function handleCategoryClick(btn) {
+            const catId = parseInt(btn.getAttribute('data-id'));
+            showCategory(catId, btn);
+        }
+        
+        async function showCategory(catId, btn) {
+            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const response = await fetch('/api/menu-items/category/' + catId);
+            const data = await response.json();
+            const items = data.data || [];
+            
+            const container = document.getElementById('menu-items');
+            container.innerHTML = items.map(item => `
+                <div class="menu-item">
+                    <h3>${item.name}</h3>
+                    <div class="price">$${(item.price || 0).toFixed(2)}</div>
+                    <div class="desc">${item.description || ''}</div>
+                    <button onclick="addToCart(${item.id}, '${item.name}', ${item.price || 0})">Add</button>
+                </div>
+            `).join('');
+            container.classList.add('show');
+        }
+        
+        function addToCart(id, name, price) {
+            const existing = cart.find(i => i.menu_item_id === id);
+            if (existing) {
+                existing.quantity++;
+            } else {
+                cart.push({ menu_item_id: id, name, price, quantity: 1 });
+            }
+            updateCart();
+        }
+        
+        function updateCart() {
+            const container = document.getElementById('cart-items');
+            container.innerHTML = cart.map((item, idx) => `
+                <div class="cart-item">
+                    <span>${item.name} x${item.quantity}</span>
+                    <span class="qty">$${(item.price * item.quantity).toFixed(2)}</span>
+                </div>
+            `).join('');
+            
+            const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            document.getElementById('cart-total').textContent = '$' + total.toFixed(2);
+        }
+        
+        async function placeOrder() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            if (!selectedTableId) {
+                alert('Please select a table!');
+                return;
+            }
+            
+            const name = document.getElementById('customer-name').value || 'Guest';
+            const phone = document.getElementById('customer-phone').value || '';
+            
+            const response = await fetch('/api/customer/order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    table_id: selectedTableId,
+                    items: cart,
+                    customer_name: name,
+                    customer_phone: phone
+                })
+            });
+            
+            const result = await response.json();
+            if (result.success) {
+                window.location.href = '/order-confirmation/' + result.order_id;
+            } else {
+                alert('Error: ' + result.error);
+            }
+        }
+        
+        let socket = null;
+        
+        loadTables();
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTables();
+            
+            // Initialize socket connection
+            if (typeof io !== 'undefined') {
+                socket = io();
+                socket.on('connect', function() {
+                    console.log('Socket connected');
+                });
+                socket.on('table_updated', function(data) {
+                    console.log('Table updated:', data);
+                    loadTables();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

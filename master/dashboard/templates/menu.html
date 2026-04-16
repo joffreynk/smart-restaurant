@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Management - Smart Restaurant</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: #f5f5f5; }
+        .sidebar { position: fixed; left: 0; top: 0; width: 250px; height: 100vh; background: #1a1a2e; color: white; padding: 20px; z-index: 100; }
+        .sidebar h2 { color: #e94560; margin-bottom: 30px; text-align: center; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 10px; }
+        .sidebar a { color: #ddd; text-decoration: none; display: block; padding: 12px 15px; border-radius: 5px; transition: 0.3s; }
+        .sidebar a:hover, .sidebar a.active { background: #e94560; color: white; }
+        .menu-toggle { display: none; position: fixed; top: 10px; left: 10px; z-index: 101; padding: 10px; background: #e94560; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .main { margin-left: 250px; padding: 20px; transition: margin-left 0.3s; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .header h1 { color: #333; }
+        .btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; }
+        .btn-primary { background: #e94560; color: white; }
+        .btn-secondary { background: #6c757d; color: white; }
+        .btn-danger { background: #dc3545; color: white; }
+        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .card h2 { color: #333; margin-bottom: 15px; font-size: 18px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; color: #666; font-weight: 600; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; color: #333; font-weight: 500; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
+        .modal.show { display: flex; }
+        .modal-content { background: white; padding: 30px; border-radius: 10px; width: 500px; max-height: 80vh; overflow-y: auto; }
+        .modal-header { display: flex; justify-content: space-between; margin-bottom: 20px; }
+        .modal-header h3 { color: #333; }
+        .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+        .tab { padding: 10px 20px; background: #eee; border: none; border-radius: 5px; cursor: pointer; }
+        .tab.active { background: #e94560; color: white; }
+        .badge { padding: 5px 10px; border-radius: 15px; font-size: 12px; }
+        .badge.active { background: #d4edda; color: #155724; }
+        .badge.inactive { background: #f8d7da; color: #721c24; }
+        
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .sidebar { width: 200px; transform: translateX(-100%); transition: transform 0.3s; }
+            .sidebar.open { transform: translateX(0); }
+            .main { margin-left: 0; padding: 60px 15px 20px; }
+            .header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .tabs { flex-wrap: wrap; }
+        }
+        
+        @media (max-width: 480px) {
+            .sidebar { width: 100%; }
+            .header h1 { font-size: 1.2rem; }
+            .btn { padding: 8px 15px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰ Menu</button>
+    <div class="sidebar">
+        <h2>Smart Restaurant</h2>
+        <ul>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/menu" class="active">Menu Management</a></li>
+            <li><a href="/orders">Orders</a></li>
+            <li><a href="/tables">Tables</a></li>
+            <li><a href="/robots">Robot Telemetry</a></li>
+            <li><a href="/robot-subscription">Robot Subscription</a></li>
+            <li><a href="/devices">Client Devices</a></li>
+            <li><a href="/analytics">Analytics</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+    <div class="main">
+        <div class="header">
+            <h1>Menu Management</h1>
+        </div>
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('categories')">Categories</button>
+            <button class="tab" onclick="showTab('items')">Menu Items</button>
+        </div>
+        <div id="categories-tab">
+            <div class="card">
+                <h2>Categories <button class="btn btn-primary" onclick="openCategoryModal()">Add Category</button></h2>
+                <table>
+                    <thead>
+                        <tr><th>ID</th><th>Name</th><th>Description</th><th>Order</th><th>Status</th><th>Actions</th></tr>
+                    </thead>
+                    <tbody id="categories-list"></tbody>
+                </table>
+            </div>
+        </div>
+        <div id="items-tab" style="display:none;">
+            <div class="card">
+                <h2>Menu Items <button class="btn btn-primary" onclick="openItemModal()">Add Item</button></h2>
+                <table>
+                    <thead>
+                        <tr><th>ID</th><th>Name</th><th>Category</th><th>Price</th><th>Prep Time</th><th>Status</th><th>Actions</th></tr>
+                    </thead>
+                    <tbody id="items-list"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="category-modal">
+        <div class="modal-content">
+            <div class="modal-header"><h3 id="category-modal-title">Add Category</h3></div>
+            <div class="form-group"><label>Name</label><input type="text" id="category-name"></div>
+            <div class="form-group"><label>Description</label><textarea id="category-desc"></textarea></div>
+            <div class="form-group"><label>Display Order</label><input type="number" id="category-order" value="0"></div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeCategoryModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="saveCategory()">Save</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="item-modal">
+        <div class="modal-content">
+            <div class="modal-header"><h3 id="item-modal-title">Add Item</h3></div>
+            <div class="form-group"><label>Name</label><input type="text" id="item-name"></div>
+            <div class="form-group"><label>Category</label><select id="item-category"></select></div>
+            <div class="form-group"><label>Price</label><input type="number" step="0.01" id="item-price"></div>
+            <div class="form-group"><label>Description</label><textarea id="item-desc"></textarea></div>
+            <div class="form-group"><label>Prep Time (min)</label><input type="number" id="item-time" value="15"></div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeItemModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="saveItem()">Save</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        let currentCategoryId = null, currentItemId = null;
+        function showTab(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('categories-tab').style.display = tab === 'categories' ? 'block' : 'none';
+            document.getElementById('items-tab').style.display = tab === 'items' ? 'block' : 'none';
+        }
+        function loadCategories() {
+            fetch('/api/categories?all=true').then(r => r.json()).then(data => {
+                document.getElementById('categories-list').innerHTML = data.data.map(c => {
+                    const isActive = c.is_active !== false;
+                    const newStatus = isActive ? false : true;
+                    return `
+                    <tr>
+                        <td>${c.id}</td><td>${c.name}</td><td>${c.description || '-'}</td><td>${c.display_order}</td>
+                        <td><span class="badge ${isActive ? 'active' : 'inactive'}">${isActive ? 'Active' : 'Inactive'}</span></td>
+                        <td>
+                            <button class="btn btn-secondary" onclick="toggleCategoryStatus(${c.id}, ${newStatus})">${isActive ? 'Disable' : 'Enable'}</button>
+                            <button class="btn btn-secondary" onclick="editCategory(${c.id})">Edit</button>
+                            <button class="btn btn-danger" onclick="deleteCategory(${c.id})">Delete</button>
+                        </td>
+                    </tr>
+                `}).join('');
+            });
+        }
+        function toggleCategoryStatus(id, newStatus) {
+            const btn = event.target;
+            btn.disabled = true;
+            btn.textContent = '...';
+            fetch('/api/categories/' + id, { method: 'PUT', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ is_active: newStatus }) }).then(r => r.json()).then(d => { 
+                btn.disabled = false;
+                if (d.success) loadCategories(); 
+                else { alert(d.message || 'Error updating status'); btn.textContent = newStatus ? 'Enable' : 'Disable'; }
+            }).catch(err => { btn.disabled = false; btn.textContent = newStatus ? 'Enable' : 'Disable'; alert('Error: ' + err); });
+        }
+        function loadItems() {
+            Promise.all([fetch('/api/menu-items?all=true'), fetch('/api/categories?all=true')]).then(([resItems, resCats]) => 
+                Promise.all([resItems.json(), resCats.json()])
+            ).then(([items, categories]) => {
+                const catMap = {};
+                categories.data.forEach(c => catMap[c.id] = c.name);
+                document.getElementById('items-list').innerHTML = items.data.map(i => {
+                    const isAvailable = i.is_available !== false;
+                    const newStatus = isAvailable ? false : true;
+                    return `
+                    <tr>
+                        <td>${i.id}</td><td>${i.name}</td><td>${catMap[i.category_id] || 'N/A'}</td><td>$${i.price}</td><td>${i.preparation_time} min</td>
+                        <td><span class="badge ${isAvailable ? 'active' : 'inactive'}">${isAvailable ? 'Available' : 'Unavailable'}</span></td>
+                        <td>
+                            <button class="btn btn-secondary" onclick="toggleItemStatus(${i.id}, ${newStatus})">${isAvailable ? 'Disable' : 'Enable'}</button>
+                            <button class="btn btn-secondary" onclick="editItem(${i.id})">Edit</button>
+                            <button class="btn btn-danger" onclick="deleteItem(${i.id})">Delete</button>
+                        </td>
+                    </tr>
+                `}).join('');
+            });
+        }
+        function toggleItemStatus(id, newStatus) {
+            const btn = event.target;
+            btn.disabled = true;
+            btn.textContent = '...';
+            fetch('/api/menu-items/' + id, { method: 'PUT', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ is_available: newStatus }) }).then(r => r.json()).then(d => { 
+                btn.disabled = false;
+                if (d.success) loadItems(); 
+                else { alert(d.message || 'Error updating status'); btn.textContent = newStatus ? 'Enable' : 'Disable'; }
+            }).catch(err => { btn.disabled = false; btn.textContent = newStatus ? 'Enable' : 'Disable'; alert('Error: ' + err); });
+        }
+        function openCategoryModal() { currentCategoryId = null; document.getElementById('category-modal-title').textContent = 'Add Category'; document.getElementById('category-name').value = ''; document.getElementById('category-desc').value = ''; document.getElementById('category-order').value = '0'; document.getElementById('category-modal').classList.add('show'); }
+        function closeCategoryModal() { document.getElementById('category-modal').classList.remove('show'); }
+        function saveCategory() {
+            const data = { name: document.getElementById('category-name').value, description: document.getElementById('category-desc').value, display_order: parseInt(document.getElementById('category-order').value) };
+            if (!data.name) { alert('Name is required'); return; }
+            const method = currentCategoryId ? 'PUT' : 'POST';
+            const url = currentCategoryId ? '/api/categories/' + currentCategoryId : '/api/categories';
+            fetch(url, { method, headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) }).then(r => r.json()).then(d => {
+                if (d.success) { closeCategoryModal(); loadCategories(); }
+                else { alert(d.message || 'Error saving category'); }
+            });
+        }
+        function editCategory(id) { fetch('/api/categories/' + id).then(r => r.json()).then(d => { const c = d.data; if(c) { currentCategoryId = id; document.getElementById('category-modal-title').textContent = 'Edit Category'; document.getElementById('category-name').value = c.name; document.getElementById('category-desc').value = c.description || ''; document.getElementById('category-order').value = c.display_order; document.getElementById('category-modal').classList.add('show'); }}); }
+        function deleteCategory(id) { if(confirm('Delete this category?')) fetch('/api/categories/' + id, {method: 'DELETE'}).then(() => loadCategories()); }
+        function loadCategoriesForSelect() { fetch('/api/categories?all=true').then(r => r.json()).then(d => { document.getElementById('item-category').innerHTML = d.data.map(c => `<option value="${c.id}">${c.name}</option>`).join(''); }); }
+        function openItemModal() { currentItemId = null; loadCategoriesForSelect(); document.getElementById('item-modal-title').textContent = 'Add Item'; document.getElementById('item-name').value = ''; document.getElementById('item-price').value = ''; document.getElementById('item-desc').value = ''; document.getElementById('item-time').value = '15'; document.getElementById('item-modal').classList.add('show'); }
+        function closeItemModal() { document.getElementById('item-modal').classList.remove('show'); }
+        function saveItem() { 
+            const data = { name: document.getElementById('item-name').value, category_id: parseInt(document.getElementById('item-category').value), price: parseFloat(document.getElementById('item-price').value), description: document.getElementById('item-desc').value, preparation_time: parseInt(document.getElementById('item-time').value) }; 
+            if (!data.name || !data.category_id || !data.price) { alert('Name, category, and price are required'); return; }
+            const method = currentItemId ? 'PUT' : 'POST'; 
+            const url = currentItemId ? '/api/menu-items/' + currentItemId : '/api/menu-items'; 
+            fetch(url, { method, headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) }).then(r => r.json()).then(d => {
+                if (d.success) { closeItemModal(); loadItems(); }
+                else { alert(d.message || 'Error saving item'); }
+            }); 
+        }
+        function editItem(id) { 
+            Promise.all([fetch('/api/menu-items/' + id), fetch('/api/categories')]).then(([resItem, resCats]) => Promise.all([resItem.json(), resCats.json()])).then(([data, categories]) => {
+                const i = data.data;
+                if(i) { 
+                    loadCategoriesForSelect(); 
+                    currentItemId = id; 
+                    document.getElementById('item-modal-title').textContent = 'Edit Item'; 
+                    document.getElementById('item-name').value = i.name; 
+                    document.getElementById('item-category').value = i.category_id; 
+                    document.getElementById('item-price').value = i.price; 
+                    document.getElementById('item-desc').value = i.description || ''; 
+                    document.getElementById('item-time').value = i.preparation_time; 
+                    document.getElementById('item-modal').classList.add('show'); 
+                }
+            }); 
+        }
+        function deleteItem(id) { if(confirm('Delete this item?')) fetch('/api/menu-items/' + id, {method: 'DELETE'}).then(() => loadItems()); }
+        loadCategories(); loadItems();
+        setInterval(() => { loadCategories(); loadItems(); }, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Subscription - Smart Restaurant</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: #f5f5f5; }
+        .sidebar { position: fixed; left: 0; top: 0; width: 250px; height: 100vh; background: #1a1a2e; color: white; padding: 20px; }
+        .sidebar h2 { color: #e94560; margin-bottom: 30px; text-align: center; }
+        .sidebar ul { list-style: none; }
+        .sidebar li { margin-bottom: 10px; }
+        .sidebar a { color: #ddd; text-decoration: none; display: block; padding: 12px 15px; border-radius: 5px; transition: 0.3s; }
+        .sidebar a:hover, .sidebar a.active { background: #e94560; color: white; }
+        .main { margin-left: 250px; padding: 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .header h1 { color: #333; }
+        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .card h2 { color: #333; margin-bottom: 15px; font-size: 18px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; color: #333; font-weight: 500; }
+        .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; }
+        .btn-primary { background: #e94560; color: white; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; color: #666; font-weight: 600; }
+        
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .sidebar { width: 200px; transform: translateX(-100%); transition: transform 0.3s; z-index: 100; }
+            .sidebar.open { transform: translateX(0); }
+            .main { margin-left: 0; padding: 60px 15px 20px; }
+        }
+        
+        @media (max-width: 480px) {
+            .sidebar { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰ Menu</button>
+    <div class="sidebar">
+        <h2>Smart Restaurant</h2>
+        <ul>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/menu">Menu Management</a></li>
+            <li><a href="/orders">Orders</a></li>
+            <li><a href="/tables">Tables</a></li>
+            <li><a href="/robots">Robot Telemetry</a></li>
+            <li><a href="/robot-subscription" class="active">Robot Subscription</a></li>
+            <li><a href="/analytics">Analytics</a></li>
+            <li><a href="/devices">Client Devices</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+    <div class="main">
+        <div class="header">
+            <h1>Robot Subscription Management</h1>
+        </div>
+        <div class="card">
+            <h2>Register New Robot</h2>
+            <div class="form-group">
+                <label>Unique Identifier (MAC Address or Serial)</label>
+                <input type="text" id="robot-uid" placeholder="e.g., ROBOT-001">
+            </div>
+            <div class="form-group">
+                <label>Robot Name</label>
+                <input type="text" id="robot-name" placeholder="e.g., Waiter Bot Alpha">
+            </div>
+            <button class="btn btn-primary" onclick="registerRobot()">Register Robot</button>
+        </div>
+        <div class="card">
+            <h2>Registered Robots</h2>
+            <table>
+                <thead><tr><th>ID</th><th>Identifier</th><th>Name</th><th>Status</th></tr></thead>
+                <tbody id="robots-list"></tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        function registerRobot() {
+            const data = {
+                unique_identifier: document.getElementById('robot-uid').value,
+                name: document.getElementById('robot-name').value
+            };
+            fetch('/dashboard/api/robots/register', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            }).then(r => r.json()).then(d => {
+                if(d.success) { alert('Robot registered!'); loadRobots(); }
+                else alert(d.error || d.message);
+            });
+        }
+        function loadRobots() {
+            fetch('/api/robots').then(r => r.json()).then(d => {
+                document.getElementById('robots-list').innerHTML = d.data.map(r => `
+                    <tr><td>${r.id}</td><td>${r.unique_identifier}</td><td>${r.name}</td><td>${r.status}</td></tr>
+                `).join('');
+            });
+        }
+        loadRobots();
+    </script>
+</body>
+</html>
