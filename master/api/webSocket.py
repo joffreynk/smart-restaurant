@@ -56,6 +56,7 @@ def register_websocket(socketio):
     
     @socketio.on('connect')
     def handle_connect():
+        print(f'>>> CLIENT CONNECTED: {request.sid} from {request.remote_addr}')
         log_event('CLIENT_CONNECT', {'sid': request.sid, 'remote': request.remote_addr})
         emit('connected', {'status': 'connected', 'session_id': request.sid})
     
@@ -122,6 +123,71 @@ def register_websocket(socketio):
             finally:
                 session.close()
     
+    @socketio.on('robot_ready')
+    def handle_robot_ready(data):
+        device_id = data.get('device_id')
+        print(f'>>> ROBOT_READY from {device_id}, sid={request.sid}')
+        if not device_id:
+            return
+        
+        session = get_session()
+        try:
+            robot = session.query(Robot).filter(Robot.unique_identifier == device_id).first()
+            if robot:
+                robot.status = 'idle'
+                robot.last_seen = datetime.utcnow()
+                session.commit()
+                connected_robots[robot.id] = request.sid
+                join_room(f'robot_{robot.id}')
+                emit('registered', {'success': True, 'robot_id': robot.id, 'message': 'Robot ready'}, room=request.sid)
+                print(f'>>> Robot REGISTERED: {device_id}')
+            else:
+                emit('registered', {'success': False, 'message': 'Robot not found'}, room=request.sid)
+                print(f'>>> Robot NOT FOUND: {device_id}')
+        finally:
+            session.close()
+    
+    @socketio.on('command_completed')
+    def handle_command_completed(data):
+        device_id = data.get('device_id')
+        session = get_session()
+        try:
+            robot = session.query(Robot).filter(Robot.unique_identifier == device_id).first()
+            if robot:
+                robot.current_command = None
+                robot.current_action = None
+                if robot.status in ['assigned', 'delivering', 'returning']:
+                    robot.status = 'idle'
+                robot.last_seen = datetime.utcnow()
+                session.commit()
+                emit('command_completed_ack', {'success': True}, room=request.sid)
+                socketio.emit('robot_command_done', {'robot_id': robot.id, 'robot_name': robot.name, 'status': robot.status})
+        finally:
+            session.close()
+    
+    @socketio.on('robot_stop')
+    def handle_robot_stop(data):
+        device_id = data.get('device_id')
+        session = get_session()
+        try:
+            robot = session.query(Robot).filter(Robot.unique_identifier == device_id).first()
+            if robot:
+                robot.current_command = None
+                robot.current_action = None
+                robot.status = 'stopped'
+                robot.last_seen = datetime.utcnow()
+                session.commit()
+                emit('robot_stopped', {'success': True}, room=request.sid)
+        finally:
+            session.close()
+    
+    @socketio.on('sensor_reading')
+    def handle_sensor_reading(data):
+        device_id = data.get('device_id')
+        left = data.get('left')
+        right = data.get('right')
+        print(f"SENSOR [{device_id}] L:{left} R:{right}")
+    
     @socketio.on('robot_telemetry')
     def handle_telemetry(data):
         device_id = data.get('device_id')
@@ -165,7 +231,7 @@ def register_websocket(socketio):
                     'current_angle': robot.current_angle,
                     'status': robot.status,
                     'last_seen': robot.last_seen.isoformat()
-                }, broadcast=True)
+                })
         except Exception as e:
             print(f'Telemetry error: {e}')
             session.rollback()
@@ -198,7 +264,7 @@ def register_websocket(socketio):
                     'old_status': old_status,
                     'new_status': status,
                     'timestamp': datetime.utcnow().isoformat()
-                }, broadcast=True)
+                })
         except Exception as e:
             print(f'Status update error: {e}')
         finally:
@@ -239,7 +305,7 @@ def register_websocket(socketio):
                     'robot_id': robot.id,
                     'status': status,
                     'timestamp': datetime.utcnow().isoformat()
-                }, broadcast=True)
+                })
                 
                 socketio.emit('customer_pickup_confirmed', {
                     'delivery_id': delivery.id,
@@ -304,7 +370,7 @@ def register_websocket(socketio):
                 'command_id': command_id,
                 'action': action,
                 'timestamp': datetime.utcnow().isoformat()
-            }, broadcast=True)
+            })
             
         except Exception as e:
             print(f'Command error: {e}')
@@ -412,7 +478,7 @@ def register_websocket(socketio):
                 'command_id': command_id,
                 'success': success,
                 'timestamp': datetime.utcnow().isoformat()
-            }, broadcast=True)
+            })
     
     @socketio.on('request_state_sync')
     def handle_state_sync(data):
@@ -449,14 +515,14 @@ def register_websocket(socketio):
             'total': data.get('total'),
             'items': data.get('items'),
             'timestamp': data.get('timestamp')
-        }, broadcast=True)
+        })
         
         emit('kitchen_order', {
             'order_id': data.get('order_id'),
             'table_number': data.get('table_number'),
             'items': data.get('items'),
             'timestamp': data.get('timestamp')
-        }, broadcast=True)
+        })
     
     @socketio.on('phone_register')
     def handle_phone_register(data):
@@ -563,7 +629,7 @@ def register_websocket(socketio):
                 'table_id': table_id,
                 'table_number': table.table_number,
                 'status': 'occupied'
-            }, broadcast=True)
+            })
             
             emit('order_response', {
                 'success': True,
@@ -571,20 +637,20 @@ def register_websocket(socketio):
                 'message': 'Order submitted, waiting for confirmation'
             }, room=request.sid)
             
-            emit('new_order', {
+            socketio.emit('new_order', {
                 'order_id': order.id,
                 'table_number': table.table_number,
                 'total': total_amount,
                 'items': items,
                 'timestamp': datetime.utcnow().isoformat()
-            }, broadcast=True)
+            })
             
-            emit('kitchen_order', {
+            socketio.emit('kitchen_order', {
                 'order_id': order.id,
                 'table_number': table.table_number,
                 'items': items,
                 'timestamp': datetime.utcnow().isoformat()
-            }, broadcast=True)
+            })
             
             log_event('ORDER_CREATED', {
                 'order_id': order.id,
@@ -626,7 +692,7 @@ def register_websocket(socketio):
                 emit('order_cancelled', {
                     'order_id': order_id,
                     'timestamp': datetime.utcnow().isoformat()
-                }, broadcast=True)
+                })
         finally:
             session.close()
     
@@ -691,7 +757,7 @@ def register_websocket(socketio):
                 emit('delivery_command', delivery_command, room=connected_robots[robot_id])
                 log_event('DELIVERY_SENT', {'robot_id': robot_id, 'order_id': order_id, 'table': table_number})
             else:
-                emit('delivery_command', delivery_command, broadcast=True)
+                socketio.emit('delivery_command', delivery_command)
                 log_event('DELIVERY_BROADCAST', {'order_id': order_id, 'table': table_number})
             
             # Create delivery record
@@ -733,7 +799,7 @@ def register_websocket(socketio):
             'status': 'arrived',
             'table_id': table_id,
             'message': 'Food arrived at table! Please pick up.'
-        }, broadcast=True)
+        })
         
         # Update delivery record
         session = get_session()
@@ -771,7 +837,7 @@ def register_websocket(socketio):
         if robot_id and robot_id in connected_robots:
             emit('return_command', return_command, room=connected_robots[robot_id])
         else:
-            emit('return_command', return_command, broadcast=True)
+            socketio.emit('return_command', return_command)
         
         # Update delivery record
         session = get_session()
@@ -784,10 +850,15 @@ def register_websocket(socketio):
                 delivery.completed_at = datetime.utcnow()
                 session.commit()
             
-            # Update order status
+            # Update order status and table status
             order = session.query(Order).filter(Order.id == order_id).first()
             if order:
-                order.status = 'delivering'  # Robot is returning
+                order.status = 'completed'
+                order.completed_at = datetime.utcnow()
+                # Mark table as cleaning
+                table_status = session.query(TableStatus).filter(TableStatus.table_id == order.table_id).first()
+                if table_status:
+                    table_status.status = 'cleaning'
                 session.commit()
         finally:
             session.close()
@@ -796,7 +867,7 @@ def register_websocket(socketio):
             'order_id': order_id,
             'status': 'returning',
             'message': 'Robot returning to kitchen'
-        }, broadcast=True)
+        })
     
     @socketio.on('robot_home_arrived')
     def handle_robot_home_arrived(data):
@@ -821,7 +892,7 @@ def register_websocket(socketio):
             'robot_id': robot_id,
             'status': 'idle',
             'message': 'Robot ready for next delivery'
-        }, broadcast=True)
+        })
     
     @socketio.on('robot_delivery_failed')
     def handle_robot_delivery_failed(data):
@@ -854,7 +925,7 @@ def register_websocket(socketio):
             'order_id': order_id,
             'reason': failure_reason,
             'message': 'Robot delivery failed. Manual delivery required.'
-        }, broadcast=True)
+        })
     
     @socketio.on('robot_heartbeat')
     def handle_robot_heartbeat(data):
@@ -893,7 +964,7 @@ def register_websocket(socketio):
             'robot_id': robot_id,
             'status': 'idle',
             'message': 'Robot reconnected and ready'
-        }, broadcast=True)
+        })
     
     @socketio.on('ultrasonic_alert')
     def handle_ultrasonic_alert(data):
@@ -908,7 +979,7 @@ def register_websocket(socketio):
             'alert_type': 'obstacle',
             'distance': distance,
             'message': f'Obstacle detected at {distance}cm'
-        }, broadcast=True)
+        })
     
     @socketio.on('line_sensor_data')
     def handle_line_sensor_data(data):
@@ -922,5 +993,3 @@ def register_websocket(socketio):
         log_event('LINE_SENSOR', {'robot_id': robot_id, 'left': left, 'center': center, 'right': right})
     
     print('WebSocket handlers registered')
-
-from flask import request

@@ -515,10 +515,32 @@ def get_orders():
             query = query.filter(Order.status == status)
         
         orders = query.order_by(Order.created_at.desc()).all()
+        
+        # Batch fetch related data to avoid N+1 queries
+        table_ids = {order.table_id for order in orders}
+        order_ids = [order.id for order in orders]
+        
+        tables = {t.id: t for t in session.query(Table).filter(Table.id.in_(table_ids)).all()} if table_ids else {}
+        items_list = session.query(OrderItem).filter(OrderItem.order_id.in_(order_ids)).all() if order_ids else []
+        item_ids = {item.menu_item_id for item in items_list}
+        menu_items = {mi.id: mi for mi in session.query(MenuItem).filter(MenuItem.id.in_(item_ids)).all()} if item_ids else {}
+        
+        # Group items by order_id
+        items_by_order = {}
+        for item in items_list:
+            if item.order_id not in items_by_order:
+                items_by_order[item.order_id] = []
+            mi = menu_items.get(item.menu_item_id)
+            items_by_order[item.order_id].append({
+                'name': mi.name if mi else 'Unknown',
+                'quantity': item.quantity,
+                'subtotal': item.subtotal
+            })
+        
         data = []
         for order in orders:
-            table = session.query(Table).filter(Table.id == order.table_id).first()
-            items = session.query(OrderItem).filter(OrderItem.order_id == order.id).all()
+            table = tables.get(order.table_id)
+            order_items = items_by_order.get(order.id, [])
             
             data.append({
                 'id': order.id,
@@ -527,7 +549,7 @@ def get_orders():
                 'total_amount': order.total_amount,
                 'status': order.status,
                 'created_at': order.created_at.isoformat() if order.created_at else None,
-                'items': [{'name': session.query(MenuItem).filter(MenuItem.id == i.menu_item_id).first().name if session.query(MenuItem).filter(MenuItem.id == i.menu_item_id).first() else 'Unknown', 'quantity': i.quantity, 'subtotal': i.subtotal} for i in items]
+                'items': order_items
             })
         
         return success_response(data)
@@ -638,14 +660,14 @@ def create_order():
                 'total': total_amount,
                 'items': order_items,
                 'timestamp': datetime.utcnow().isoformat()
-            }, broadcast=True)
+            })
             
             sio.emit('kitchen_order', {
                 'order_id': order.id,
                 'table_number': table.table_number,
                 'items': order_items,
                 'timestamp': datetime.utcnow().isoformat()
-            }, broadcast=True)
+            })
         
         return success_response({'id': order.id, 'total_amount': order.total_amount}, 'Order created')
     except Exception as e:
@@ -676,7 +698,7 @@ def update_order(id):
                 'old_status': old_status,
                 'new_status': order.status,
                 'timestamp': datetime.utcnow().isoformat()
-            }, broadcast=True)
+            })
         
         return success_response({'id': order.id}, 'Order updated')
     except Exception as e:
@@ -711,7 +733,7 @@ def complete_order(id):
                 'new_status': 'completed',
                 'table_id': order.table_id,
                 'timestamp': datetime.utcnow().isoformat()
-            }, broadcast=True)
+            })
         
         return success_response({'id': order.id, 'status': order.status}, 'Order completed')
     except Exception as e:
@@ -758,6 +780,9 @@ def get_robots():
             'current_x': r.current_x,
             'current_y': r.current_y,
             'current_angle': r.current_angle,
+            'current_action': r.current_action,
+            'current_command': r.current_command,
+            'last_error': r.last_error,
             'last_seen': r.last_seen.isoformat() if r.last_seen else None
         } for r in robots]
         
@@ -810,6 +835,9 @@ def get_robot(id):
             'current_x': robot.current_x,
             'current_y': robot.current_y,
             'current_angle': robot.current_angle,
+            'current_action': robot.current_action,
+            'current_command': robot.current_command,
+            'last_error': robot.last_error,
             'last_seen': robot.last_seen.isoformat() if robot.last_seen else None
         }
         
@@ -835,6 +863,9 @@ def get_robot_by_uid(uid):
             'current_x': robot.current_x,
             'current_y': robot.current_y,
             'current_angle': robot.current_angle,
+            'current_action': robot.current_action,
+            'current_command': robot.current_command,
+            'last_error': robot.last_error,
             'last_seen': robot.last_seen.isoformat() if robot.last_seen else None
         }
         
@@ -883,6 +914,16 @@ def update_robot_telemetry(id):
             robot.current_angle = data['current_angle']
         if data.get('status') is not None:
             robot.status = data['status']
+        if data.get('error') is not None:
+            robot.last_error = data['error']
+        if data.get('command_completed') is not None:
+            if data['command_completed'] and robot.current_command:
+                robot.current_command = None
+                robot.current_action = None
+                if robot.status in ['assigned', 'delivering', 'returning']:
+                    robot.status = 'idle'
+        if data.get('action') is not None:
+            robot.current_action = data['action']
         
         robot.last_seen = datetime.utcnow()
         
@@ -936,6 +977,59 @@ def get_robot_analytics(id):
         }
         
         return success_response(data)
+    finally:
+        session.close()
+
+@api.route('/robots/<int:id>', methods=['PUT'])
+def update_robot(id):
+    session = get_session()
+    try:
+        robot = session.query(Robot).filter(Robot.id == id).first()
+        if not robot:
+            return error_response('Robot not found', 404)
+        
+        data = request.get_json()
+        if data.get('name'):
+            robot.name = data['name']
+        if data.get('unique_identifier'):
+            robot.unique_identifier = data['unique_identifier']
+        if data.get('status'):
+            robot.status = data['status']
+        if data.get('battery_voltage') is not None:
+            robot.battery_voltage = data['battery_voltage']
+        if data.get('battery_percentage') is not None:
+            robot.battery_percentage = data['battery_percentage']
+        if data.get('current_x') is not None:
+            robot.current_x = data['current_x']
+        if data.get('current_y') is not None:
+            robot.current_y = data['current_y']
+        if data.get('current_angle') is not None:
+            robot.current_angle = data['current_angle']
+        
+        session.commit()
+        
+        return success_response({'id': robot.id}, 'Robot updated')
+    except Exception as e:
+        session.rollback()
+        return error_response(str(e))
+    finally:
+        session.close()
+
+@api.route('/robots/<int:id>', methods=['DELETE'])
+def delete_robot(id):
+    session = get_session()
+    try:
+        robot = session.query(Robot).filter(Robot.id == id).first()
+        if not robot:
+            return error_response('Robot not found', 404)
+        
+        session.delete(robot)
+        session.commit()
+        
+        return success_response(None, 'Robot deleted')
+    except Exception as e:
+        session.rollback()
+        return error_response(str(e))
     finally:
         session.close()
 
@@ -1255,6 +1349,37 @@ def get_dashboard_robot_stats():
 
 # ================== Robot Command API ==================
 
+@api.route('/robot/telemetry', methods=['POST'])
+def robot_telemetry_http():
+    data = request.get_json()
+    device_id = data.get('device_id')
+    status = data.get('status')
+    
+    print(f'>>> TELEMETRY from {device_id}: {status}')
+    
+    session = get_session()
+    try:
+        robot = session.query(Robot).filter(Robot.unique_identifier == device_id).first()
+        if robot:
+            robot.status = status
+            robot.last_seen = datetime.utcnow()
+            session.commit()
+            return success_response({'id': robot.id, 'status': status})
+        return error_response('Robot not found')
+    finally:
+        session.close()
+
+@api.route('/robot/<string:uid>/command', methods=['GET'])
+def robot_get_command(uid):
+    session = get_session()
+    try:
+        robot = session.query(Robot).filter(Robot.unique_identifier == uid).first()
+        if robot and robot.current_action:
+            return success_response({'action': robot.current_action})
+        return success_response({'action': ''})
+    finally:
+        session.close()
+
 @api.route('/robots/<int:id>/command', methods=['POST'])
 def send_robot_command(id):
     data = request.get_json()
@@ -1269,21 +1394,42 @@ def send_robot_command(id):
         if not robot:
             return error_response('Robot not found', 404)
         
+        if robot.current_command:
+            return error_response(f'Robot already executing command: {robot.current_command}')
+        
+        command_id = f'cmd_{id}_{int(datetime.utcnow().timestamp())}'
+        
+        if robot.last_error:
+            robot.last_error = None
+        
+        robot.current_command = command_id
+        robot.current_action = action
+        robot.status = 'assigned'
+        
         sio = get_socketio()
         if sio:
-            sio.emit('robot_command', {
-                'command_id': f'cmd_{id}_{int(datetime.utcnow().timestamp())}',
-                'action': action,
-                'delivery_id': data.get('delivery_id')
-            }, room=f'robot_{robot.id}')
+            if action == 'deliver':
+                sio.emit('delivery_command', {
+                    'command_id': command_id,
+                    'table': data.get('table', 'table_1')
+                }, room=f'robot_{robot.id}')
+            elif action == 'return':
+                sio.emit('return_command', {
+                    'command_id': command_id
+                }, room=f'robot_{robot.id}')
+            else:
+                sio.emit('robot_command', {
+                    'command_id': command_id,
+                    'action': action,
+                    'delivery_id': data.get('delivery_id')
+                }, room=f'robot_{robot.id}')
         
-        robot.status = 'assigned'
         session.commit()
         
         return success_response({
             'robot_id': id,
             'action': action,
-            'command_id': f'cmd_{id}_{int(datetime.utcnow().timestamp())}'
+            'command_id': command_id
         }, 'Command sent')
     finally:
         session.close()
@@ -1301,15 +1447,25 @@ def robot_go_to_table(id, table_num):
         if not robot:
             return error_response('Robot not found', 404)
         
+        if robot.current_command:
+            return error_response(f'Robot already executing command: {robot.current_command}')
+        
+        command_id = f'cmd_{id}_{int(datetime.utcnow().timestamp())}'
+        
+        if robot.last_error:
+            robot.last_error = None
+        
+        robot.current_command = command_id
+        robot.current_action = f'leaving_home_to_table_{table_num}'
+        robot.status = 'delivering'
+        
         sio = get_socketio()
         if sio:
-            sio.emit('robot_command', {
-                'command_id': f'cmd_{id}_{int(datetime.utcnow().timestamp())}',
-                'action': action,
-                'table_id': f'table_{table_num}'
+            sio.emit('delivery_command', {
+                'command_id': command_id,
+                'table': f'table_{table_num}'
             }, room=f'robot_{robot.id}')
         
-        robot.status = 'delivering'
         session.commit()
         
         return success_response({
@@ -1328,14 +1484,24 @@ def robot_return_kitchen(id):
         if not robot:
             return error_response('Robot not found', 404)
         
+        if robot.current_command:
+            return error_response(f'Robot already executing command: {robot.current_command}')
+        
+        command_id = f'cmd_{id}_{int(datetime.utcnow().timestamp())}'
+        
+        if robot.last_error:
+            robot.last_error = None
+        
+        robot.current_command = command_id
+        robot.current_action = 'returning_home'
+        robot.status = 'returning'
+        
         sio = get_socketio()
         if sio:
-            sio.emit('robot_command', {
-                'command_id': f'cmd_{id}_{int(datetime.utcnow().timestamp())}',
-                'action': 'return_to_kitchen'
+            sio.emit('return_command', {
+                'command_id': command_id
             }, room=f'robot_{robot.id}')
         
-        robot.status = 'returning'
         session.commit()
         
         return success_response({
@@ -1353,14 +1519,18 @@ def robot_stop(id):
         if not robot:
             return error_response('Robot not found', 404)
         
+        command_id = f'cmd_{id}_{int(datetime.utcnow().timestamp())}'
+        
+        robot.current_command = None
+        robot.current_action = None
+        robot.status = 'stopped'
+        
         sio = get_socketio()
         if sio:
-            sio.emit('robot_command', {
-                'command_id': f'cmd_{id}_{int(datetime.utcnow().timestamp())}',
-                'action': 'stop'
+            sio.emit('robot_stop', {
+                'command_id': command_id
             }, room=f'robot_{robot.id}')
         
-        robot.status = 'stopped'
         session.commit()
         
         return success_response({
@@ -1466,6 +1636,35 @@ def delete_phone(id):
     finally:
         session.close()
 
+@api.route('/phones/<int:id>', methods=['PUT'])
+def update_phone(id):
+    session = get_session()
+    try:
+        phone = session.query(Phone).filter(Phone.id == id).first()
+        if not phone:
+            return error_response('Phone not found', 404)
+        
+        data = request.get_json()
+        if data.get('customer_name'):
+            phone.customer_name = data['customer_name']
+        if data.get('customer_phone'):
+            phone.customer_phone = data['customer_phone']
+        if 'is_active' in data:
+            phone.is_active = data['is_active']
+        
+        session.commit()
+        
+        return success_response({'id': phone.id}, 'Phone updated')
+    except Exception as e:
+        session.rollback()
+        return error_response(str(e))
+    finally:
+        session.close()
+
+@api.route('/devices/<int:id>', methods=['PUT'])
+def update_device(id):
+    return update_phone(id)
+
 # ================== Order Confirmation API ==================
 
 def log_event(event_type, data, level='INFO'):
@@ -1505,7 +1704,7 @@ def confirm_order(id):
                 'order_id': order.id,
                 'table_id': order.table_id,
                 'timestamp': datetime.utcnow().isoformat()
-            }, broadcast=True)
+            })
         
         return success_response({'id': order.id, 'status': order.status}, 'Order confirmed')
     except Exception as e:
@@ -1542,7 +1741,7 @@ def reject_order(id):
                 'order_id': order.id,
                 'reason': order.rejection_reason,
                 'timestamp': datetime.utcnow().isoformat()
-            }, broadcast=True)
+            })
         
         return success_response({'id': order.id, 'status': order.status}, 'Order rejected')
     except Exception as e:

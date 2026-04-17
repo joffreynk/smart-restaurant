@@ -1,4 +1,5 @@
 #include "sensor.h"
+#include "config.h"
 
 UltrasonicSensor::UltrasonicSensor(int tr, int ec) {
     trigPin = tr;

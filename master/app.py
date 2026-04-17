@@ -6,8 +6,10 @@ import os
 import config
 import logging
 from datetime import datetime
+import socket
 
 socketio = None
+logger = None
 
 LOG_FILE = os.path.join(os.path.dirname(__file__), 'logs', f'restaurant_{datetime.now().strftime("%Y%m%d")}.log')
 
@@ -26,6 +28,54 @@ def setup_logging():
 
 logger = setup_logging()
 
+# mDNS advertisement for local network hostname resolution
+def get_local_ip():
+    """Get the local IP address of the machine (not 127.0.0.1)."""
+    try:
+        # Connect to a public DNS to force selection of the active interface
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        s.settimeout(0.1)
+        # Use Google's public DNS as a target (doesn't actually send data)
+        s.connect(('8.8.8.8', 80))
+        ip = s.getsockname()[0]
+        s.close()
+        return ip
+    except Exception:
+        # Fallback: try to get hostname-based IP
+        try:
+            hostname = socket.gethostname()
+            return socket.gethostbyname(hostname)
+        except:
+            return '127.0.0.1'
+
+def advertise_mdns(hostname='smart-restaurant', port=3000):
+    """Advertise the Flask server via mDNS/Bonjour."""
+    try:
+        import zeroconf
+        from zeroconf import ServiceInfo
+        
+        local_ip = get_local_ip()
+        ip_addresses = [socket.inet_aton(local_ip)]
+        
+        desc = {'version': '1.0', 'service': 'smart-restaurant-api'}
+        
+        info = ServiceInfo(
+            "_http._tcp.local.",
+            f"{hostname}._http._tcp.local.",
+            addresses=ip_addresses,
+            port=port,
+            properties=desc,
+            server=f"{hostname}.local."
+        )
+        
+        zc = zeroconf.Zeroconf()
+        zc.register_service(info)
+        logger.info(f"mDNS advertised as {hostname}.local (IP: {local_ip}) on port {port}")
+        return zc
+    except Exception as e:
+        logger.warning(f"mDNS advertisement not available: {e}")
+        return None
+
 def create_app(config_name='default'):
     global socketio, logger
     app = Flask(__name__)
@@ -33,7 +83,7 @@ def create_app(config_name='default'):
     cfg = config.config.get(config_name, config.DevelopmentConfig)
     app.config.from_object(cfg)
     
-    socketio = SocketIO(app, cors_allowed_origins='*', ping_interval=2, ping_timeout=10)
+    socketio = SocketIO(app, cors_allowed_origins='*', ping_interval=60, ping_timeout=60)
     
     db_path = app.config.get('DATABASE_PATH')
     
@@ -46,6 +96,9 @@ def create_app(config_name='default'):
     logger.info('=' * 50)
     logger.info('Restaurant System Starting')
     logger.info(f'Database: {db_path}')
+    
+    # mDNS advertisement starts after we get the actual IP
+    zeroconf_instance = None
     
     with app.app_context():
         from api.routes import register_routes, set_socketio
@@ -106,10 +159,25 @@ def create_app(config_name='default'):
     
     logger.info('Application created successfully')
     
+    # Store mdns instance on app for later cleanup
+    app.zeroconf = None
+    
     return app, socketio
 
 if __name__ == '__main__':
     logger.info('Starting Restaurant Master Server')
     app, socketio = create_app('development')
     
-    socketio.run(app, host='0.0.0.0', port=app.config.get('API_PORT'), debug=False, use_reloader=False)
+    # Start mDNS advertisement
+    zc = advertise_mdns('smart-restaurant', 3000)
+    if zc:
+        app.zeroconf = zc
+    
+    try:
+        socketio.run(app, host='0.0.0.0', port=3000, debug=False, use_reloader=False)
+    except KeyboardInterrupt:
+        logger.info('Shutting down...')
+    finally:
+        if hasattr(app, 'zeroconf') and app.zeroconf:
+            app.zeroconf.close()
+            logger.info('mDNS stopped')

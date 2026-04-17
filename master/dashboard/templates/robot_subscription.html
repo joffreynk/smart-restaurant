@@ -23,6 +23,8 @@
         .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
         .btn { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 14px; }
         .btn-primary { background: #e94560; color: white; }
+        .btn-secondary { background: #6c757d; color: white; }
+        .btn-danger { background: #dc3545; color: white; }
         table { width: 100%; border-collapse: collapse; }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
         th { background: #f8f9fa; color: #666; font-weight: 600; }
@@ -74,7 +76,7 @@
         <div class="card">
             <h2>Registered Robots</h2>
             <table>
-                <thead><tr><th>ID</th><th>Identifier</th><th>Name</th><th>Status</th></tr></thead>
+                <thead><tr><th>ID</th><th>Identifier</th><th>Name</th><th>Status</th><th>Actions</th></tr></thead>
                 <tbody id="robots-list"></tbody>
             </table>
         </div>
@@ -97,9 +99,33 @@
         function loadRobots() {
             fetch('/api/robots').then(r => r.json()).then(d => {
                 document.getElementById('robots-list').innerHTML = d.data.map(r => `
-                    <tr><td>${r.id}</td><td>${r.unique_identifier}</td><td>${r.name}</td><td>${r.status}</td></tr>
+                    <tr>
+                        <td>${r.id}</td>
+                        <td>${r.unique_identifier}</td>
+                        <td>${r.name}</td>
+                        <td>${r.status}</td>
+                        <td>
+                            <button class="btn btn-secondary" onclick="editRobot(${r.id}, '${r.name}')">Edit</button>
+                            <button class="btn btn-danger" onclick="deleteRobot(${r.id})">Delete</button>
+                        </td>
+                    </tr>
                 `).join('');
             });
+        }
+        
+        function editRobot(id, name) {
+            const newName = prompt('Edit Robot Name:', name);
+            if (newName === null || newName === name) return;
+            fetch('/api/robots/' + id, {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({name: newName})
+            }).then(() => loadRobots());
+        }
+        
+        function deleteRobot(id) {
+            if (!confirm('Delete this robot?')) return;
+            fetch('/api/robots/' + id, {method: 'DELETE'}).then(() => loadRobots());
         }
         loadRobots();
     </script>

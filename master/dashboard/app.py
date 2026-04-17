@@ -2,9 +2,10 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for, s
 from database.models import get_session, Category, MenuItem, Table, TableStatus, Order, OrderItem, Robot, DeliveryRecord
 from datetime import datetime, timedelta
 import json
+import os
 
 dashboard = Blueprint('dashboard', __name__, template_folder='templates', static_folder='static')
-dashboard.secret_key = 'restaurant-dashboard-secret-2026'
+dashboard.secret_key = os.environ.get('DASHBOARD_SECRET_KEY') or os.urandom(24).hex()
 
 @dashboard.route('/')
 def index():

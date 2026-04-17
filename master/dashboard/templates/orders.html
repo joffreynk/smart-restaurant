@@ -118,7 +118,7 @@
                             ` : o.status === 'preparing' ? `
                                 <button class="btn btn-primary" onclick="updateStatus(${o.id}, 'ready')">Ready</button>
                             ` : o.status === 'ready' ? `
-                                <button class="btn btn-primary" onclick="updateStatus(${o.id}, 'delivering')">Deliver</button>
+                                <button class="btn btn-primary" onclick="startDelivery(${o.id}, ${o.table_id})">Deliver</button>
                             ` : ''}
                         </td>
                     </tr>
@@ -142,6 +142,25 @@
         }
         function updateStatus(id, status) {
             fetch('/api/orders/' + id, { method: 'PUT', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({ status }) }).then(() => loadOrders());
+        }
+        function startDelivery(orderId, tableId) {
+            // Find available robot
+            fetch('/api/robots').then(r => r.json()).then(d => {
+                const robot = d.data.find(r => r.status === 'idle');
+                if (!robot) { alert('No robot available!'); return; }
+                
+                // Send robot to table
+                fetch('/api/robots/' + robot.id + '/go-to-table/' + tableId, { method: 'POST' })
+                .then(r => r.json())
+                .then(data => {
+                    if (data.success) {
+                        // Update order status
+                        updateStatus(orderId, 'delivering');
+                    } else {
+                        alert(data.message || 'Failed to send robot');
+                    }
+                });
+            });
         }
         loadOrders();
         setInterval(loadOrders, 5000);

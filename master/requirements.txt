@@ -6,6 +6,9 @@ Flask-SQLAlchemy>=3.0.0
 python-socketio>=5.8.0
 eventlet>=0.33.0
 
+# mDNS/Zeroconf for hostname advertisement
+zeroconf>=0.135.0
+
 # Camera (Pi Camera v2) - CCTV Only
 picamera>=1.13
 picamera2>=0.3

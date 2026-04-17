@@ -1,0 +1,1672 @@
+2026-04-17 11:03:30,887 [INFO] Starting Restaurant Master Server
+2026-04-17 11:03:31,068 [INFO] ==================================================
+2026-04-17 11:03:31,070 [INFO] Restaurant System Starting
+2026-04-17 11:03:31,070 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 11:03:31,295 [INFO] Application created successfully
+2026-04-17 11:03:33,031 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 11:03:33,285 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 11:03:52,516 [INFO] 127.0.0.1 - - [17/Apr/2026 11:03:52] "GET /phone HTTP/1.1" 200 -
+2026-04-17 11:03:53,432 [INFO] 127.0.0.1 - - [17/Apr/2026 11:03:53] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-04-17 11:04:19,523 [INFO] 192.168.2.10 - - [17/Apr/2026 11:04:19] "GET / HTTP/1.1" 200 -
+2026-04-17 11:04:32,614 [INFO] 192.168.2.10 - - [17/Apr/2026 11:04:32] "[32mGET /dashboard HTTP/1.1[0m" 308 -
+2026-04-17 11:04:32,712 [INFO] 192.168.2.10 - - [17/Apr/2026 11:04:32] "GET /dashboard/ HTTP/1.1" 200 -
+2026-04-17 11:04:33,073 [INFO] 192.168.2.10 - - [17/Apr/2026 11:04:33] "GET /api/dashboard/orders-today HTTP/1.1" 200 -
+2026-04-17 11:04:33,078 [INFO] 192.168.2.10 - - [17/Apr/2026 11:04:33] "GET /api/dashboard/stats HTTP/1.1" 200 -
+2026-04-17 11:04:33,102 [INFO] 192.168.2.10 - - [17/Apr/2026 11:04:33] "GET /api/dashboard/stats HTTP/1.1" 200 -
+2026-04-17 11:04:37,837 [INFO] 192.168.2.10 - - [17/Apr/2026 11:04:37] "GET /api/dashboard/orders-today HTTP/1.1" 200 -
+2026-04-17 11:04:37,844 [INFO] 192.168.2.10 - - [17/Apr/2026 11:04:37] "GET /api/dashboard/stats HTTP/1.1" 200 -
+2026-04-17 11:04:39,669 [INFO] 192.168.2.10 - - [17/Apr/2026 11:04:39] "GET /robot-subscription HTTP/1.1" 200 -
+2026-04-17 11:04:39,739 [INFO] 192.168.2.10 - - [17/Apr/2026 11:04:39] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 11:04:55,329 [INFO] 192.168.2.10 - - [17/Apr/2026 11:04:55] "GET /menu HTTP/1.1" 200 -
+2026-04-17 11:04:55,399 [INFO] 192.168.2.10 - - [17/Apr/2026 11:04:55] "GET /api/categories?all=true HTTP/1.1" 200 -
+2026-04-17 11:04:55,435 [INFO] 192.168.2.10 - - [17/Apr/2026 11:04:55] "GET /api/menu-items?all=true HTTP/1.1" 200 -
+2026-04-17 11:04:55,463 [INFO] 192.168.2.10 - - [17/Apr/2026 11:04:55] "GET /api/categories?all=true HTTP/1.1" 200 -
+2026-04-17 11:04:56,745 [INFO] 192.168.2.10 - - [17/Apr/2026 11:04:56] "GET /orders HTTP/1.1" 200 -
+2026-04-17 11:04:56,915 [INFO] 192.168.2.10 - - [17/Apr/2026 11:04:56] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:05:01,782 [INFO] 192.168.2.10 - - [17/Apr/2026 11:05:01] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:05:03,547 [INFO] 192.168.2.10 - - [17/Apr/2026 11:05:03] "[31m[1mPUT /api/orders/1 HTTP/1.1[0m" 400 -
+2026-04-17 11:05:03,556 [INFO] 192.168.2.10 - - [17/Apr/2026 11:05:03] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:05:06,783 [INFO] 192.168.2.10 - - [17/Apr/2026 11:05:06] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:05:11,782 [INFO] 192.168.2.10 - - [17/Apr/2026 11:05:11] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:05:16,785 [INFO] 192.168.2.10 - - [17/Apr/2026 11:05:16] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:05:21,783 [INFO] 192.168.2.10 - - [17/Apr/2026 11:05:21] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:05:26,781 [INFO] 192.168.2.10 - - [17/Apr/2026 11:05:26] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:05:31,787 [INFO] 192.168.2.10 - - [17/Apr/2026 11:05:31] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:05:36,782 [INFO] 192.168.2.10 - - [17/Apr/2026 11:05:36] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:05:41,784 [INFO] 192.168.2.10 - - [17/Apr/2026 11:05:41] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:05:46,782 [INFO] 192.168.2.10 - - [17/Apr/2026 11:05:46] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:05:51,782 [INFO] 192.168.2.10 - - [17/Apr/2026 11:05:51] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:05:56,783 [INFO] 192.168.2.10 - - [17/Apr/2026 11:05:56] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:06:01,783 [INFO] 192.168.2.10 - - [17/Apr/2026 11:06:01] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:06:06,781 [INFO] 192.168.2.10 - - [17/Apr/2026 11:06:06] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:06:11,819 [INFO] 192.168.2.10 - - [17/Apr/2026 11:06:11] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:06:16,783 [INFO] 192.168.2.10 - - [17/Apr/2026 11:06:16] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:06:21,617 [INFO] 192.168.2.10 - - [17/Apr/2026 11:06:21] "[31m[1mPUT /api/orders/1 HTTP/1.1[0m" 400 -
+2026-04-17 11:06:21,634 [INFO] 192.168.2.10 - - [17/Apr/2026 11:06:21] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:06:21,783 [INFO] 192.168.2.10 - - [17/Apr/2026 11:06:21] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:06:26,782 [INFO] 192.168.2.10 - - [17/Apr/2026 11:06:26] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:06:31,782 [INFO] 192.168.2.10 - - [17/Apr/2026 11:06:31] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:06:36,796 [INFO] 192.168.2.10 - - [17/Apr/2026 11:06:36] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:06:39,701 [INFO] 192.168.2.10 - - [17/Apr/2026 11:06:39] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 11:06:39,763 [INFO] 192.168.2.10 - - [17/Apr/2026 11:06:39] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:06:44,769 [INFO] 192.168.2.10 - - [17/Apr/2026 11:06:44] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 11:06:45,024 [INFO] 192.168.2.10 - - [17/Apr/2026 11:06:45] "[36mGET /robot-subscription HTTP/1.1[0m" 304 -
+2026-04-17 11:06:45,073 [INFO] 192.168.2.10 - - [17/Apr/2026 11:06:45] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 13:37:46,639 [INFO] Starting Restaurant Master Server
+2026-04-17 13:37:46,741 [INFO] ==================================================
+2026-04-17 13:37:46,741 [INFO] Restaurant System Starting
+2026-04-17 13:37:46,741 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 13:38:50,132 [INFO] Starting Restaurant Master Server
+2026-04-17 13:38:50,215 [INFO] ==================================================
+2026-04-17 13:38:50,215 [INFO] Restaurant System Starting
+2026-04-17 13:38:50,215 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 13:39:10,478 [INFO] Starting Restaurant Master Server
+2026-04-17 13:39:10,573 [INFO] ==================================================
+2026-04-17 13:39:10,573 [INFO] Restaurant System Starting
+2026-04-17 13:39:10,573 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 13:39:57,865 [INFO] Starting Restaurant Master Server
+2026-04-17 13:39:57,981 [INFO] ==================================================
+2026-04-17 13:39:57,981 [INFO] Restaurant System Starting
+2026-04-17 13:39:57,981 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 13:39:58,100 [INFO] Application created successfully
+2026-04-17 13:39:59,606 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 13:39:59,606 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 14:34:50,629 [INFO] Starting Restaurant Master Server
+2026-04-17 14:34:50,809 [INFO] ==================================================
+2026-04-17 14:34:50,812 [INFO] Restaurant System Starting
+2026-04-17 14:34:50,813 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 14:34:50,928 [INFO] Application created successfully
+2026-04-17 14:34:52,343 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 14:34:52,348 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 14:35:00,665 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:00] "GET / HTTP/1.1" 200 -
+2026-04-17 14:35:05,284 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:05] "GET /dashboard/ HTTP/1.1" 200 -
+2026-04-17 14:35:05,393 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:05] "GET /api/dashboard/orders-today HTTP/1.1" 200 -
+2026-04-17 14:35:05,434 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:05] "GET /api/dashboard/stats HTTP/1.1" 200 -
+2026-04-17 14:35:05,451 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:05] "GET /api/dashboard/stats HTTP/1.1" 200 -
+2026-04-17 14:35:07,459 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:07] "[36mGET /menu HTTP/1.1[0m" 304 -
+2026-04-17 14:35:07,504 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:07] "GET /api/categories?all=true HTTP/1.1" 200 -
+2026-04-17 14:35:07,511 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:07] "GET /api/menu-items?all=true HTTP/1.1" 200 -
+2026-04-17 14:35:07,558 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:07] "GET /api/categories?all=true HTTP/1.1" 200 -
+2026-04-17 14:35:08,983 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:08] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:35:09,034 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:09] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:35:14,026 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:14] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:35:19,031 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:19] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:35:21,470 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:21] "[36mGET /robot-subscription HTTP/1.1[0m" 304 -
+2026-04-17 14:35:21,534 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:21] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:35:24,059 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:24] "GET /robots HTTP/1.1" 200 -
+2026-04-17 14:35:24,125 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:24] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:35:27,142 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:27] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:35:30,129 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:30] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:35:33,119 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:33] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:35:36,108 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:36] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:35:39,360 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:39] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:35:42,118 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:42] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:35:45,118 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:45] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:35:48,113 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:48] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:35:48,366 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:48] "[36mGET /robot-subscription HTTP/1.1[0m" 304 -
+2026-04-17 14:35:48,447 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:48] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:35:55,064 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:55] "PUT /api/robots/1 HTTP/1.1" 200 -
+2026-04-17 14:35:55,082 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:55] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:35:57,759 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:57] "GET /analytics HTTP/1.1" 200 -
+2026-04-17 14:35:57,833 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:57] "GET /api/dashboard/orders-today HTTP/1.1" 200 -
+2026-04-17 14:35:57,846 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:57] "GET /api/dashboard/stats HTTP/1.1" 200 -
+2026-04-17 14:35:59,512 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:59] "GET /devices HTTP/1.1" 200 -
+2026-04-17 14:35:59,561 [INFO] 192.168.2.10 - - [17/Apr/2026 14:35:59] "GET /api/phones?all=true HTTP/1.1" 200 -
+2026-04-17 14:36:18,727 [INFO] 192.168.2.10 - - [17/Apr/2026 14:36:18] "[33mGET /wifi HTTP/1.1[0m" 404 -
+2026-04-17 14:36:31,980 [INFO] 192.168.2.10 - - [17/Apr/2026 14:36:31] "GET /phone HTTP/1.1" 200 -
+2026-04-17 14:36:35,848 [INFO] 192.168.2.10 - - [17/Apr/2026 14:36:35] "GET /api/phones?all=true HTTP/1.1" 200 -
+2026-04-17 14:36:35,895 [INFO] 192.168.2.10 - - [17/Apr/2026 14:36:35] "GET /socket.io/?EIO=4&transport=polling&t=PsRSM-K HTTP/1.1" 200 -
+2026-04-17 14:36:35,899 [INFO] 192.168.2.10 - - [17/Apr/2026 14:36:35] "GET /api/categories HTTP/1.1" 200 -
+2026-04-17 14:36:35,950 [INFO] 192.168.2.10 - - [17/Apr/2026 14:36:35] "GET /api/categories HTTP/1.1" 200 -
+2026-04-17 14:36:35,964 [INFO] {"timestamp": "2026-04-17T12:36:35.964628", "event": "CLIENT_CONNECT", "data": {"sid": "ILPaf793ZeUC3hO-AAAB", "remote": "192.168.2.10"}}
+2026-04-17 14:36:35,977 [INFO] 192.168.2.10 - - [17/Apr/2026 14:36:35] "POST /socket.io/?EIO=4&transport=polling&t=PsRSM_K&sid=xS0wyBfq59AkElruAAAA HTTP/1.1" 200 -
+2026-04-17 14:36:35,977 [INFO] 192.168.2.10 - - [17/Apr/2026 14:36:35] "GET /socket.io/?EIO=4&transport=polling&t=PsRSM_Q&sid=xS0wyBfq59AkElruAAAA HTTP/1.1" 200 -
+2026-04-17 14:36:37,106 [INFO] 192.168.2.10 - - [17/Apr/2026 14:36:37] "GET /api/menu-items/category/1 HTTP/1.1" 200 -
+2026-04-17 14:36:40,064 [INFO] 192.168.2.10 - - [17/Apr/2026 14:36:40] "GET /api/menu-items/category/2 HTTP/1.1" 200 -
+2026-04-17 14:36:41,866 [INFO] 192.168.2.10 - - [17/Apr/2026 14:36:41] "GET /api/tables HTTP/1.1" 200 -
+2026-04-17 14:36:48,249 [INFO] {"timestamp": "2026-04-17T12:36:48.249942", "event": "ORDER_SUBMIT", "data": {"phone_id": "phone12", "table_id": 1, "items_count": 2}}
+2026-04-17 14:36:48,295 [ERROR] {"timestamp": "2026-04-17T12:36:48.295041", "event": "ORDER_SUBMIT_ERROR", "data": {"phone_id": "phone12", "error": "Server.emit() got an unexpected keyword argument 'broadcast'"}}
+2026-04-17 14:36:50,157 [INFO] {"timestamp": "2026-04-17T12:36:50.157410", "event": "ORDER_SUBMIT", "data": {"phone_id": "phone12", "table_id": 1, "items_count": 2}}
+2026-04-17 14:36:50,191 [ERROR] {"timestamp": "2026-04-17T12:36:50.191497", "event": "ORDER_SUBMIT_ERROR", "data": {"phone_id": "phone12", "error": "Server.emit() got an unexpected keyword argument 'broadcast'"}}
+2026-04-17 14:36:52,809 [INFO] {"timestamp": "2026-04-17T12:36:52.809567", "event": "ORDER_SUBMIT", "data": {"phone_id": "phone12", "table_id": 1, "items_count": 2}}
+2026-04-17 14:36:52,833 [ERROR] {"timestamp": "2026-04-17T12:36:52.833057", "event": "ORDER_SUBMIT_ERROR", "data": {"phone_id": "phone12", "error": "Server.emit() got an unexpected keyword argument 'broadcast'"}}
+2026-04-17 14:39:31,240 [INFO] Starting Restaurant Master Server
+2026-04-17 14:39:31,346 [INFO] ==================================================
+2026-04-17 14:39:31,346 [INFO] Restaurant System Starting
+2026-04-17 14:39:31,346 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 14:39:31,438 [INFO] Application created successfully
+2026-04-17 14:39:32,747 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 14:39:32,748 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 14:41:48,796 [INFO] Starting Restaurant Master Server
+2026-04-17 14:41:48,866 [INFO] ==================================================
+2026-04-17 14:41:48,866 [INFO] Restaurant System Starting
+2026-04-17 14:41:48,866 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 14:41:48,943 [INFO] Application created successfully
+2026-04-17 14:41:50,265 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 14:41:50,266 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 14:42:36,933 [INFO] 192.168.2.10 - - [17/Apr/2026 14:42:36] "[36mGET /phone HTTP/1.1[0m" 304 -
+2026-04-17 14:42:45,312 [INFO] 192.168.2.10 - - [17/Apr/2026 14:42:45] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:42:45,430 [INFO] 192.168.2.10 - - [17/Apr/2026 14:42:45] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:42:50,381 [INFO] 192.168.2.10 - - [17/Apr/2026 14:42:50] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:42:53,232 [INFO] {"timestamp": "2026-04-17T12:42:53.232766", "event": "ORDER_CONFIRMED", "data": {"order_id": 4, "table_id": 1, "total_amount": 200.0}}
+2026-04-17 14:42:53,233 [ERROR] {"timestamp": "2026-04-17T12:42:53.233280", "event": "ORDER_CONFIRM_ERROR", "data": {"order_id": 4, "error": "Server.emit() got an unexpected keyword argument 'broadcast'"}}
+2026-04-17 14:42:53,233 [INFO] 192.168.2.10 - - [17/Apr/2026 14:42:53] "[31m[1mPOST /api/orders/4/confirm HTTP/1.1[0m" 400 -
+2026-04-17 14:42:53,260 [INFO] 192.168.2.10 - - [17/Apr/2026 14:42:53] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:42:55,376 [INFO] 192.168.2.10 - - [17/Apr/2026 14:42:55] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:42:56,000 [INFO] 192.168.2.10 - - [17/Apr/2026 14:42:56] "[31m[1mPUT /api/orders/4 HTTP/1.1[0m" 400 -
+2026-04-17 14:42:56,009 [INFO] 192.168.2.10 - - [17/Apr/2026 14:42:56] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:42:57,021 [INFO] 192.168.2.10 - - [17/Apr/2026 14:42:57] "[31m[1mPUT /api/orders/4 HTTP/1.1[0m" 400 -
+2026-04-17 14:42:57,030 [INFO] 192.168.2.10 - - [17/Apr/2026 14:42:57] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:00,375 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:00] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:01,183 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:01] "[31m[1mPUT /api/orders/4 HTTP/1.1[0m" 400 -
+2026-04-17 14:43:01,194 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:01] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:04,065 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:04] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:43:04,130 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:04] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:04,989 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:04] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:43:05,041 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:05] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:05,677 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:05] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:43:05,748 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:05] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:06,248 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:06] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:43:06,329 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:06] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:06,692 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:06] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:43:06,747 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:06] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:07,047 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:07] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:43:07,104 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:07] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:07,309 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:07] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:43:07,363 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:07] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:07,564 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:07] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:43:07,627 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:07] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:07,753 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:07] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:43:07,810 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:07] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:07,937 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:07] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:43:07,994 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:07] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:08,129 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:08] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:43:08,178 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:08] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:08,529 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:08] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:43:08,611 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:08] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:08,727 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:08] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:43:08,775 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:08] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:08,890 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:08] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:43:08,942 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:08] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:09,250 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:09] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:43:09,325 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:09] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:09,432 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:09] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:43:09,478 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:09] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:09,602 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:09] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:43:09,657 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:09] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:09,809 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:09] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:43:09,867 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:09] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:10,018 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:10] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:43:10,093 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:10] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:15,068 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:15] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:20,061 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:20] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:25,083 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:25] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:30,077 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:30] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:35,058 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:35] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:40,061 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:40] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:45,061 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:45] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:43:50,082 [INFO] 192.168.2.10 - - [17/Apr/2026 14:43:50] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:44:33,363 [INFO] Starting Restaurant Master Server
+2026-04-17 14:44:33,442 [INFO] ==================================================
+2026-04-17 14:44:33,442 [INFO] Restaurant System Starting
+2026-04-17 14:44:33,442 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 14:44:33,508 [INFO] Application created successfully
+2026-04-17 14:44:34,852 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 14:44:34,852 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 14:44:37,478 [INFO] 192.168.2.10 - - [17/Apr/2026 14:44:37] "GET /tables HTTP/1.1" 200 -
+2026-04-17 14:44:37,578 [INFO] 192.168.2.10 - - [17/Apr/2026 14:44:37] "GET /api/tables HTTP/1.1" 200 -
+2026-04-17 14:44:51,737 [INFO] 192.168.2.10 - - [17/Apr/2026 14:44:51] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 14:44:51,844 [INFO] 192.168.2.10 - - [17/Apr/2026 14:44:51] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:44:53,973 [INFO] 192.168.2.10 - - [17/Apr/2026 14:44:53] "[36mGET /menu HTTP/1.1[0m" 304 -
+2026-04-17 14:44:54,039 [INFO] 192.168.2.10 - - [17/Apr/2026 14:44:54] "GET /api/categories?all=true HTTP/1.1" 200 -
+2026-04-17 14:44:54,078 [INFO] 192.168.2.10 - - [17/Apr/2026 14:44:54] "GET /api/menu-items?all=true HTTP/1.1" 200 -
+2026-04-17 14:44:54,089 [INFO] 192.168.2.10 - - [17/Apr/2026 14:44:54] "GET /api/categories?all=true HTTP/1.1" 200 -
+2026-04-17 14:44:56,093 [INFO] 192.168.2.10 - - [17/Apr/2026 14:44:56] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 14:44:56,140 [INFO] 192.168.2.10 - - [17/Apr/2026 14:44:56] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:44:59,126 [INFO] 192.168.2.10 - - [17/Apr/2026 14:44:59] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:44:59,755 [INFO] 192.168.2.10 - - [17/Apr/2026 14:44:59] "[36mGET /robot-subscription HTTP/1.1[0m" 304 -
+2026-04-17 14:44:59,809 [INFO] 192.168.2.10 - - [17/Apr/2026 14:44:59] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:45:01,981 [INFO] 192.168.2.10 - - [17/Apr/2026 14:45:01] "[36mGET /analytics HTTP/1.1[0m" 304 -
+2026-04-17 14:45:02,074 [INFO] 192.168.2.10 - - [17/Apr/2026 14:45:02] "GET /api/dashboard/orders-today HTTP/1.1" 200 -
+2026-04-17 14:45:02,080 [INFO] 192.168.2.10 - - [17/Apr/2026 14:45:02] "GET /api/dashboard/stats HTTP/1.1" 200 -
+2026-04-17 14:45:04,397 [INFO] 192.168.2.10 - - [17/Apr/2026 14:45:04] "[36mGET /devices HTTP/1.1[0m" 304 -
+2026-04-17 14:45:04,448 [INFO] 192.168.2.10 - - [17/Apr/2026 14:45:04] "GET /api/phones?all=true HTTP/1.1" 200 -
+2026-04-17 14:45:07,096 [INFO] 192.168.2.10 - - [17/Apr/2026 14:45:07] "[36mGET /robot-subscription HTTP/1.1[0m" 304 -
+2026-04-17 14:45:07,150 [INFO] 192.168.2.10 - - [17/Apr/2026 14:45:07] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:45:13,577 [INFO] 192.168.2.10 - - [17/Apr/2026 14:45:13] "[36mGET /analytics HTTP/1.1[0m" 304 -
+2026-04-17 14:45:13,638 [INFO] 192.168.2.10 - - [17/Apr/2026 14:45:13] "GET /api/dashboard/stats HTTP/1.1" 200 -
+2026-04-17 14:45:13,638 [INFO] 192.168.2.10 - - [17/Apr/2026 14:45:13] "GET /api/dashboard/orders-today HTTP/1.1" 200 -
+2026-04-17 14:45:19,386 [INFO] 192.168.2.10 - - [17/Apr/2026 14:45:19] "[36mGET /devices HTTP/1.1[0m" 304 -
+2026-04-17 14:45:19,459 [INFO] 192.168.2.10 - - [17/Apr/2026 14:45:19] "GET /api/phones?all=true HTTP/1.1" 200 -
+2026-04-17 14:45:45,355 [INFO] 192.168.2.10 - - [17/Apr/2026 14:45:45] "PUT /api/phones/2 HTTP/1.1" 200 -
+2026-04-17 14:45:45,363 [INFO] 192.168.2.10 - - [17/Apr/2026 14:45:45] "GET /api/phones?all=true HTTP/1.1" 200 -
+2026-04-17 14:45:55,980 [INFO] 192.168.2.10 - - [17/Apr/2026 14:45:55] "PUT /api/phones/1 HTTP/1.1" 200 -
+2026-04-17 14:45:55,998 [INFO] 192.168.2.10 - - [17/Apr/2026 14:45:55] "GET /api/phones?all=true HTTP/1.1" 200 -
+2026-04-17 14:48:19,472 [INFO] Starting Restaurant Master Server
+2026-04-17 14:48:19,549 [INFO] ==================================================
+2026-04-17 14:48:19,549 [INFO] Restaurant System Starting
+2026-04-17 14:48:19,549 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 14:48:19,621 [INFO] Application created successfully
+2026-04-17 14:48:20,937 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 14:48:20,938 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 14:48:27,229 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:27] "[36mGET /devices HTTP/1.1[0m" 304 -
+2026-04-17 14:48:27,348 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:27] "GET /api/phones?all=true HTTP/1.1" 200 -
+2026-04-17 14:48:33,520 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:33] "[36mGET /devices HTTP/1.1[0m" 304 -
+2026-04-17 14:48:33,626 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:33] "GET /api/phones?all=true HTTP/1.1" 200 -
+2026-04-17 14:48:34,391 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:34] "[36mGET /devices HTTP/1.1[0m" 304 -
+2026-04-17 14:48:34,492 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:34] "GET /api/phones?all=true HTTP/1.1" 200 -
+2026-04-17 14:48:35,036 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:35] "[36mGET /devices HTTP/1.1[0m" 304 -
+2026-04-17 14:48:35,150 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:35] "GET /api/phones?all=true HTTP/1.1" 200 -
+2026-04-17 14:48:35,893 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:35] "[36mGET /devices HTTP/1.1[0m" 304 -
+2026-04-17 14:48:35,948 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:35] "GET /api/phones?all=true HTTP/1.1" 200 -
+2026-04-17 14:48:39,730 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:39] "[36mGET /robot-subscription HTTP/1.1[0m" 304 -
+2026-04-17 14:48:39,790 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:39] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:48:41,394 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:41] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 14:48:41,459 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:41] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:48:43,724 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:43] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 14:48:43,782 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:43] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:48:45,138 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:45] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 14:48:45,195 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:45] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:48:47,157 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:47] "GET /orders HTTP/1.1" 200 -
+2026-04-17 14:48:47,246 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:47] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:48:52,160 [INFO] {"timestamp": "2026-04-17T12:48:52.160695", "event": "ORDER_CONFIRMED", "data": {"order_id": 5, "table_id": 1, "total_amount": 200.0}}
+2026-04-17 14:48:52,161 [ERROR] {"timestamp": "2026-04-17T12:48:52.161194", "event": "ORDER_CONFIRM_ERROR", "data": {"order_id": 5, "error": "Server.emit() got an unexpected keyword argument 'broadcast'"}}
+2026-04-17 14:48:52,161 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:52] "[31m[1mPOST /api/orders/5/confirm HTTP/1.1[0m" 400 -
+2026-04-17 14:48:52,178 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:52] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:48:52,223 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:52] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:48:53,309 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:53] "[31m[1mPUT /api/orders/5 HTTP/1.1[0m" 400 -
+2026-04-17 14:48:53,322 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:53] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:48:54,003 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:54] "[31m[1mPUT /api/orders/5 HTTP/1.1[0m" 400 -
+2026-04-17 14:48:54,012 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:54] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:48:55,531 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:55] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 14:48:55,554 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:55] "POST /api/robots/1/go-to-table/1 HTTP/1.1" 200 -
+2026-04-17 14:48:55,574 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:55] "[31m[1mPUT /api/orders/5 HTTP/1.1[0m" 400 -
+2026-04-17 14:48:55,585 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:55] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:48:57,189 [INFO] 192.168.2.10 - - [17/Apr/2026 14:48:57] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:49:02,197 [INFO] 192.168.2.10 - - [17/Apr/2026 14:49:02] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:49:07,209 [INFO] 192.168.2.10 - - [17/Apr/2026 14:49:07] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:49:12,223 [INFO] 192.168.2.10 - - [17/Apr/2026 14:49:12] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:49:17,224 [INFO] 192.168.2.10 - - [17/Apr/2026 14:49:17] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:49:22,212 [INFO] 192.168.2.10 - - [17/Apr/2026 14:49:22] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:49:27,192 [INFO] 192.168.2.10 - - [17/Apr/2026 14:49:27] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:49:32,192 [INFO] 192.168.2.10 - - [17/Apr/2026 14:49:32] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:49:37,213 [INFO] 192.168.2.10 - - [17/Apr/2026 14:49:37] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:49:42,214 [INFO] 192.168.2.10 - - [17/Apr/2026 14:49:42] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:49:47,215 [INFO] 192.168.2.10 - - [17/Apr/2026 14:49:47] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:49:52,212 [INFO] 192.168.2.10 - - [17/Apr/2026 14:49:52] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:49:54,690 [INFO] Starting Restaurant Master Server
+2026-04-17 14:49:54,780 [INFO] ==================================================
+2026-04-17 14:49:54,781 [INFO] Restaurant System Starting
+2026-04-17 14:49:54,781 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 14:49:54,898 [INFO] Application created successfully
+2026-04-17 14:49:56,244 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 14:49:56,244 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 14:49:57,207 [INFO] 192.168.2.10 - - [17/Apr/2026 14:49:57] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:50:02,209 [INFO] 192.168.2.10 - - [17/Apr/2026 14:50:02] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:50:07,215 [INFO] 192.168.2.10 - - [17/Apr/2026 14:50:07] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:50:12,211 [INFO] 192.168.2.10 - - [17/Apr/2026 14:50:12] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:50:17,195 [INFO] 192.168.2.10 - - [17/Apr/2026 14:50:17] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:50:22,223 [INFO] 192.168.2.10 - - [17/Apr/2026 14:50:22] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:50:27,216 [INFO] 192.168.2.10 - - [17/Apr/2026 14:50:27] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:50:32,228 [INFO] 192.168.2.10 - - [17/Apr/2026 14:50:32] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:50:37,223 [INFO] 192.168.2.10 - - [17/Apr/2026 14:50:37] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:50:42,224 [INFO] 192.168.2.10 - - [17/Apr/2026 14:50:42] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:50:47,213 [INFO] 192.168.2.10 - - [17/Apr/2026 14:50:47] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:50:52,227 [INFO] 192.168.2.10 - - [17/Apr/2026 14:50:52] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:50:57,206 [INFO] 192.168.2.10 - - [17/Apr/2026 14:50:57] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:51:02,199 [INFO] 192.168.2.10 - - [17/Apr/2026 14:51:02] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:51:07,211 [INFO] 192.168.2.10 - - [17/Apr/2026 14:51:07] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:51:12,220 [INFO] 192.168.2.10 - - [17/Apr/2026 14:51:12] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:51:17,216 [INFO] 192.168.2.10 - - [17/Apr/2026 14:51:17] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:51:22,213 [INFO] 192.168.2.10 - - [17/Apr/2026 14:51:22] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:51:27,220 [INFO] 192.168.2.10 - - [17/Apr/2026 14:51:27] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:51:32,194 [INFO] 192.168.2.10 - - [17/Apr/2026 14:51:32] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:51:37,215 [INFO] 192.168.2.10 - - [17/Apr/2026 14:51:37] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:51:42,194 [INFO] 192.168.2.10 - - [17/Apr/2026 14:51:42] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:51:47,208 [INFO] 192.168.2.10 - - [17/Apr/2026 14:51:47] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:51:52,224 [INFO] 192.168.2.10 - - [17/Apr/2026 14:51:52] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:51:57,214 [INFO] 192.168.2.10 - - [17/Apr/2026 14:51:57] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:52:02,212 [INFO] 192.168.2.10 - - [17/Apr/2026 14:52:02] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:52:07,221 [INFO] 192.168.2.10 - - [17/Apr/2026 14:52:07] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:52:12,195 [INFO] 192.168.2.10 - - [17/Apr/2026 14:52:12] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:52:17,203 [INFO] 192.168.2.10 - - [17/Apr/2026 14:52:17] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:52:22,204 [INFO] 192.168.2.10 - - [17/Apr/2026 14:52:22] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:52:27,190 [INFO] 192.168.2.10 - - [17/Apr/2026 14:52:27] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:52:32,199 [INFO] 192.168.2.10 - - [17/Apr/2026 14:52:32] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:52:37,209 [INFO] 192.168.2.10 - - [17/Apr/2026 14:52:37] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:52:42,211 [INFO] 192.168.2.10 - - [17/Apr/2026 14:52:42] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:52:47,193 [INFO] 192.168.2.10 - - [17/Apr/2026 14:52:47] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:52:52,210 [INFO] 192.168.2.10 - - [17/Apr/2026 14:52:52] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:52:57,209 [INFO] 192.168.2.10 - - [17/Apr/2026 14:52:57] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:53:02,209 [INFO] 192.168.2.10 - - [17/Apr/2026 14:53:02] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:53:07,207 [INFO] 192.168.2.10 - - [17/Apr/2026 14:53:07] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:53:12,195 [INFO] 192.168.2.10 - - [17/Apr/2026 14:53:12] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:53:17,190 [INFO] 192.168.2.10 - - [17/Apr/2026 14:53:17] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:53:22,204 [INFO] 192.168.2.10 - - [17/Apr/2026 14:53:22] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:53:27,197 [INFO] 192.168.2.10 - - [17/Apr/2026 14:53:27] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:53:32,209 [INFO] 192.168.2.10 - - [17/Apr/2026 14:53:32] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:53:37,210 [INFO] 192.168.2.10 - - [17/Apr/2026 14:53:37] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:53:42,204 [INFO] 192.168.2.10 - - [17/Apr/2026 14:53:42] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:53:47,208 [INFO] 192.168.2.10 - - [17/Apr/2026 14:53:47] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:53:52,207 [INFO] 192.168.2.10 - - [17/Apr/2026 14:53:52] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:53:57,194 [INFO] 192.168.2.10 - - [17/Apr/2026 14:53:57] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:54:02,199 [INFO] 192.168.2.10 - - [17/Apr/2026 14:54:02] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:54:07,193 [INFO] 192.168.2.10 - - [17/Apr/2026 14:54:07] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:54:12,212 [INFO] 192.168.2.10 - - [17/Apr/2026 14:54:12] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:54:17,208 [INFO] 192.168.2.10 - - [17/Apr/2026 14:54:17] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:54:22,196 [INFO] 192.168.2.10 - - [17/Apr/2026 14:54:22] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:54:27,190 [INFO] 192.168.2.10 - - [17/Apr/2026 14:54:27] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:54:32,193 [INFO] 192.168.2.10 - - [17/Apr/2026 14:54:32] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:54:37,202 [INFO] 192.168.2.10 - - [17/Apr/2026 14:54:37] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:54:42,224 [INFO] 192.168.2.10 - - [17/Apr/2026 14:54:42] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:54:47,189 [INFO] 192.168.2.10 - - [17/Apr/2026 14:54:47] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:54:52,210 [INFO] 192.168.2.10 - - [17/Apr/2026 14:54:52] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:54:57,192 [INFO] 192.168.2.10 - - [17/Apr/2026 14:54:57] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:55:02,195 [INFO] 192.168.2.10 - - [17/Apr/2026 14:55:02] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:55:07,197 [INFO] 192.168.2.10 - - [17/Apr/2026 14:55:07] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:55:12,203 [INFO] 192.168.2.10 - - [17/Apr/2026 14:55:12] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:55:17,206 [INFO] 192.168.2.10 - - [17/Apr/2026 14:55:17] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:55:22,210 [INFO] 192.168.2.10 - - [17/Apr/2026 14:55:22] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:55:27,207 [INFO] 192.168.2.10 - - [17/Apr/2026 14:55:27] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:55:32,209 [INFO] 192.168.2.10 - - [17/Apr/2026 14:55:32] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:55:37,209 [INFO] 192.168.2.10 - - [17/Apr/2026 14:55:37] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:55:42,207 [INFO] 192.168.2.10 - - [17/Apr/2026 14:55:42] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:55:47,192 [INFO] 192.168.2.10 - - [17/Apr/2026 14:55:47] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:55:52,191 [INFO] 192.168.2.10 - - [17/Apr/2026 14:55:52] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:55:57,189 [INFO] 192.168.2.10 - - [17/Apr/2026 14:55:57] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:56:02,192 [INFO] 192.168.2.10 - - [17/Apr/2026 14:56:02] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:56:07,209 [INFO] 192.168.2.10 - - [17/Apr/2026 14:56:07] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:56:12,203 [INFO] 192.168.2.10 - - [17/Apr/2026 14:56:12] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:56:17,210 [INFO] 192.168.2.10 - - [17/Apr/2026 14:56:17] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:56:22,209 [INFO] 192.168.2.10 - - [17/Apr/2026 14:56:22] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:56:27,191 [INFO] 192.168.2.10 - - [17/Apr/2026 14:56:27] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:56:32,202 [INFO] 192.168.2.10 - - [17/Apr/2026 14:56:32] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:56:37,198 [INFO] 192.168.2.10 - - [17/Apr/2026 14:56:37] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:56:42,190 [INFO] 192.168.2.10 - - [17/Apr/2026 14:56:42] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:56:47,191 [INFO] 192.168.2.10 - - [17/Apr/2026 14:56:47] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:56:52,209 [INFO] 192.168.2.10 - - [17/Apr/2026 14:56:52] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:56:57,209 [INFO] 192.168.2.10 - - [17/Apr/2026 14:56:57] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:57:02,197 [INFO] 192.168.2.10 - - [17/Apr/2026 14:57:02] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:57:07,201 [INFO] 192.168.2.10 - - [17/Apr/2026 14:57:07] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:57:12,213 [INFO] 192.168.2.10 - - [17/Apr/2026 14:57:12] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:57:17,207 [INFO] 192.168.2.10 - - [17/Apr/2026 14:57:17] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:57:22,208 [INFO] 192.168.2.10 - - [17/Apr/2026 14:57:22] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:57:27,205 [INFO] 192.168.2.10 - - [17/Apr/2026 14:57:27] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:57:32,190 [INFO] 192.168.2.10 - - [17/Apr/2026 14:57:32] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:57:37,208 [INFO] 192.168.2.10 - - [17/Apr/2026 14:57:37] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:57:42,207 [INFO] 192.168.2.10 - - [17/Apr/2026 14:57:42] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:57:47,192 [INFO] 192.168.2.10 - - [17/Apr/2026 14:57:47] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:57:52,208 [INFO] 192.168.2.10 - - [17/Apr/2026 14:57:52] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:57:57,232 [INFO] 192.168.2.10 - - [17/Apr/2026 14:57:57] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:58:02,211 [INFO] 192.168.2.10 - - [17/Apr/2026 14:58:02] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:58:07,192 [INFO] 192.168.2.10 - - [17/Apr/2026 14:58:07] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:58:12,200 [INFO] 192.168.2.10 - - [17/Apr/2026 14:58:12] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:58:17,202 [INFO] 192.168.2.10 - - [17/Apr/2026 14:58:17] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:58:22,198 [INFO] 192.168.2.10 - - [17/Apr/2026 14:58:22] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:58:27,208 [INFO] 192.168.2.10 - - [17/Apr/2026 14:58:27] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:58:32,216 [INFO] 192.168.2.10 - - [17/Apr/2026 14:58:32] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:58:37,210 [INFO] 192.168.2.10 - - [17/Apr/2026 14:58:37] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:58:42,212 [INFO] 192.168.2.10 - - [17/Apr/2026 14:58:42] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:58:47,204 [INFO] 192.168.2.10 - - [17/Apr/2026 14:58:47] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:58:52,209 [INFO] 192.168.2.10 - - [17/Apr/2026 14:58:52] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:58:57,222 [INFO] 192.168.2.10 - - [17/Apr/2026 14:58:57] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:59:02,207 [INFO] 192.168.2.10 - - [17/Apr/2026 14:59:02] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:59:07,199 [INFO] 192.168.2.10 - - [17/Apr/2026 14:59:07] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:59:12,190 [INFO] 192.168.2.10 - - [17/Apr/2026 14:59:12] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:59:17,204 [INFO] 192.168.2.10 - - [17/Apr/2026 14:59:17] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:59:22,204 [INFO] 192.168.2.10 - - [17/Apr/2026 14:59:22] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:59:27,199 [INFO] 192.168.2.10 - - [17/Apr/2026 14:59:27] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:59:32,209 [INFO] 192.168.2.10 - - [17/Apr/2026 14:59:32] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:59:37,209 [INFO] 192.168.2.10 - - [17/Apr/2026 14:59:37] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:59:42,195 [INFO] 192.168.2.10 - - [17/Apr/2026 14:59:42] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:59:47,192 [INFO] 192.168.2.10 - - [17/Apr/2026 14:59:47] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:59:52,199 [INFO] 192.168.2.10 - - [17/Apr/2026 14:59:52] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 14:59:57,219 [INFO] 192.168.2.10 - - [17/Apr/2026 14:59:57] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:00:02,197 [INFO] 192.168.2.10 - - [17/Apr/2026 15:00:02] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:00:07,212 [INFO] 192.168.2.10 - - [17/Apr/2026 15:00:07] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:00:12,208 [INFO] 192.168.2.10 - - [17/Apr/2026 15:00:12] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:00:17,192 [INFO] 192.168.2.10 - - [17/Apr/2026 15:00:17] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:00:22,207 [INFO] 192.168.2.10 - - [17/Apr/2026 15:00:22] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:00:27,209 [INFO] 192.168.2.10 - - [17/Apr/2026 15:00:27] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:00:32,190 [INFO] 192.168.2.10 - - [17/Apr/2026 15:00:32] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:00:37,197 [INFO] 192.168.2.10 - - [17/Apr/2026 15:00:37] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:00:42,208 [INFO] 192.168.2.10 - - [17/Apr/2026 15:00:42] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:00:47,214 [INFO] 192.168.2.10 - - [17/Apr/2026 15:00:47] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:00:52,213 [INFO] 192.168.2.10 - - [17/Apr/2026 15:00:52] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:00:57,195 [INFO] 192.168.2.10 - - [17/Apr/2026 15:00:57] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:01:02,207 [INFO] 192.168.2.10 - - [17/Apr/2026 15:01:02] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:01:07,190 [INFO] 192.168.2.10 - - [17/Apr/2026 15:01:07] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:01:12,213 [INFO] 192.168.2.10 - - [17/Apr/2026 15:01:12] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:01:17,198 [INFO] 192.168.2.10 - - [17/Apr/2026 15:01:17] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:01:22,196 [INFO] 192.168.2.10 - - [17/Apr/2026 15:01:22] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:01:27,190 [INFO] 192.168.2.10 - - [17/Apr/2026 15:01:27] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:01:32,206 [INFO] 192.168.2.10 - - [17/Apr/2026 15:01:32] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:01:37,440 [INFO] 192.168.2.10 - - [17/Apr/2026 15:01:37] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:01:42,456 [INFO] 192.168.2.10 - - [17/Apr/2026 15:01:42] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:01:47,458 [INFO] 192.168.2.10 - - [17/Apr/2026 15:01:47] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:01:52,455 [INFO] 192.168.2.10 - - [17/Apr/2026 15:01:52] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:01:57,477 [INFO] 192.168.2.10 - - [17/Apr/2026 15:01:57] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:02:02,507 [INFO] 192.168.2.10 - - [17/Apr/2026 15:02:02] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:02:07,460 [INFO] 192.168.2.10 - - [17/Apr/2026 15:02:07] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:02:12,444 [INFO] 192.168.2.10 - - [17/Apr/2026 15:02:12] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:02:17,437 [INFO] 192.168.2.10 - - [17/Apr/2026 15:02:17] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:02:22,473 [INFO] 192.168.2.10 - - [17/Apr/2026 15:02:22] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:02:27,464 [INFO] 192.168.2.10 - - [17/Apr/2026 15:02:27] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:02:32,459 [INFO] 192.168.2.10 - - [17/Apr/2026 15:02:32] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:03:33,462 [INFO] 192.168.2.10 - - [17/Apr/2026 15:03:33] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:04:34,472 [INFO] 192.168.2.10 - - [17/Apr/2026 15:04:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:05:34,473 [INFO] 192.168.2.10 - - [17/Apr/2026 15:05:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:06:34,443 [INFO] 192.168.2.10 - - [17/Apr/2026 15:06:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:07:34,472 [INFO] 192.168.2.10 - - [17/Apr/2026 15:07:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:08:34,446 [INFO] 192.168.2.10 - - [17/Apr/2026 15:08:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:10:14,398 [INFO] 192.168.2.10 - - [17/Apr/2026 15:10:14] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:12:35,444 [INFO] Starting Restaurant Master Server
+2026-04-17 15:12:35,559 [INFO] ==================================================
+2026-04-17 15:12:35,559 [INFO] Restaurant System Starting
+2026-04-17 15:12:35,559 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 15:12:35,622 [INFO] Application created successfully
+2026-04-17 15:12:36,984 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 15:12:36,984 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 15:21:53,693 [INFO] Starting Restaurant Master Server
+2026-04-17 15:21:54,620 [INFO] ==================================================
+2026-04-17 15:21:54,621 [INFO] Restaurant System Starting
+2026-04-17 15:21:54,621 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 15:21:54,691 [INFO] Application created successfully
+2026-04-17 15:21:56,192 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 15:21:56,192 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 15:22:03,368 [INFO] 192.168.2.10 - - [17/Apr/2026 15:22:03] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:22:06,100 [INFO] 192.168.2.10 - - [17/Apr/2026 15:22:06] "[36mGET /robot-subscription HTTP/1.1[0m" 304 -
+2026-04-17 15:22:06,241 [INFO] 192.168.2.10 - - [17/Apr/2026 15:22:06] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:22:11,977 [INFO] 192.168.2.10 - - [17/Apr/2026 15:22:11] "[36mGET /devices HTTP/1.1[0m" 304 -
+2026-04-17 15:22:12,049 [INFO] 192.168.2.10 - - [17/Apr/2026 15:22:12] "GET /api/phones?all=true HTTP/1.1" 200 -
+2026-04-17 15:22:15,231 [INFO] 192.168.2.10 - - [17/Apr/2026 15:22:15] "[36mGET /analytics HTTP/1.1[0m" 304 -
+2026-04-17 15:22:15,306 [INFO] 192.168.2.10 - - [17/Apr/2026 15:22:15] "GET /api/dashboard/orders-today HTTP/1.1" 200 -
+2026-04-17 15:22:15,323 [INFO] 192.168.2.10 - - [17/Apr/2026 15:22:15] "GET /api/dashboard/stats HTTP/1.1" 200 -
+2026-04-17 15:22:16,992 [INFO] 192.168.2.10 - - [17/Apr/2026 15:22:16] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:22:17,460 [INFO] 192.168.2.10 - - [17/Apr/2026 15:22:17] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:22:20,301 [INFO] 192.168.2.10 - - [17/Apr/2026 15:22:20] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:22:23,304 [INFO] 192.168.2.10 - - [17/Apr/2026 15:22:23] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:22:26,301 [INFO] 192.168.2.10 - - [17/Apr/2026 15:22:26] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:22:29,304 [INFO] 192.168.2.10 - - [17/Apr/2026 15:22:29] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:22:32,304 [INFO] 192.168.2.10 - - [17/Apr/2026 15:22:32] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:22:37,400 [INFO] 192.168.2.10 - - [17/Apr/2026 15:22:37] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:22:38,308 [INFO] 192.168.2.10 - - [17/Apr/2026 15:22:38] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:22:41,302 [INFO] 192.168.2.10 - - [17/Apr/2026 15:22:41] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:22:42,621 [INFO] 192.168.2.10 - - [17/Apr/2026 15:22:42] "[36mGET /robot-subscription HTTP/1.1[0m" 304 -
+2026-04-17 15:22:42,682 [INFO] 192.168.2.10 - - [17/Apr/2026 15:22:42] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:23:08,431 [INFO] 192.168.2.10 - - [17/Apr/2026 15:23:08] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:23:08,475 [INFO] 192.168.2.10 - - [17/Apr/2026 15:23:08] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:23:11,466 [INFO] 192.168.2.10 - - [17/Apr/2026 15:23:11] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:23:14,460 [INFO] 192.168.2.10 - - [17/Apr/2026 15:23:14] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:23:17,469 [INFO] 192.168.2.10 - - [17/Apr/2026 15:23:17] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:23:20,490 [INFO] 192.168.2.10 - - [17/Apr/2026 15:23:20] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:23:23,498 [INFO] 192.168.2.10 - - [17/Apr/2026 15:23:23] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:23:26,467 [INFO] 192.168.2.10 - - [17/Apr/2026 15:23:26] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:23:29,466 [INFO] 192.168.2.10 - - [17/Apr/2026 15:23:29] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:23:32,484 [INFO] 192.168.2.10 - - [17/Apr/2026 15:23:32] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:23:35,462 [INFO] 192.168.2.10 - - [17/Apr/2026 15:23:35] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:23:38,484 [INFO] 192.168.2.10 - - [17/Apr/2026 15:23:38] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:23:41,467 [INFO] 192.168.2.10 - - [17/Apr/2026 15:23:41] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:23:44,488 [INFO] 192.168.2.10 - - [17/Apr/2026 15:23:44] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:23:47,501 [INFO] 192.168.2.10 - - [17/Apr/2026 15:23:47] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:23:50,473 [INFO] 192.168.2.10 - - [17/Apr/2026 15:23:50] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:23:53,475 [INFO] 192.168.2.10 - - [17/Apr/2026 15:23:53] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:23:56,475 [INFO] 192.168.2.10 - - [17/Apr/2026 15:23:56] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:23:59,473 [INFO] 192.168.2.10 - - [17/Apr/2026 15:23:59] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:24:02,469 [INFO] 192.168.2.10 - - [17/Apr/2026 15:24:02] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:24:05,466 [INFO] 192.168.2.10 - - [17/Apr/2026 15:24:05] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:24:08,471 [INFO] 192.168.2.10 - - [17/Apr/2026 15:24:08] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:24:11,473 [INFO] 192.168.2.10 - - [17/Apr/2026 15:24:11] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:24:14,468 [INFO] 192.168.2.10 - - [17/Apr/2026 15:24:14] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:24:17,462 [INFO] 192.168.2.10 - - [17/Apr/2026 15:24:17] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:24:20,461 [INFO] 192.168.2.10 - - [17/Apr/2026 15:24:20] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:24:23,468 [INFO] 192.168.2.10 - - [17/Apr/2026 15:24:23] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:24:26,474 [INFO] 192.168.2.10 - - [17/Apr/2026 15:24:26] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:24:29,471 [INFO] 192.168.2.10 - - [17/Apr/2026 15:24:29] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:24:32,478 [INFO] 192.168.2.10 - - [17/Apr/2026 15:24:32] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:24:35,471 [INFO] 192.168.2.10 - - [17/Apr/2026 15:24:35] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:24:38,521 [INFO] 192.168.2.10 - - [17/Apr/2026 15:24:38] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:24:41,488 [INFO] 192.168.2.10 - - [17/Apr/2026 15:24:41] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:24:44,484 [INFO] 192.168.2.10 - - [17/Apr/2026 15:24:44] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:24:47,474 [INFO] 192.168.2.10 - - [17/Apr/2026 15:24:47] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:24:50,472 [INFO] 192.168.2.10 - - [17/Apr/2026 15:24:50] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:24:53,483 [INFO] 192.168.2.10 - - [17/Apr/2026 15:24:53] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:24:56,470 [INFO] 192.168.2.10 - - [17/Apr/2026 15:24:56] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:24:59,476 [INFO] 192.168.2.10 - - [17/Apr/2026 15:24:59] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:25:02,529 [INFO] 192.168.2.10 - - [17/Apr/2026 15:25:02] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:25:05,475 [INFO] 192.168.2.10 - - [17/Apr/2026 15:25:05] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:25:08,465 [INFO] 192.168.2.10 - - [17/Apr/2026 15:25:08] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:25:11,470 [INFO] 192.168.2.10 - - [17/Apr/2026 15:25:11] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:25:14,470 [INFO] 192.168.2.10 - - [17/Apr/2026 15:25:14] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:25:17,465 [INFO] 192.168.2.10 - - [17/Apr/2026 15:25:17] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:25:20,478 [INFO] 192.168.2.10 - - [17/Apr/2026 15:25:20] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:25:23,472 [INFO] 192.168.2.10 - - [17/Apr/2026 15:25:23] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:25:26,470 [INFO] 192.168.2.10 - - [17/Apr/2026 15:25:26] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:25:29,479 [INFO] 192.168.2.10 - - [17/Apr/2026 15:25:29] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:25:32,483 [INFO] 192.168.2.10 - - [17/Apr/2026 15:25:32] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:25:35,479 [INFO] 192.168.2.10 - - [17/Apr/2026 15:25:35] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:25:38,466 [INFO] 192.168.2.10 - - [17/Apr/2026 15:25:38] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:25:41,461 [INFO] 192.168.2.10 - - [17/Apr/2026 15:25:41] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:25:44,462 [INFO] 192.168.2.10 - - [17/Apr/2026 15:25:44] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:25:47,468 [INFO] 192.168.2.10 - - [17/Apr/2026 15:25:47] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:25:50,471 [INFO] 192.168.2.10 - - [17/Apr/2026 15:25:50] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:25:53,472 [INFO] 192.168.2.10 - - [17/Apr/2026 15:25:53] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:25:56,468 [INFO] 192.168.2.10 - - [17/Apr/2026 15:25:56] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:25:59,477 [INFO] 192.168.2.10 - - [17/Apr/2026 15:25:59] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:02,468 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:02] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:05,476 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:05] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:08,472 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:08] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:11,485 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:11] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:23,293 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:23] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:23,369 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:23] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:23,426 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:23] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:23,489 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:23] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:25,537 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:25] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:26:25,585 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:25] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:26,412 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:26] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:26:26,471 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:26] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:26,918 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:26] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:26:26,978 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:26] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:27,296 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:27] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:26:27,362 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:27] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:27,527 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:27] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:26:27,662 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:27] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:27,743 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:27] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:26:28,021 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:28,344 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:28] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:26:28,395 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:28,587 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:28] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:26:28,628 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:28,793 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:28] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:26:28,838 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:29,375 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:29] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:26:29,439 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:29] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:29,606 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:29] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:26:29,689 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:29] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:30,003 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:30] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:26:30,053 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:30] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:30,211 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:30] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:26:30,269 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:30] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:30,403 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:30] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:26:30,461 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:30] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:30,607 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:30] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:26:30,690 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:30] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:30,994 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:30] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:26:31,108 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:31] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:31,428 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:31] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:26:31,481 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:31] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:31,625 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:31] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:26:31,673 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:31] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:31,805 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:31] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:26:31,843 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:31] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:34,858 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:37,852 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:37] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:40,851 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:40] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:43,856 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:43] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:46,852 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:46] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:49,898 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:49] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:52,855 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:52] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:55,850 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:55] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:26:58,856 [INFO] 192.168.2.10 - - [17/Apr/2026 15:26:58] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:27:01,848 [INFO] 192.168.2.10 - - [17/Apr/2026 15:27:01] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:27:04,861 [INFO] 192.168.2.10 - - [17/Apr/2026 15:27:04] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:27:07,920 [INFO] 192.168.2.10 - - [17/Apr/2026 15:27:07] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:27:10,849 [INFO] 192.168.2.10 - - [17/Apr/2026 15:27:10] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:27:13,855 [INFO] 192.168.2.10 - - [17/Apr/2026 15:27:13] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:27:16,841 [INFO] 192.168.2.10 - - [17/Apr/2026 15:27:16] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:27:19,849 [INFO] 192.168.2.10 - - [17/Apr/2026 15:27:19] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:27:22,855 [INFO] 192.168.2.10 - - [17/Apr/2026 15:27:22] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:27:25,841 [INFO] 192.168.2.10 - - [17/Apr/2026 15:27:25] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:27:28,839 [INFO] 192.168.2.10 - - [17/Apr/2026 15:27:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:27:31,853 [INFO] 192.168.2.10 - - [17/Apr/2026 15:27:31] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:27:34,844 [INFO] 192.168.2.10 - - [17/Apr/2026 15:27:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:27:37,856 [INFO] 192.168.2.10 - - [17/Apr/2026 15:27:37] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:27:40,867 [INFO] 192.168.2.10 - - [17/Apr/2026 15:27:40] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:27:43,868 [INFO] 192.168.2.10 - - [17/Apr/2026 15:27:43] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:27:46,842 [INFO] 192.168.2.10 - - [17/Apr/2026 15:27:46] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:27:49,839 [INFO] 192.168.2.10 - - [17/Apr/2026 15:27:49] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:27:52,867 [INFO] 192.168.2.10 - - [17/Apr/2026 15:27:52] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:27:55,866 [INFO] 192.168.2.10 - - [17/Apr/2026 15:27:55] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:27:58,843 [INFO] 192.168.2.10 - - [17/Apr/2026 15:27:58] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:28:01,857 [INFO] 192.168.2.10 - - [17/Apr/2026 15:28:01] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:28:04,852 [INFO] 192.168.2.10 - - [17/Apr/2026 15:28:04] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:28:07,840 [INFO] 192.168.2.10 - - [17/Apr/2026 15:28:07] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:28:10,847 [INFO] 192.168.2.10 - - [17/Apr/2026 15:28:10] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:28:13,852 [INFO] 192.168.2.10 - - [17/Apr/2026 15:28:13] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:28:16,855 [INFO] 192.168.2.10 - - [17/Apr/2026 15:28:16] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:28:19,845 [INFO] 192.168.2.10 - - [17/Apr/2026 15:28:19] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:28:22,852 [INFO] 192.168.2.10 - - [17/Apr/2026 15:28:22] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:28:25,841 [INFO] 192.168.2.10 - - [17/Apr/2026 15:28:25] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:28:28,843 [INFO] 192.168.2.10 - - [17/Apr/2026 15:28:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:28:31,842 [INFO] 192.168.2.10 - - [17/Apr/2026 15:28:31] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:28:34,853 [INFO] 192.168.2.10 - - [17/Apr/2026 15:28:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:28:37,841 [INFO] 192.168.2.10 - - [17/Apr/2026 15:28:37] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:28:40,854 [INFO] 192.168.2.10 - - [17/Apr/2026 15:28:40] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:28:43,855 [INFO] 192.168.2.10 - - [17/Apr/2026 15:28:43] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:28:46,841 [INFO] 192.168.2.10 - - [17/Apr/2026 15:28:46] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:28:49,844 [INFO] 192.168.2.10 - - [17/Apr/2026 15:28:49] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:28:52,843 [INFO] 192.168.2.10 - - [17/Apr/2026 15:28:52] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:28:55,849 [INFO] 192.168.2.10 - - [17/Apr/2026 15:28:55] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:28:58,849 [INFO] 192.168.2.10 - - [17/Apr/2026 15:28:58] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:01,856 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:01] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:04,846 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:04] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:07,852 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:07] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:10,850 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:10] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:13,852 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:13] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:16,858 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:16] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:19,849 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:19] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:22,855 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:22] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:25,851 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:25] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:28,854 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:31,842 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:31] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:34,843 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:37,844 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:37] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:40,841 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:40] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:43,869 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:43] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:46,767 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:46] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:29:46,828 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:46] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:49,825 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:49] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:52,828 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:52] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:55,821 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:55] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:56,245 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:56] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:29:56,298 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:56] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:29:59,317 [INFO] 192.168.2.10 - - [17/Apr/2026 15:29:59] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:02,301 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:02] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:05,311 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:05] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:05,355 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:05] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:30:05,407 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:05] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:05,928 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:05] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:30:05,984 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:05] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:06,440 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:06] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:30:06,487 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:06] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:06,895 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:06] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:30:06,942 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:06] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:09,940 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:09] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:12,942 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:12] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:15,935 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:15] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:18,939 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:18] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:21,943 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:21] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:24,955 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:24] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:27,934 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:27] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:30,936 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:30] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:32,636 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:32] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:30:32,689 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:32] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:33,461 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:33] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:30:33,515 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:33] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:36,514 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:36] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:39,523 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:39] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:42,524 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:42] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:45,518 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:45] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:48,510 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:48] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:30:51,508 [INFO] 192.168.2.10 - - [17/Apr/2026 15:30:51] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:00,502 [INFO] Starting Restaurant Master Server
+2026-04-17 15:31:00,598 [INFO] ==================================================
+2026-04-17 15:31:00,599 [INFO] Restaurant System Starting
+2026-04-17 15:31:00,599 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 15:31:00,691 [INFO] Application created successfully
+2026-04-17 15:31:02,030 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 15:31:02,031 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 15:31:02,334 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:02] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:03,509 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:03] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:06,505 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:06] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:09,505 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:09] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:12,508 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:12] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:15,510 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:15] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:16,456 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:16] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:31:16,499 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:16] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:18,364 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:18] "[36mGET /robot-subscription HTTP/1.1[0m" 304 -
+2026-04-17 15:31:18,426 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:18] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:20,634 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:20] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:31:20,719 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:20] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:23,687 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:23] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:26,693 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:26] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:29,683 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:29] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:32,700 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:32] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:35,685 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:35] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:38,722 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:38] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:41,684 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:41] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:44,697 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:44] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:48,447 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:48] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:51,443 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:51] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:56,476 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:56] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:31:57,873 [INFO] 192.168.2.10 - - [17/Apr/2026 15:31:57] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:32:01,280 [INFO] 192.168.2.10 - - [17/Apr/2026 15:32:01] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:32:03,435 [INFO] 192.168.2.10 - - [17/Apr/2026 15:32:03] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:32:06,439 [INFO] 192.168.2.10 - - [17/Apr/2026 15:32:06] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:32:09,434 [INFO] 192.168.2.10 - - [17/Apr/2026 15:32:09] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:32:12,438 [INFO] 192.168.2.10 - - [17/Apr/2026 15:32:12] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:32:15,441 [INFO] 192.168.2.10 - - [17/Apr/2026 15:32:15] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:32:18,542 [INFO] 192.168.2.10 - - [17/Apr/2026 15:32:18] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:32:21,435 [INFO] 192.168.2.10 - - [17/Apr/2026 15:32:21] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:32:24,444 [INFO] 192.168.2.10 - - [17/Apr/2026 15:32:24] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:32:27,594 [INFO] 192.168.2.10 - - [17/Apr/2026 15:32:27] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:32:30,441 [INFO] 192.168.2.10 - - [17/Apr/2026 15:32:30] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:32:33,673 [INFO] 192.168.2.10 - - [17/Apr/2026 15:32:33] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:32:36,440 [INFO] 192.168.2.10 - - [17/Apr/2026 15:32:36] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:32:39,444 [INFO] 192.168.2.10 - - [17/Apr/2026 15:32:39] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:32:43,693 [INFO] 192.168.2.10 - - [17/Apr/2026 15:32:43] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:33:34,630 [INFO] 192.168.2.10 - - [17/Apr/2026 15:33:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:34:34,505 [INFO] 192.168.2.10 - - [17/Apr/2026 15:34:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:35:34,444 [INFO] 192.168.2.10 - - [17/Apr/2026 15:35:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:36:34,460 [INFO] 192.168.2.10 - - [17/Apr/2026 15:36:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:37:34,472 [INFO] 192.168.2.10 - - [17/Apr/2026 15:37:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:38:34,442 [INFO] 192.168.2.10 - - [17/Apr/2026 15:38:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:39:34,441 [INFO] 192.168.2.10 - - [17/Apr/2026 15:39:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:40:34,456 [INFO] 192.168.2.10 - - [17/Apr/2026 15:40:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:41:20,220 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:20] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:41:20,682 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:20] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:41:22,451 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:22] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:41:22,574 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:22] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:41:23,323 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:23] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:41:23,384 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:23] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:41:23,826 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:23] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:41:23,874 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:23] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:41:24,221 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:24] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:41:24,288 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:24] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:41:24,851 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:24] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:41:24,920 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:24] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:41:25,110 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:25] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:41:25,173 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:25] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:41:25,344 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:25] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:41:25,392 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:25] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:41:28,405 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:41:31,393 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:31] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:41:34,393 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:41:37,400 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:37] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:41:40,408 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:40] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:41:43,401 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:43] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:41:46,410 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:46] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:41:49,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:49] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:41:52,404 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:52] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:41:55,397 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:55] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:41:58,395 [INFO] 192.168.2.10 - - [17/Apr/2026 15:41:58] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:42:01,401 [INFO] 192.168.2.10 - - [17/Apr/2026 15:42:01] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:42:04,428 [INFO] 192.168.2.10 - - [17/Apr/2026 15:42:04] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:42:07,460 [INFO] 192.168.2.10 - - [17/Apr/2026 15:42:07] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:42:10,407 [INFO] 192.168.2.10 - - [17/Apr/2026 15:42:10] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:42:13,401 [INFO] 192.168.2.10 - - [17/Apr/2026 15:42:13] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:42:16,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:42:16] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:42:19,400 [INFO] 192.168.2.10 - - [17/Apr/2026 15:42:19] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:42:22,404 [INFO] 192.168.2.10 - - [17/Apr/2026 15:42:22] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:42:25,403 [INFO] 192.168.2.10 - - [17/Apr/2026 15:42:25] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:42:28,408 [INFO] 192.168.2.10 - - [17/Apr/2026 15:42:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:42:31,406 [INFO] 192.168.2.10 - - [17/Apr/2026 15:42:31] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:42:34,397 [INFO] 192.168.2.10 - - [17/Apr/2026 15:42:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:42:37,396 [INFO] 192.168.2.10 - - [17/Apr/2026 15:42:37] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:42:40,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:42:40] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:42:43,405 [INFO] 192.168.2.10 - - [17/Apr/2026 15:42:43] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:42:46,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:42:46] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:42:49,404 [INFO] 192.168.2.10 - - [17/Apr/2026 15:42:49] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:42:52,401 [INFO] 192.168.2.10 - - [17/Apr/2026 15:42:52] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:42:55,409 [INFO] 192.168.2.10 - - [17/Apr/2026 15:42:55] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:42:58,404 [INFO] 192.168.2.10 - - [17/Apr/2026 15:42:58] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:43:01,408 [INFO] 192.168.2.10 - - [17/Apr/2026 15:43:01] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:43:04,398 [INFO] 192.168.2.10 - - [17/Apr/2026 15:43:04] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:43:07,393 [INFO] 192.168.2.10 - - [17/Apr/2026 15:43:07] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:43:10,394 [INFO] 192.168.2.10 - - [17/Apr/2026 15:43:10] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:43:13,392 [INFO] 192.168.2.10 - - [17/Apr/2026 15:43:13] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:43:16,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:43:16] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:43:19,395 [INFO] 192.168.2.10 - - [17/Apr/2026 15:43:19] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:43:22,394 [INFO] 192.168.2.10 - - [17/Apr/2026 15:43:22] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:43:25,398 [INFO] 192.168.2.10 - - [17/Apr/2026 15:43:25] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:43:28,397 [INFO] 192.168.2.10 - - [17/Apr/2026 15:43:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:43:31,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:43:31] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:43:34,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:43:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:43:37,404 [INFO] 192.168.2.10 - - [17/Apr/2026 15:43:37] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:43:40,403 [INFO] 192.168.2.10 - - [17/Apr/2026 15:43:40] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:43:43,394 [INFO] 192.168.2.10 - - [17/Apr/2026 15:43:43] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:43:46,396 [INFO] 192.168.2.10 - - [17/Apr/2026 15:43:46] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:43:49,400 [INFO] 192.168.2.10 - - [17/Apr/2026 15:43:49] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:43:52,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:43:52] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:43:55,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:43:55] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:43:58,401 [INFO] 192.168.2.10 - - [17/Apr/2026 15:43:58] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:44:01,400 [INFO] 192.168.2.10 - - [17/Apr/2026 15:44:01] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:44:04,395 [INFO] 192.168.2.10 - - [17/Apr/2026 15:44:04] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:44:07,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:44:07] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:44:10,397 [INFO] 192.168.2.10 - - [17/Apr/2026 15:44:10] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:44:13,400 [INFO] 192.168.2.10 - - [17/Apr/2026 15:44:13] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:44:16,389 [INFO] 192.168.2.10 - - [17/Apr/2026 15:44:16] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:44:19,405 [INFO] 192.168.2.10 - - [17/Apr/2026 15:44:19] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:44:22,392 [INFO] 192.168.2.10 - - [17/Apr/2026 15:44:22] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:44:25,400 [INFO] 192.168.2.10 - - [17/Apr/2026 15:44:25] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:44:28,404 [INFO] 192.168.2.10 - - [17/Apr/2026 15:44:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:44:31,405 [INFO] 192.168.2.10 - - [17/Apr/2026 15:44:31] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:44:34,395 [INFO] 192.168.2.10 - - [17/Apr/2026 15:44:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:44:37,400 [INFO] 192.168.2.10 - - [17/Apr/2026 15:44:37] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:44:40,413 [INFO] 192.168.2.10 - - [17/Apr/2026 15:44:40] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:44:43,403 [INFO] 192.168.2.10 - - [17/Apr/2026 15:44:43] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:44:46,392 [INFO] 192.168.2.10 - - [17/Apr/2026 15:44:46] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:44:49,404 [INFO] 192.168.2.10 - - [17/Apr/2026 15:44:49] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:44:52,401 [INFO] 192.168.2.10 - - [17/Apr/2026 15:44:52] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:44:55,403 [INFO] 192.168.2.10 - - [17/Apr/2026 15:44:55] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:44:58,422 [INFO] 192.168.2.10 - - [17/Apr/2026 15:44:58] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:45:01,405 [INFO] 192.168.2.10 - - [17/Apr/2026 15:45:01] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:45:04,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:45:04] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:45:07,409 [INFO] 192.168.2.10 - - [17/Apr/2026 15:45:07] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:45:10,408 [INFO] 192.168.2.10 - - [17/Apr/2026 15:45:10] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:45:13,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:45:13] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:45:16,403 [INFO] 192.168.2.10 - - [17/Apr/2026 15:45:16] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:45:19,396 [INFO] 192.168.2.10 - - [17/Apr/2026 15:45:19] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:45:22,401 [INFO] 192.168.2.10 - - [17/Apr/2026 15:45:22] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:45:25,403 [INFO] 192.168.2.10 - - [17/Apr/2026 15:45:25] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:45:28,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:45:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:45:31,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:45:31] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:45:34,393 [INFO] 192.168.2.10 - - [17/Apr/2026 15:45:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:45:37,403 [INFO] 192.168.2.10 - - [17/Apr/2026 15:45:37] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:45:40,400 [INFO] 192.168.2.10 - - [17/Apr/2026 15:45:40] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:45:43,406 [INFO] 192.168.2.10 - - [17/Apr/2026 15:45:43] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:45:46,400 [INFO] 192.168.2.10 - - [17/Apr/2026 15:45:46] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:45:49,405 [INFO] 192.168.2.10 - - [17/Apr/2026 15:45:49] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:45:52,391 [INFO] 192.168.2.10 - - [17/Apr/2026 15:45:52] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:45:55,400 [INFO] 192.168.2.10 - - [17/Apr/2026 15:45:55] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:45:58,400 [INFO] 192.168.2.10 - - [17/Apr/2026 15:45:58] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:46:01,405 [INFO] 192.168.2.10 - - [17/Apr/2026 15:46:01] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:46:04,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:46:04] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:46:07,403 [INFO] 192.168.2.10 - - [17/Apr/2026 15:46:07] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:46:10,403 [INFO] 192.168.2.10 - - [17/Apr/2026 15:46:10] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:46:13,400 [INFO] 192.168.2.10 - - [17/Apr/2026 15:46:13] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:46:16,403 [INFO] 192.168.2.10 - - [17/Apr/2026 15:46:16] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:46:19,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:46:19] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:46:22,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:46:22] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:46:25,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:46:25] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:46:28,412 [INFO] 192.168.2.10 - - [17/Apr/2026 15:46:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:46:31,404 [INFO] 192.168.2.10 - - [17/Apr/2026 15:46:31] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:46:34,398 [INFO] 192.168.2.10 - - [17/Apr/2026 15:46:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:46:37,405 [INFO] 192.168.2.10 - - [17/Apr/2026 15:46:37] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:46:40,398 [INFO] 192.168.2.10 - - [17/Apr/2026 15:46:40] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:46:43,401 [INFO] 192.168.2.10 - - [17/Apr/2026 15:46:43] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:46:46,394 [INFO] 192.168.2.10 - - [17/Apr/2026 15:46:46] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:46:49,413 [INFO] 192.168.2.10 - - [17/Apr/2026 15:46:49] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:46:52,405 [INFO] 192.168.2.10 - - [17/Apr/2026 15:46:52] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:46:55,390 [INFO] 192.168.2.10 - - [17/Apr/2026 15:46:55] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:46:58,391 [INFO] 192.168.2.10 - - [17/Apr/2026 15:46:58] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:47:01,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:47:01] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:47:04,405 [INFO] 192.168.2.10 - - [17/Apr/2026 15:47:04] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:47:07,407 [INFO] 192.168.2.10 - - [17/Apr/2026 15:47:07] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:47:10,393 [INFO] 192.168.2.10 - - [17/Apr/2026 15:47:10] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:47:13,406 [INFO] 192.168.2.10 - - [17/Apr/2026 15:47:13] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:47:16,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:47:16] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:47:19,403 [INFO] 192.168.2.10 - - [17/Apr/2026 15:47:19] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:47:22,401 [INFO] 192.168.2.10 - - [17/Apr/2026 15:47:22] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:47:25,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:47:25] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:47:28,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:47:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:47:31,395 [INFO] 192.168.2.10 - - [17/Apr/2026 15:47:31] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:47:34,400 [INFO] 192.168.2.10 - - [17/Apr/2026 15:47:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:47:37,404 [INFO] 192.168.2.10 - - [17/Apr/2026 15:47:37] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:47:40,400 [INFO] 192.168.2.10 - - [17/Apr/2026 15:47:40] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:47:43,438 [INFO] 192.168.2.10 - - [17/Apr/2026 15:47:43] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:47:46,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:47:46] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:47:49,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:47:49] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:47:52,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:47:52] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:47:55,401 [INFO] 192.168.2.10 - - [17/Apr/2026 15:47:55] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:47:58,397 [INFO] 192.168.2.10 - - [17/Apr/2026 15:47:58] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:48:01,401 [INFO] 192.168.2.10 - - [17/Apr/2026 15:48:01] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:48:04,397 [INFO] 192.168.2.10 - - [17/Apr/2026 15:48:04] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:48:07,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:48:07] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:48:10,406 [INFO] 192.168.2.10 - - [17/Apr/2026 15:48:10] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:48:13,400 [INFO] 192.168.2.10 - - [17/Apr/2026 15:48:13] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:48:16,405 [INFO] 192.168.2.10 - - [17/Apr/2026 15:48:16] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:48:19,409 [INFO] 192.168.2.10 - - [17/Apr/2026 15:48:19] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:48:22,417 [INFO] 192.168.2.10 - - [17/Apr/2026 15:48:22] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:48:25,409 [INFO] 192.168.2.10 - - [17/Apr/2026 15:48:25] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:48:28,392 [INFO] 192.168.2.10 - - [17/Apr/2026 15:48:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:48:31,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:48:31] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:48:34,401 [INFO] 192.168.2.10 - - [17/Apr/2026 15:48:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:48:37,401 [INFO] 192.168.2.10 - - [17/Apr/2026 15:48:37] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:48:40,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:48:40] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:48:43,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:48:43] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:48:46,393 [INFO] 192.168.2.10 - - [17/Apr/2026 15:48:46] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:48:49,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:48:49] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:48:52,396 [INFO] 192.168.2.10 - - [17/Apr/2026 15:48:52] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:48:55,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:48:55] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:48:58,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:48:58] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:49:01,403 [INFO] 192.168.2.10 - - [17/Apr/2026 15:49:01] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:49:04,398 [INFO] 192.168.2.10 - - [17/Apr/2026 15:49:04] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:49:07,401 [INFO] 192.168.2.10 - - [17/Apr/2026 15:49:07] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:49:10,404 [INFO] 192.168.2.10 - - [17/Apr/2026 15:49:10] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:49:13,403 [INFO] 192.168.2.10 - - [17/Apr/2026 15:49:13] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:49:16,407 [INFO] 192.168.2.10 - - [17/Apr/2026 15:49:16] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:49:19,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:49:19] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:49:22,400 [INFO] 192.168.2.10 - - [17/Apr/2026 15:49:22] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:49:25,401 [INFO] 192.168.2.10 - - [17/Apr/2026 15:49:25] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:49:28,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:49:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:49:31,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:49:31] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:49:34,393 [INFO] 192.168.2.10 - - [17/Apr/2026 15:49:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:49:37,442 [INFO] 192.168.2.10 - - [17/Apr/2026 15:49:37] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:49:40,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:49:40] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:49:43,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:49:43] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:49:46,406 [INFO] 192.168.2.10 - - [17/Apr/2026 15:49:46] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:49:49,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:49:49] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:49:52,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:49:52] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:49:55,403 [INFO] 192.168.2.10 - - [17/Apr/2026 15:49:55] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:49:58,407 [INFO] 192.168.2.10 - - [17/Apr/2026 15:49:58] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:50:01,398 [INFO] 192.168.2.10 - - [17/Apr/2026 15:50:01] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:50:04,400 [INFO] 192.168.2.10 - - [17/Apr/2026 15:50:04] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:50:07,394 [INFO] 192.168.2.10 - - [17/Apr/2026 15:50:07] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:50:10,401 [INFO] 192.168.2.10 - - [17/Apr/2026 15:50:10] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:50:13,403 [INFO] 192.168.2.10 - - [17/Apr/2026 15:50:13] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:50:16,404 [INFO] 192.168.2.10 - - [17/Apr/2026 15:50:16] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:50:19,404 [INFO] 192.168.2.10 - - [17/Apr/2026 15:50:19] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:50:22,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:50:22] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:50:25,391 [INFO] 192.168.2.10 - - [17/Apr/2026 15:50:25] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:50:28,404 [INFO] 192.168.2.10 - - [17/Apr/2026 15:50:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:50:31,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:50:31] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:50:34,392 [INFO] 192.168.2.10 - - [17/Apr/2026 15:50:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:50:37,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:50:37] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:50:40,397 [INFO] 192.168.2.10 - - [17/Apr/2026 15:50:40] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:50:43,401 [INFO] 192.168.2.10 - - [17/Apr/2026 15:50:43] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:50:46,401 [INFO] 192.168.2.10 - - [17/Apr/2026 15:50:46] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:50:49,401 [INFO] 192.168.2.10 - - [17/Apr/2026 15:50:49] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:50:52,404 [INFO] 192.168.2.10 - - [17/Apr/2026 15:50:52] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:50:55,415 [INFO] 192.168.2.10 - - [17/Apr/2026 15:50:55] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:50:58,405 [INFO] 192.168.2.10 - - [17/Apr/2026 15:50:58] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:51:01,401 [INFO] 192.168.2.10 - - [17/Apr/2026 15:51:01] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:51:04,405 [INFO] 192.168.2.10 - - [17/Apr/2026 15:51:04] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:51:07,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:51:07] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:51:10,394 [INFO] 192.168.2.10 - - [17/Apr/2026 15:51:10] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:51:13,400 [INFO] 192.168.2.10 - - [17/Apr/2026 15:51:13] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:51:16,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:51:16] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:51:19,404 [INFO] 192.168.2.10 - - [17/Apr/2026 15:51:19] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:51:22,390 [INFO] 192.168.2.10 - - [17/Apr/2026 15:51:22] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:51:25,405 [INFO] 192.168.2.10 - - [17/Apr/2026 15:51:25] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:51:28,395 [INFO] 192.168.2.10 - - [17/Apr/2026 15:51:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:51:31,391 [INFO] 192.168.2.10 - - [17/Apr/2026 15:51:31] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:51:34,399 [INFO] 192.168.2.10 - - [17/Apr/2026 15:51:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:51:37,407 [INFO] 192.168.2.10 - - [17/Apr/2026 15:51:37] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:51:40,400 [INFO] 192.168.2.10 - - [17/Apr/2026 15:51:40] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:51:43,392 [INFO] 192.168.2.10 - - [17/Apr/2026 15:51:43] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:51:46,439 [INFO] 192.168.2.10 - - [17/Apr/2026 15:51:46] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:51:48,531 [INFO] 192.168.2.10 - - [17/Apr/2026 15:51:48] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:51:48,578 [INFO] 192.168.2.10 - - [17/Apr/2026 15:51:48] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:51:51,587 [INFO] 192.168.2.10 - - [17/Apr/2026 15:51:51] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:03,132 [INFO] Starting Restaurant Master Server
+2026-04-17 15:52:03,258 [INFO] ==================================================
+2026-04-17 15:52:03,258 [INFO] Restaurant System Starting
+2026-04-17 15:52:03,258 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 15:52:03,323 [INFO] Application created successfully
+2026-04-17 15:52:04,673 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 15:52:04,673 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 15:52:04,894 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:04] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:06,582 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:06] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:09,585 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:09] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:12,592 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:12] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:15,596 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:15] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:18,584 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:18] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:21,584 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:21] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:24,584 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:24] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:27,591 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:27] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:28,416 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:28] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:52:28,463 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:29,170 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:29] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:52:29,219 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:29] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:29,788 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:29] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:52:29,839 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:29] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:32,856 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:32] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:35,838 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:35] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:38,838 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:38] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:41,838 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:41] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:44,834 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:44] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:47,839 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:47] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:50,838 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:50] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:53,831 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:53] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:58,905 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:58] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:52:59,846 [INFO] 192.168.2.10 - - [17/Apr/2026 15:52:59] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:53:05,908 [INFO] 192.168.2.10 - - [17/Apr/2026 15:53:05] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:53:05,918 [INFO] 192.168.2.10 - - [17/Apr/2026 15:53:05] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:53:09,536 [INFO] 192.168.2.10 - - [17/Apr/2026 15:53:09] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:53:12,999 [INFO] 192.168.2.10 - - [17/Apr/2026 15:53:12] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:53:16,564 [INFO] 192.168.2.10 - - [17/Apr/2026 15:53:16] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:53:19,934 [INFO] 192.168.2.10 - - [17/Apr/2026 15:53:19] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:53:23,350 [INFO] 192.168.2.10 - - [17/Apr/2026 15:53:23] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:53:23,840 [INFO] 192.168.2.10 - - [17/Apr/2026 15:53:23] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:53:28,338 [INFO] 192.168.2.10 - - [17/Apr/2026 15:53:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:53:30,532 [INFO] 192.168.2.10 - - [17/Apr/2026 15:53:30] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:53:33,914 [INFO] 192.168.2.10 - - [17/Apr/2026 15:53:33] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:53:37,431 [INFO] 192.168.2.10 - - [17/Apr/2026 15:53:37] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:53:39,539 [INFO] 192.168.2.10 - - [17/Apr/2026 15:53:39] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:53:41,842 [INFO] 192.168.2.10 - - [17/Apr/2026 15:53:41] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:53:46,259 [INFO] 192.168.2.10 - - [17/Apr/2026 15:53:46] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:53:50,256 [INFO] 192.168.2.10 - - [17/Apr/2026 15:53:50] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:53:52,565 [INFO] 192.168.2.10 - - [17/Apr/2026 15:53:52] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:53:53,842 [INFO] 192.168.2.10 - - [17/Apr/2026 15:53:53] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:53:57,851 [INFO] 192.168.2.10 - - [17/Apr/2026 15:53:57] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:01,456 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:01] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:04,038 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:04] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:05,838 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:05] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:08,838 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:08] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:11,888 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:11] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:15,318 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:15] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:18,772 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:18] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:21,100 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:21] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:23,850 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:23] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:27,402 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:27] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:30,033 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:30] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:32,885 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:32] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:37,542 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:37] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:38,832 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:38] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:42,564 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:42] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:45,063 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:45] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:47,840 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:47] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:53,633 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:53] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:53,835 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:53] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:56,835 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:56] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:54:59,833 [INFO] 192.168.2.10 - - [17/Apr/2026 15:54:59] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:55:03,140 [INFO] 192.168.2.10 - - [17/Apr/2026 15:55:03] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:55:06,663 [INFO] 192.168.2.10 - - [17/Apr/2026 15:55:06] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:55:09,502 [INFO] 192.168.2.10 - - [17/Apr/2026 15:55:09] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:55:12,508 [INFO] 192.168.2.10 - - [17/Apr/2026 15:55:12] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:55:15,990 [INFO] 192.168.2.10 - - [17/Apr/2026 15:55:15] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:55:19,701 [INFO] 192.168.2.10 - - [17/Apr/2026 15:55:19] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:55:22,054 [INFO] 192.168.2.10 - - [17/Apr/2026 15:55:22] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:55:25,184 [INFO] 192.168.2.10 - - [17/Apr/2026 15:55:25] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:55:27,551 [INFO] 192.168.2.10 - - [17/Apr/2026 15:55:27] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:55:29,867 [INFO] 192.168.2.10 - - [17/Apr/2026 15:55:29] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:55:32,936 [INFO] 192.168.2.10 - - [17/Apr/2026 15:55:32] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:55:37,247 [INFO] 192.168.2.10 - - [17/Apr/2026 15:55:37] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:55:42,658 [INFO] 192.168.2.10 - - [17/Apr/2026 15:55:42] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:55:42,667 [INFO] 192.168.2.10 - - [17/Apr/2026 15:55:42] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:55:46,220 [INFO] 192.168.2.10 - - [17/Apr/2026 15:55:46] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:55:49,887 [INFO] 192.168.2.10 - - [17/Apr/2026 15:55:49] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:55:57,247 [INFO] 192.168.2.10 - - [17/Apr/2026 15:55:57] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:55:57,283 [INFO] 192.168.2.10 - - [17/Apr/2026 15:55:57] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:55:57,300 [INFO] 192.168.2.10 - - [17/Apr/2026 15:55:57] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:03,068 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:03] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:03,072 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:03] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:05,842 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:05] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:11,473 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:11] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:11,839 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:11] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:15,151 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:15] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:17,833 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:17] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:21,106 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:21] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:23,833 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:23] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:26,845 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:26] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:29,842 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:29] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:32,842 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:32] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:35,839 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:35] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:37,996 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:37] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:56:38,047 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:38] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:38,854 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:38] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:56:38,923 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:38] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:39,370 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:39] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:56:39,433 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:39] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:39,641 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:39] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:56:39,706 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:39] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:39,841 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:39] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:56:39,906 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:39] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:40,044 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:40] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:56:40,097 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:40] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:40,258 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:40] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:56:40,310 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:40] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:43,300 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:43] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:46,300 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:46] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:49,435 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:49] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:53,490 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:53] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:56:55,442 [INFO] 192.168.2.10 - - [17/Apr/2026 15:56:55] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:57:01,050 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:01] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:57:01,445 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:01] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:57:04,486 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:04] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:57:07,455 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:07] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:57:10,445 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:10] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:57:13,438 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:13] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:57:16,453 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:16] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:57:19,443 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:19] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:57:22,455 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:22] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:57:25,469 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:25] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:57:28,446 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:57:31,475 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:31] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:57:34,450 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:57:37,303 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:37] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:57:37,840 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:37] "[36mGET /tables HTTP/1.1[0m" 304 -
+2026-04-17 15:57:37,958 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:37] "GET /api/tables HTTP/1.1" 200 -
+2026-04-17 15:57:41,182 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:41] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 15:57:41,301 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:41] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:57:43,736 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:43] "[36mGET /menu HTTP/1.1[0m" 304 -
+2026-04-17 15:57:43,796 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:43] "GET /api/categories?all=true HTTP/1.1" 200 -
+2026-04-17 15:57:43,823 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:43] "GET /api/menu-items?all=true HTTP/1.1" 200 -
+2026-04-17 15:57:43,850 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:43] "GET /api/categories?all=true HTTP/1.1" 200 -
+2026-04-17 15:57:45,977 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:45] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:57:46,034 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:46] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:57:46,703 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:46] "[36mGET /robot-subscription HTTP/1.1[0m" 304 -
+2026-04-17 15:57:46,746 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:46] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:57:47,774 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:47] "[36mGET /analytics HTTP/1.1[0m" 304 -
+2026-04-17 15:57:47,854 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:47] "GET /api/dashboard/stats HTTP/1.1" 200 -
+2026-04-17 15:57:47,854 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:47] "GET /api/dashboard/orders-today HTTP/1.1" 200 -
+2026-04-17 15:57:48,618 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:48] "[36mGET /devices HTTP/1.1[0m" 304 -
+2026-04-17 15:57:48,686 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:48] "GET /api/phones?all=true HTTP/1.1" 200 -
+2026-04-17 15:57:53,255 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:53] "[36mGET /analytics HTTP/1.1[0m" 304 -
+2026-04-17 15:57:53,313 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:53] "GET /api/dashboard/orders-today HTTP/1.1" 200 -
+2026-04-17 15:57:53,316 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:53] "GET /api/dashboard/stats HTTP/1.1" 200 -
+2026-04-17 15:57:54,735 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:54] "[36mGET /robot-subscription HTTP/1.1[0m" 304 -
+2026-04-17 15:57:54,791 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:54] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:57:55,136 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:55] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:57:55,196 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:55] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:57:56,030 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:56] "[36mGET /tables HTTP/1.1[0m" 304 -
+2026-04-17 15:57:56,123 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:56] "GET /api/tables HTTP/1.1" 200 -
+2026-04-17 15:57:56,917 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:56] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 15:57:56,967 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:56] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 15:57:58,494 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:58] "[36mGET /tables HTTP/1.1[0m" 304 -
+2026-04-17 15:57:58,540 [INFO] 192.168.2.10 - - [17/Apr/2026 15:57:58] "GET /api/tables HTTP/1.1" 200 -
+2026-04-17 15:58:00,735 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:00] "[36mGET /robot-subscription HTTP/1.1[0m" 304 -
+2026-04-17 15:58:00,805 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:00] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:58:02,835 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:02] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:58:02,873 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:02] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:58:05,863 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:05] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:58:08,873 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:08] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:58:11,869 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:11] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:58:14,868 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:14] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:58:17,885 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:17] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:58:20,880 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:20] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:58:21,151 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:21] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 15:58:21,211 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:21] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:58:24,198 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:24] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:58:27,197 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:27] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:58:30,437 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:30] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:58:33,437 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:33] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:58:36,434 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:36] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:58:39,434 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:39] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:58:42,451 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:42] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:58:45,467 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:45] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:58:48,446 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:48] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:58:51,475 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:51] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:58:54,434 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:54] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:58:57,449 [INFO] 192.168.2.10 - - [17/Apr/2026 15:58:57] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:59:00,447 [INFO] 192.168.2.10 - - [17/Apr/2026 15:59:00] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:59:03,447 [INFO] 192.168.2.10 - - [17/Apr/2026 15:59:03] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:59:06,445 [INFO] 192.168.2.10 - - [17/Apr/2026 15:59:06] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:59:09,442 [INFO] 192.168.2.10 - - [17/Apr/2026 15:59:09] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:59:12,453 [INFO] 192.168.2.10 - - [17/Apr/2026 15:59:12] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:59:15,442 [INFO] 192.168.2.10 - - [17/Apr/2026 15:59:15] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:59:18,445 [INFO] 192.168.2.10 - - [17/Apr/2026 15:59:18] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:59:21,439 [INFO] 192.168.2.10 - - [17/Apr/2026 15:59:21] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:59:24,454 [INFO] 192.168.2.10 - - [17/Apr/2026 15:59:24] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:59:27,457 [INFO] 192.168.2.10 - - [17/Apr/2026 15:59:27] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 15:59:34,440 [INFO] 192.168.2.10 - - [17/Apr/2026 15:59:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:00:34,521 [INFO] 192.168.2.10 - - [17/Apr/2026 16:00:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:00:36,198 [INFO] 192.168.2.10 - - [17/Apr/2026 16:00:36] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:00:39,206 [INFO] 192.168.2.10 - - [17/Apr/2026 16:00:39] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:00:42,209 [INFO] 192.168.2.10 - - [17/Apr/2026 16:00:42] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:00:45,208 [INFO] 192.168.2.10 - - [17/Apr/2026 16:00:45] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:00:48,199 [INFO] 192.168.2.10 - - [17/Apr/2026 16:00:48] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:00:51,214 [INFO] 192.168.2.10 - - [17/Apr/2026 16:00:51] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:00:54,208 [INFO] 192.168.2.10 - - [17/Apr/2026 16:00:54] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:00:57,213 [INFO] 192.168.2.10 - - [17/Apr/2026 16:00:57] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:01:00,211 [INFO] 192.168.2.10 - - [17/Apr/2026 16:01:00] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:01:03,208 [INFO] 192.168.2.10 - - [17/Apr/2026 16:01:03] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:01:06,198 [INFO] 192.168.2.10 - - [17/Apr/2026 16:01:06] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:01:09,207 [INFO] 192.168.2.10 - - [17/Apr/2026 16:01:09] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:01:12,209 [INFO] 192.168.2.10 - - [17/Apr/2026 16:01:12] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:01:15,219 [INFO] 192.168.2.10 - - [17/Apr/2026 16:01:15] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:01:18,212 [INFO] 192.168.2.10 - - [17/Apr/2026 16:01:18] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:01:21,197 [INFO] 192.168.2.10 - - [17/Apr/2026 16:01:21] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:01:24,198 [INFO] 192.168.2.10 - - [17/Apr/2026 16:01:24] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:01:27,196 [INFO] 192.168.2.10 - - [17/Apr/2026 16:01:27] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:01:30,199 [INFO] 192.168.2.10 - - [17/Apr/2026 16:01:30] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:01:33,198 [INFO] 192.168.2.10 - - [17/Apr/2026 16:01:33] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:01:36,208 [INFO] 192.168.2.10 - - [17/Apr/2026 16:01:36] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:01:39,206 [INFO] 192.168.2.10 - - [17/Apr/2026 16:01:39] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:01:42,203 [INFO] 192.168.2.10 - - [17/Apr/2026 16:01:42] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:01:45,202 [INFO] 192.168.2.10 - - [17/Apr/2026 16:01:45] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:01:48,218 [INFO] 192.168.2.10 - - [17/Apr/2026 16:01:48] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:01:51,202 [INFO] 192.168.2.10 - - [17/Apr/2026 16:01:51] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:01:54,211 [INFO] 192.168.2.10 - - [17/Apr/2026 16:01:54] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:01:57,213 [INFO] 192.168.2.10 - - [17/Apr/2026 16:01:57] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:02:01,481 [INFO] 192.168.2.10 - - [17/Apr/2026 16:02:01] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:02:03,200 [INFO] 192.168.2.10 - - [17/Apr/2026 16:02:03] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:02:07,603 [INFO] 192.168.2.10 - - [17/Apr/2026 16:02:07] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:02:09,194 [INFO] 192.168.2.10 - - [17/Apr/2026 16:02:09] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:02:12,201 [INFO] 192.168.2.10 - - [17/Apr/2026 16:02:12] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:02:15,208 [INFO] 192.168.2.10 - - [17/Apr/2026 16:02:15] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:02:18,203 [INFO] 192.168.2.10 - - [17/Apr/2026 16:02:18] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:02:21,225 [INFO] 192.168.2.10 - - [17/Apr/2026 16:02:21] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:02:24,211 [INFO] 192.168.2.10 - - [17/Apr/2026 16:02:24] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:02:27,200 [INFO] 192.168.2.10 - - [17/Apr/2026 16:02:27] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:02:30,206 [INFO] 192.168.2.10 - - [17/Apr/2026 16:02:30] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:02:33,210 [INFO] 192.168.2.10 - - [17/Apr/2026 16:02:33] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:02:36,202 [INFO] 192.168.2.10 - - [17/Apr/2026 16:02:36] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:02:39,218 [INFO] 192.168.2.10 - - [17/Apr/2026 16:02:39] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:02:42,205 [INFO] 192.168.2.10 - - [17/Apr/2026 16:02:42] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:02:45,211 [INFO] 192.168.2.10 - - [17/Apr/2026 16:02:45] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:02:48,214 [INFO] 192.168.2.10 - - [17/Apr/2026 16:02:48] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:02:51,201 [INFO] 192.168.2.10 - - [17/Apr/2026 16:02:51] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:02:54,203 [INFO] 192.168.2.10 - - [17/Apr/2026 16:02:54] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:02:57,200 [INFO] 192.168.2.10 - - [17/Apr/2026 16:02:57] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:03:00,203 [INFO] 192.168.2.10 - - [17/Apr/2026 16:03:00] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:03:03,201 [INFO] 192.168.2.10 - - [17/Apr/2026 16:03:03] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:03:06,202 [INFO] 192.168.2.10 - - [17/Apr/2026 16:03:06] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:03:09,196 [INFO] 192.168.2.10 - - [17/Apr/2026 16:03:09] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:03:12,233 [INFO] 192.168.2.10 - - [17/Apr/2026 16:03:12] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:03:15,200 [INFO] 192.168.2.10 - - [17/Apr/2026 16:03:15] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:03:18,201 [INFO] 192.168.2.10 - - [17/Apr/2026 16:03:18] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:03:21,217 [INFO] 192.168.2.10 - - [17/Apr/2026 16:03:21] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:03:24,204 [INFO] 192.168.2.10 - - [17/Apr/2026 16:03:24] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:03:27,205 [INFO] 192.168.2.10 - - [17/Apr/2026 16:03:27] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:03:30,202 [INFO] 192.168.2.10 - - [17/Apr/2026 16:03:30] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:03:33,199 [INFO] 192.168.2.10 - - [17/Apr/2026 16:03:33] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:03:36,451 [INFO] 192.168.2.10 - - [17/Apr/2026 16:03:36] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:03:39,435 [INFO] 192.168.2.10 - - [17/Apr/2026 16:03:39] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:03:42,439 [INFO] 192.168.2.10 - - [17/Apr/2026 16:03:42] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:03:45,435 [INFO] 192.168.2.10 - - [17/Apr/2026 16:03:45] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:03:54,163 [INFO] Starting Restaurant Master Server
+2026-04-17 16:03:54,263 [INFO] ==================================================
+2026-04-17 16:03:54,263 [INFO] Restaurant System Starting
+2026-04-17 16:03:54,263 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 16:03:54,331 [INFO] Application created successfully
+2026-04-17 16:03:55,653 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 16:03:55,653 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 16:03:55,770 [INFO] 192.168.2.10 - - [17/Apr/2026 16:03:55] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:03:57,448 [INFO] 192.168.2.10 - - [17/Apr/2026 16:03:57] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:00,190 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:00] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:01,701 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:01] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 16:04:01,760 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:01] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:04,768 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:04] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:07,772 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:07] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:10,770 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:10] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:13,768 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:13] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:17,447 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:17] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:20,445 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:20] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:23,434 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:23] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:26,435 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:26] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:29,434 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:29] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:32,447 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:32] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:35,456 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:35] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:38,436 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:38] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:41,432 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:41] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:44,445 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:44] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:47,444 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:47] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:50,440 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:50] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:53,436 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:53] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:56,449 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:56] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:04:59,451 [INFO] 192.168.2.10 - - [17/Apr/2026 16:04:59] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:05:01,764 [INFO] 192.168.2.10 - - [17/Apr/2026 16:05:01] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:05:04,769 [INFO] 192.168.2.10 - - [17/Apr/2026 16:05:04] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:05:07,767 [INFO] 192.168.2.10 - - [17/Apr/2026 16:05:07] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:05:10,763 [INFO] 192.168.2.10 - - [17/Apr/2026 16:05:10] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:05:13,764 [INFO] 192.168.2.10 - - [17/Apr/2026 16:05:13] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:05:16,766 [INFO] 192.168.2.10 - - [17/Apr/2026 16:05:16] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:05:19,770 [INFO] 192.168.2.10 - - [17/Apr/2026 16:05:19] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:05:22,763 [INFO] 192.168.2.10 - - [17/Apr/2026 16:05:22] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:05:25,765 [INFO] 192.168.2.10 - - [17/Apr/2026 16:05:25] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:05:28,770 [INFO] 192.168.2.10 - - [17/Apr/2026 16:05:28] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:05:31,765 [INFO] 192.168.2.10 - - [17/Apr/2026 16:05:31] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:05:34,773 [INFO] 192.168.2.10 - - [17/Apr/2026 16:05:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:05:38,447 [INFO] 192.168.2.10 - - [17/Apr/2026 16:05:38] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:05:40,768 [INFO] 192.168.2.10 - - [17/Apr/2026 16:05:40] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:05:44,455 [INFO] 192.168.2.10 - - [17/Apr/2026 16:05:44] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:05:47,454 [INFO] 192.168.2.10 - - [17/Apr/2026 16:05:47] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:05:50,434 [INFO] 192.168.2.10 - - [17/Apr/2026 16:05:50] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:05:53,439 [INFO] 192.168.2.10 - - [17/Apr/2026 16:05:53] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:05:56,437 [INFO] 192.168.2.10 - - [17/Apr/2026 16:05:56] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:05:59,437 [INFO] 192.168.2.10 - - [17/Apr/2026 16:05:59] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:06:02,448 [INFO] 192.168.2.10 - - [17/Apr/2026 16:06:02] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:06:05,436 [INFO] 192.168.2.10 - - [17/Apr/2026 16:06:05] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:06:08,447 [INFO] 192.168.2.10 - - [17/Apr/2026 16:06:08] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:06:11,446 [INFO] 192.168.2.10 - - [17/Apr/2026 16:06:11] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:06:14,442 [INFO] 192.168.2.10 - - [17/Apr/2026 16:06:14] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:06:17,453 [INFO] 192.168.2.10 - - [17/Apr/2026 16:06:17] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:06:20,446 [INFO] 192.168.2.10 - - [17/Apr/2026 16:06:20] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:06:23,440 [INFO] 192.168.2.10 - - [17/Apr/2026 16:06:23] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:06:26,445 [INFO] 192.168.2.10 - - [17/Apr/2026 16:06:26] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:06:29,451 [INFO] 192.168.2.10 - - [17/Apr/2026 16:06:29] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:06:32,437 [INFO] 192.168.2.10 - - [17/Apr/2026 16:06:32] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:06:35,502 [INFO] 192.168.2.10 - - [17/Apr/2026 16:06:35] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:06:38,434 [INFO] 192.168.2.10 - - [17/Apr/2026 16:06:38] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:07:34,453 [INFO] 192.168.2.10 - - [17/Apr/2026 16:07:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:08:34,437 [INFO] 192.168.2.10 - - [17/Apr/2026 16:08:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:09:34,446 [INFO] 192.168.2.10 - - [17/Apr/2026 16:09:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:10:34,516 [INFO] 192.168.2.10 - - [17/Apr/2026 16:10:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:11:35,415 [INFO] 192.168.2.10 - - [17/Apr/2026 16:11:35] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:12:34,455 [INFO] 192.168.2.10 - - [17/Apr/2026 16:12:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:13:34,463 [INFO] 192.168.2.10 - - [17/Apr/2026 16:13:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:14:34,482 [INFO] 192.168.2.10 - - [17/Apr/2026 16:14:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:15:34,481 [INFO] 192.168.2.10 - - [17/Apr/2026 16:15:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:16:34,454 [INFO] 192.168.2.10 - - [17/Apr/2026 16:16:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:17:40,893 [INFO] 192.168.2.10 - - [17/Apr/2026 16:17:40] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:18:34,455 [INFO] 192.168.2.10 - - [17/Apr/2026 16:18:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:19:34,456 [INFO] 192.168.2.10 - - [17/Apr/2026 16:19:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:20:34,444 [INFO] 192.168.2.10 - - [17/Apr/2026 16:20:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:21:36,483 [INFO] 192.168.2.10 - - [17/Apr/2026 16:21:36] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:22:34,448 [INFO] 192.168.2.10 - - [17/Apr/2026 16:22:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:23:34,458 [INFO] 192.168.2.10 - - [17/Apr/2026 16:23:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:24:34,475 [INFO] 192.168.2.10 - - [17/Apr/2026 16:24:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:25:34,455 [INFO] 192.168.2.10 - - [17/Apr/2026 16:25:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:26:21,626 [INFO] Starting Restaurant Master Server
+2026-04-17 16:26:21,753 [INFO] ==================================================
+2026-04-17 16:26:21,753 [INFO] Restaurant System Starting
+2026-04-17 16:26:21,753 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 16:26:21,817 [INFO] Application created successfully
+2026-04-17 16:26:23,155 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 16:26:23,155 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 16:26:34,452 [INFO] 192.168.2.10 - - [17/Apr/2026 16:26:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:27:34,468 [INFO] 192.168.2.10 - - [17/Apr/2026 16:27:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:28:34,465 [INFO] 192.168.2.10 - - [17/Apr/2026 16:28:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:29:35,658 [INFO] 192.168.2.10 - - [17/Apr/2026 16:29:35] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:30:34,458 [INFO] 192.168.2.10 - - [17/Apr/2026 16:30:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:31:34,463 [INFO] 192.168.2.10 - - [17/Apr/2026 16:31:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:32:34,465 [INFO] 192.168.2.10 - - [17/Apr/2026 16:32:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:33:34,447 [INFO] 192.168.2.10 - - [17/Apr/2026 16:33:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:34:34,459 [INFO] 192.168.2.10 - - [17/Apr/2026 16:34:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:35:34,478 [INFO] 192.168.2.10 - - [17/Apr/2026 16:35:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:36:34,483 [INFO] 192.168.2.10 - - [17/Apr/2026 16:36:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:37:34,469 [INFO] 192.168.2.10 - - [17/Apr/2026 16:37:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:38:34,486 [INFO] 192.168.2.10 - - [17/Apr/2026 16:38:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:39:34,449 [INFO] 192.168.2.10 - - [17/Apr/2026 16:39:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:40:34,479 [INFO] 192.168.2.10 - - [17/Apr/2026 16:40:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:41:34,470 [INFO] 192.168.2.10 - - [17/Apr/2026 16:41:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:42:34,467 [INFO] 192.168.2.10 - - [17/Apr/2026 16:42:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:43:34,477 [INFO] 192.168.2.10 - - [17/Apr/2026 16:43:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:44:34,458 [INFO] 192.168.2.10 - - [17/Apr/2026 16:44:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:45:34,455 [INFO] 192.168.2.10 - - [17/Apr/2026 16:45:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:46:34,457 [INFO] 192.168.2.10 - - [17/Apr/2026 16:46:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:49:31,135 [INFO] Starting Restaurant Master Server
+2026-04-17 16:49:31,297 [INFO] ==================================================
+2026-04-17 16:49:31,297 [INFO] Restaurant System Starting
+2026-04-17 16:49:31,297 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 16:49:31,364 [INFO] Application created successfully
+2026-04-17 16:49:32,759 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 16:49:32,759 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 16:49:34,493 [INFO] 192.168.2.10 - - [17/Apr/2026 16:49:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:50:34,464 [INFO] 192.168.2.10 - - [17/Apr/2026 16:50:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 16:53:24,899 [INFO] Starting Restaurant Master Server
+2026-04-17 16:53:25,066 [INFO] ==================================================
+2026-04-17 16:53:25,066 [INFO] Restaurant System Starting
+2026-04-17 16:53:25,067 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 16:53:25,134 [INFO] Application created successfully
+2026-04-17 16:53:26,499 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 16:53:26,499 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 16:53:34,532 [INFO] 192.168.2.10 - - [17/Apr/2026 16:53:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:00:14,371 [INFO] Starting Restaurant Master Server
+2026-04-17 17:00:14,515 [INFO] ==================================================
+2026-04-17 17:00:14,516 [INFO] Restaurant System Starting
+2026-04-17 17:00:14,516 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 17:00:14,592 [INFO] Application created successfully
+2026-04-17 17:00:15,933 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 17:00:15,934 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 17:00:34,483 [INFO] 192.168.2.10 - - [17/Apr/2026 17:00:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:01:34,483 [INFO] 192.168.2.10 - - [17/Apr/2026 17:01:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:02:34,447 [INFO] 192.168.2.10 - - [17/Apr/2026 17:02:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:03:34,449 [INFO] 192.168.2.10 - - [17/Apr/2026 17:03:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:04:34,452 [INFO] 192.168.2.10 - - [17/Apr/2026 17:04:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:05:34,445 [INFO] 192.168.2.10 - - [17/Apr/2026 17:05:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:06:34,460 [INFO] 192.168.2.10 - - [17/Apr/2026 17:06:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:07:34,438 [INFO] 192.168.2.10 - - [17/Apr/2026 17:07:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:08:34,454 [INFO] 192.168.2.10 - - [17/Apr/2026 17:08:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:14:14,154 [INFO] Starting Restaurant Master Server
+2026-04-17 17:14:14,272 [INFO] ==================================================
+2026-04-17 17:14:14,272 [INFO] Restaurant System Starting
+2026-04-17 17:14:14,272 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 17:14:14,333 [INFO] Application created successfully
+2026-04-17 17:14:15,666 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 17:14:15,667 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 17:14:34,495 [INFO] 192.168.2.10 - - [17/Apr/2026 17:14:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:15:34,450 [INFO] 192.168.2.10 - - [17/Apr/2026 17:15:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:34:40,911 [INFO] Starting Restaurant Master Server
+2026-04-17 17:34:41,036 [INFO] ==================================================
+2026-04-17 17:34:41,037 [INFO] Restaurant System Starting
+2026-04-17 17:34:41,037 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 17:34:41,102 [INFO] Application created successfully
+2026-04-17 17:34:41,143 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 17:34:41,143 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 17:35:36,067 [INFO] 192.168.2.10 - - [17/Apr/2026 17:35:36] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:37:03,473 [INFO] Starting Restaurant Master Server
+2026-04-17 17:37:03,544 [INFO] ==================================================
+2026-04-17 17:37:03,544 [INFO] Restaurant System Starting
+2026-04-17 17:37:03,544 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 17:37:03,597 [INFO] Application created successfully
+2026-04-17 17:37:04,908 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 17:37:04,909 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 17:37:34,476 [INFO] 192.168.2.10 - - [17/Apr/2026 17:37:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:38:34,445 [INFO] 192.168.2.10 - - [17/Apr/2026 17:38:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:39:34,448 [INFO] 192.168.2.10 - - [17/Apr/2026 17:39:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:40:34,441 [INFO] 192.168.2.10 - - [17/Apr/2026 17:40:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:41:34,440 [INFO] 192.168.2.10 - - [17/Apr/2026 17:41:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:42:34,442 [INFO] 192.168.2.10 - - [17/Apr/2026 17:42:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:43:34,440 [INFO] 192.168.2.10 - - [17/Apr/2026 17:43:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:44:34,460 [INFO] 192.168.2.10 - - [17/Apr/2026 17:44:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:45:34,468 [INFO] 192.168.2.10 - - [17/Apr/2026 17:45:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:46:34,482 [INFO] 192.168.2.10 - - [17/Apr/2026 17:46:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:47:34,459 [INFO] 192.168.2.10 - - [17/Apr/2026 17:47:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:48:34,443 [INFO] 192.168.2.10 - - [17/Apr/2026 17:48:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:49:34,447 [INFO] 192.168.2.10 - - [17/Apr/2026 17:49:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:50:34,447 [INFO] 192.168.2.10 - - [17/Apr/2026 17:50:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:51:34,445 [INFO] 192.168.2.10 - - [17/Apr/2026 17:51:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:52:34,445 [INFO] 192.168.2.10 - - [17/Apr/2026 17:52:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:53:34,572 [INFO] 192.168.2.10 - - [17/Apr/2026 17:53:34] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:53:52,045 [INFO] 192.168.2.10 - - [17/Apr/2026 17:53:52] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:53:52,773 [INFO] 192.168.2.10 - - [17/Apr/2026 17:53:52] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 17:53:53,687 [INFO] 192.168.2.10 - - [17/Apr/2026 17:53:53] "[36mGET /robot-subscription HTTP/1.1[0m" 304 -
+2026-04-17 17:53:53,784 [INFO] 192.168.2.10 - - [17/Apr/2026 17:53:53] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 18:27:53,259 [INFO] Starting Restaurant Master Server
+2026-04-17 18:27:53,390 [INFO] ==================================================
+2026-04-17 18:27:53,392 [INFO] Restaurant System Starting
+2026-04-17 18:27:53,394 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 18:27:53,487 [INFO] Application created successfully
+2026-04-17 18:27:55,061 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 18:27:55,061 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 18:30:46,650 [INFO] Starting Restaurant Master Server
+2026-04-17 18:30:46,741 [INFO] ==================================================
+2026-04-17 18:30:46,741 [INFO] Restaurant System Starting
+2026-04-17 18:30:46,741 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 18:30:46,822 [INFO] Application created successfully
+2026-04-17 18:30:48,110 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 18:30:48,110 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 18:34:52,418 [INFO] Starting Restaurant Master Server
+2026-04-17 18:34:52,502 [INFO] ==================================================
+2026-04-17 18:34:52,503 [INFO] Restaurant System Starting
+2026-04-17 18:34:52,503 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 18:34:52,578 [INFO] Application created successfully
+2026-04-17 18:34:53,887 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 18:34:53,888 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 18:38:02,528 [INFO] Starting Restaurant Master Server
+2026-04-17 18:38:02,620 [INFO] ==================================================
+2026-04-17 18:38:02,620 [INFO] Restaurant System Starting
+2026-04-17 18:38:02,620 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 18:38:02,694 [INFO] Application created successfully
+2026-04-17 18:38:03,976 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 18:38:03,977 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 18:40:44,819 [INFO] Starting Restaurant Master Server
+2026-04-17 18:40:44,888 [INFO] ==================================================
+2026-04-17 18:40:44,888 [INFO] Restaurant System Starting
+2026-04-17 18:40:44,888 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 18:40:44,964 [INFO] Application created successfully
+2026-04-17 18:40:46,240 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 18:40:46,240 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 18:51:21,275 [INFO] 192.168.2.10 - - [17/Apr/2026 18:51:21] "[36mGET /robots HTTP/1.1[0m" 304 -
+2026-04-17 18:51:21,526 [INFO] 192.168.2.10 - - [17/Apr/2026 18:51:21] "GET /api/robots HTTP/1.1" 200 -
+2026-04-17 18:51:23,917 [INFO] 192.168.2.10 - - [17/Apr/2026 18:51:23] "[36mGET /orders HTTP/1.1[0m" 304 -
+2026-04-17 18:51:24,038 [INFO] 192.168.2.10 - - [17/Apr/2026 18:51:24] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:51:28,975 [INFO] 192.168.2.10 - - [17/Apr/2026 18:51:28] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:51:33,366 [INFO] Starting Restaurant Master Server
+2026-04-17 18:51:33,475 [INFO] ==================================================
+2026-04-17 18:51:33,475 [INFO] Restaurant System Starting
+2026-04-17 18:51:33,475 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 18:51:33,531 [INFO] Application created successfully
+2026-04-17 18:51:33,971 [INFO] 192.168.2.10 - - [17/Apr/2026 18:51:33] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:51:34,845 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 18:51:34,846 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 18:51:38,971 [INFO] 192.168.2.10 - - [17/Apr/2026 18:51:38] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:51:43,971 [INFO] 192.168.2.10 - - [17/Apr/2026 18:51:43] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:51:48,971 [INFO] 192.168.2.10 - - [17/Apr/2026 18:51:48] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:51:53,971 [INFO] 192.168.2.10 - - [17/Apr/2026 18:51:53] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:51:58,979 [INFO] 192.168.2.10 - - [17/Apr/2026 18:51:58] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:52:03,977 [INFO] 192.168.2.10 - - [17/Apr/2026 18:52:03] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:52:09,007 [INFO] 192.168.2.10 - - [17/Apr/2026 18:52:09] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:52:13,972 [INFO] 192.168.2.10 - - [17/Apr/2026 18:52:13] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:52:18,971 [INFO] 192.168.2.10 - - [17/Apr/2026 18:52:18] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:52:23,978 [INFO] 192.168.2.10 - - [17/Apr/2026 18:52:23] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:52:28,976 [INFO] 192.168.2.10 - - [17/Apr/2026 18:52:28] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:52:33,974 [INFO] 192.168.2.10 - - [17/Apr/2026 18:52:33] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:52:38,980 [INFO] 192.168.2.10 - - [17/Apr/2026 18:52:38] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:52:44,002 [INFO] 192.168.2.10 - - [17/Apr/2026 18:52:44] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:52:48,975 [INFO] 192.168.2.10 - - [17/Apr/2026 18:52:48] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:52:53,976 [INFO] 192.168.2.10 - - [17/Apr/2026 18:52:53] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:52:59,003 [INFO] 192.168.2.10 - - [17/Apr/2026 18:52:59] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:53:03,976 [INFO] 192.168.2.10 - - [17/Apr/2026 18:53:03] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:53:08,974 [INFO] 192.168.2.10 - - [17/Apr/2026 18:53:08] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:53:13,973 [INFO] 192.168.2.10 - - [17/Apr/2026 18:53:13] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:53:19,039 [INFO] 192.168.2.10 - - [17/Apr/2026 18:53:19] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:53:23,975 [INFO] 192.168.2.10 - - [17/Apr/2026 18:53:23] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:53:28,977 [INFO] 192.168.2.10 - - [17/Apr/2026 18:53:28] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:53:33,982 [INFO] 192.168.2.10 - - [17/Apr/2026 18:53:33] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:53:38,974 [INFO] 192.168.2.10 - - [17/Apr/2026 18:53:38] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:53:43,973 [INFO] 192.168.2.10 - - [17/Apr/2026 18:53:43] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:53:48,980 [INFO] 192.168.2.10 - - [17/Apr/2026 18:53:48] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:53:53,978 [INFO] 192.168.2.10 - - [17/Apr/2026 18:53:53] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:53:59,497 [INFO] 192.168.2.10 - - [17/Apr/2026 18:53:59] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:54:04,505 [INFO] 192.168.2.10 - - [17/Apr/2026 18:54:04] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:54:09,506 [INFO] 192.168.2.10 - - [17/Apr/2026 18:54:09] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:54:14,508 [INFO] 192.168.2.10 - - [17/Apr/2026 18:54:14] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:54:19,506 [INFO] 192.168.2.10 - - [17/Apr/2026 18:54:19] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:54:24,506 [INFO] 192.168.2.10 - - [17/Apr/2026 18:54:24] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:54:29,507 [INFO] 192.168.2.10 - - [17/Apr/2026 18:54:29] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:54:34,497 [INFO] 192.168.2.10 - - [17/Apr/2026 18:54:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:54:39,497 [INFO] 192.168.2.10 - - [17/Apr/2026 18:54:39] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:54:44,499 [INFO] 192.168.2.10 - - [17/Apr/2026 18:54:44] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:54:49,502 [INFO] 192.168.2.10 - - [17/Apr/2026 18:54:49] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:54:54,501 [INFO] 192.168.2.10 - - [17/Apr/2026 18:54:54] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:55:34,503 [INFO] 192.168.2.10 - - [17/Apr/2026 18:55:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:56:34,505 [INFO] 192.168.2.10 - - [17/Apr/2026 18:56:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:57:34,521 [INFO] 192.168.2.10 - - [17/Apr/2026 18:57:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:58:34,502 [INFO] 192.168.2.10 - - [17/Apr/2026 18:58:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:59:34,498 [INFO] 192.168.2.10 - - [17/Apr/2026 18:59:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 18:59:50,784 [INFO] Starting Restaurant Master Server
+2026-04-17 18:59:50,856 [INFO] ==================================================
+2026-04-17 18:59:50,856 [INFO] Restaurant System Starting
+2026-04-17 18:59:50,856 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 18:59:50,929 [INFO] Application created successfully
+2026-04-17 18:59:52,210 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.2.10:5000
+2026-04-17 18:59:52,210 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 19:00:34,562 [INFO] 192.168.2.10 - - [17/Apr/2026 19:00:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 19:01:34,524 [INFO] 192.168.2.10 - - [17/Apr/2026 19:01:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 19:02:34,509 [INFO] 192.168.2.10 - - [17/Apr/2026 19:02:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 19:03:34,538 [INFO] 192.168.2.10 - - [17/Apr/2026 19:03:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 19:04:34,538 [INFO] 192.168.2.10 - - [17/Apr/2026 19:04:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 19:05:34,512 [INFO] 192.168.2.10 - - [17/Apr/2026 19:05:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 19:06:27,049 [INFO] Starting Restaurant Master Server
+2026-04-17 19:06:27,191 [INFO] ==================================================
+2026-04-17 19:06:27,194 [INFO] Restaurant System Starting
+2026-04-17 19:06:27,194 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 19:06:27,265 [INFO] Application created successfully
+2026-04-17 19:06:28,603 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3000
+ * Running on http://192.168.2.10:3000
+2026-04-17 19:06:28,603 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 19:06:35,987 [INFO] 192.168.2.10 - - [17/Apr/2026 19:06:35] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 19:07:34,540 [INFO] 192.168.2.10 - - [17/Apr/2026 19:07:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 19:08:34,523 [INFO] 192.168.2.10 - - [17/Apr/2026 19:08:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 19:09:34,533 [INFO] 192.168.2.10 - - [17/Apr/2026 19:09:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 19:10:34,524 [INFO] 192.168.2.10 - - [17/Apr/2026 19:10:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 19:11:34,535 [INFO] 192.168.2.10 - - [17/Apr/2026 19:11:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 19:12:34,553 [INFO] 192.168.2.10 - - [17/Apr/2026 19:12:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 19:13:34,543 [INFO] 192.168.2.10 - - [17/Apr/2026 19:13:34] "GET /api/orders HTTP/1.1" 200 -
+2026-04-17 19:14:37,728 [INFO] Starting Restaurant Master Server
+2026-04-17 19:14:37,927 [INFO] ==================================================
+2026-04-17 19:14:37,928 [INFO] Restaurant System Starting
+2026-04-17 19:14:37,928 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 19:14:38,071 [INFO] Application created successfully
+2026-04-17 19:14:39,552 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3000
+ * Running on http://192.168.2.10:3000
+2026-04-17 19:14:39,552 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 19:19:17,677 [INFO] Starting Restaurant Master Server
+2026-04-17 19:19:17,804 [INFO] ==================================================
+2026-04-17 19:19:17,804 [INFO] Restaurant System Starting
+2026-04-17 19:19:17,804 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 19:19:17,873 [INFO] Application created successfully
+2026-04-17 19:19:19,169 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3000
+ * Running on http://192.168.2.10:3000
+2026-04-17 19:19:19,169 [INFO] [33mPress CTRL+C to quit[0m
+2026-04-17 20:02:42,950 [INFO] Starting Restaurant Master Server
+2026-04-17 20:02:43,102 [INFO] ==================================================
+2026-04-17 20:02:43,102 [INFO] Restaurant System Starting
+2026-04-17 20:02:43,102 [INFO] Database: C:\Users\ICT\Desktop\abidjan2026\restaurant\master\database\restaurant.db
+2026-04-17 20:02:43,242 [INFO] Application created successfully
+2026-04-17 20:02:44,722 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3000
+ * Running on http://192.168.2.10:3000
+2026-04-17 20:02:44,722 [INFO] [33mPress CTRL+C to quit[0m

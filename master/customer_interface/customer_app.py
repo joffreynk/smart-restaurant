@@ -1,13 +1,13 @@
 """
 Customer Self-Service Interface
-Runs on Raspberry Pi 3B+ - Hardware (LCD + Keypad) ordering terminal
+Web-based ordering for phones and computers (no hardware required)
 
 State Machine Flow:
-- WELCOME: Show "Welcome our best customer" -> press * to start
-- FOOD_MENU: Show food items 1-5 -> press 1-5 to add -> A=next, B=prev
-- DRINK_MENU: Show drinks 1-5 -> press 1-5 to add -> A=next, B=prev
-- SELECT_TABLE: Show available tables -> press 1-5 to select
-- CONFIRM: Show order summary -> D to send, # to cancel
+- WELCOME: Show "Welcome" -> tap Start
+- FOOD_MENU: Show food items -> tap to add
+- DRINK_MENU: Show drinks -> tap to add
+- SELECT_TABLE: Show available tables -> tap to select
+- CONFIRM: Order summary -> confirm or cancel
 
 WebSocket: Connects to main API (port 5000) to broadcast events
 """
@@ -19,25 +19,13 @@ import os
 import threading
 import socketio
 
-USE_HARDWARE = os.environ.get('USE_HARDWARE', 'true').lower() == 'true'
-WS_SERVER_URL = os.environ.get('WS_SERVER_URL', 'http://localhost:5000')
-
-hw_interface = None
-hw_thread = None
-hw_running = False
+# Web-based ordering (no hardware)
+# Connects to master API via WebSocket for real-time order broadcasting
+WS_SERVER_URL = os.environ.get('WS_SERVER_URL', 'http://smart-restaurant.local:3000')
 socketio_client = None
 
-if USE_HARDWARE:
-    try:
-        import sys
-        sys.path.insert(0, os.path.dirname(__file__))
-        from hardware_interface import get_hardware_interface, Keypad4x4, Nokia5110LCD
-    except ImportError as e:
-        print(f"Hardware import failed: {e}")
-        USE_HARDWARE = False
-
 app = Flask(__name__, template_folder='../dashboard/templates')
-app.secret_key = 'restaurant-customer-2026'
+app.secret_key = os.environ.get('SECRET_KEY') or os.urandom(24).hex()
 
 DATABASE_PATH = os.path.join(os.path.dirname(__file__), '..', 'database', 'restaurant.db')
 
@@ -113,14 +101,6 @@ class CustomerOrderMachine:
         return tables
 
 
-def find_category_index(conn, name):
-    categories = conn.execute('SELECT name FROM categories ORDER BY id').fetchall()
-    for i, cat in enumerate(categories):
-        if cat['name'].lower() == name.lower():
-            return i
-    return 0
-
-
 order_machine = CustomerOrderMachine()
 
 
@@ -128,22 +108,25 @@ def broadcast_order(order_id, total, items, table_number):
     print(f"[DEBUG] Broadcasting order #{order_id}")
     if socketio_client and socketio_client.connected:
         print("[DEBUG] SocketIO connected, emitting new_order")
-        items_data = []
-        for item in items:
-            items_data.append({
-                'name': item['name'],
-                'quantity': item['quantity'],
-                'price': item['price']
-            })
-        
-        socketio_client.emit('new_order', {
-            'order_id': order_id,
-            'table_number': table_number,
-            'total': total,
-            'items': items_data,
-            'timestamp': datetime.utcnow().isoformat()
-        }, broadcast=True)
-        print(f"[DEBUG] Broadcasted new order #{order_id}")
+        try:
+            items_data = []
+            for item in items:
+                items_data.append({
+                    'name': item['name'],
+                    'quantity': item['quantity'],
+                    'price': item['price']
+                })
+            
+            socketio_client.emit('new_order', {
+                'order_id': order_id,
+                'table_number': table_number,
+                'total': total,
+                'items': items_data,
+                'timestamp': datetime.utcnow().isoformat()
+            }, broadcast=True)
+            print(f"[DEBUG] Broadcasted new order #{order_id}")
+        except Exception as e:
+            print(f"[ERROR] Failed to broadcast order: {e}")
     else:
         print("[DEBUG] SocketIO not connected, skipping broadcast")
 
@@ -179,74 +162,35 @@ def setup_websocket():
 
 
 def display_welcome():
-    if not hw_interface:
-        print("[DEBUG] No hardware interface")
-        return
-    print("[DEBUG] Displaying welcome screen")
-    hw_interface.lcd.clear()
-    print("[DEBUG] LCD cleared")
-    hw_interface.lcd.text("Welcome!", 0, 0)
-    print("[DEBUG] Line 0: Welcome!")
-    hw_interface.lcd.text("Our Best Customer", 0, 2)
-    print("[DEBUG] Line 2: Our Best Customer")
-    hw_interface.lcd.text("Press * to start", 0, 5)
-    print("[DEBUG] Line 5: Press * to start")
-    print("[DEBUG] Welcome screen complete")
+    print("[DEBUG] Web-based welcome screen")
 
 
 def display_food_menu(conn):
-    if not hw_interface:
-        return
-    hw_interface.lcd.clear()
-    cat_name = order_machine.categories[order_machine.current_category_idx]['name'] if order_machine.current_category_idx < len(order_machine.categories) else "Food"
-    hw_interface.lcd.text(f"{cat_name[:14]}", 0, 0)
-    
     items = order_machine.load_menu_items(conn)
-    for i, item in enumerate(items):
-        hw_interface.lcd.text(f"{i+1}.{item['name'][:10]} ${item['price']}", 0, i+1)
-    hw_interface.lcd.text("A:Next B:Prev C:Drink", 0, 5)
+    return items
 
 
 def display_drink_menu(conn):
-    if not hw_interface:
-        return
-    hw_interface.lcd.clear()
-    cat_name = order_machine.categories[order_machine.current_category_idx]['name'] if order_machine.current_category_idx < len(order_machine.categories) else "Drinks"
-    hw_interface.lcd.text(f"{cat_name[:14]}", 0, 0)
-    
     items = order_machine.load_menu_items(conn)
-    for i, item in enumerate(items):
-        hw_interface.lcd.text(f"{i+1}.{item['name'][:10]} ${item['price']}", 0, i+1)
-    hw_interface.lcd.text("A:Next B:Prev D:Table", 0, 5)
+    return items
 
 
 def display_table_selection(conn):
-    if not hw_interface:
-        return
-    hw_interface.lcd.clear()
-    hw_interface.lcd.text("Select Table:", 0, 0)
-    
     tables = order_machine.load_tables(conn)
-    for i, table in enumerate(tables):
-        status = table['status']
-        hw_interface.lcd.text(f"{i+1}.T{table['table_number']} ({status})", 0, i+1)
-    hw_interface.lcd.text("A:Next B:Prev D:Confirm", 0, 5)
+    return tables
 
 
 def display_confirm(conn):
-    if not hw_interface:
-        return
-    hw_interface.lcd.clear()
-    hw_interface.lcd.text(f"Items: {len(order_machine.cart)}", 0, 0)
     total = order_machine.get_total(conn)
-    hw_interface.lcd.text(f"Total: ${total:.2f}", 0, 1)
-    
-    if order_machine.selected_table:
-        hw_interface.lcd.text(f"Table: {order_machine.selected_table}", 0, 2)
-    else:
-        hw_interface.lcd.text("No table selected!", 0, 2)
-    
-    hw_interface.lcd.text("D:Send #:Cancel", 0, 5)
+    return total
+
+
+def find_category_index(conn, name):
+    categories = conn.execute('SELECT name FROM categories ORDER BY id').fetchall()
+    for i, cat in enumerate(categories):
+        if cat['name'].lower() == name.lower():
+            return i
+    return 0
 
 
 def handle_welcome(key):
@@ -260,14 +204,6 @@ def handle_welcome(key):
     return False
 
 
-def find_category_index(conn, name):
-    categories = conn.execute('SELECT name FROM categories ORDER BY id').fetchall()
-    for i, cat in enumerate(categories):
-        if cat['name'].lower() == name.lower():
-            return i
-    return 0
-
-
 def handle_food_menu(key, conn):
     items = order_machine.load_menu_items(conn)
     
@@ -279,8 +215,8 @@ def handle_food_menu(key, conn):
             'price': item['price'],
             'quantity': 1
         })
-        hw_interface.lcd.clear()
-        hw_interface.lcd.text(f"Added: {item['name'][:14]}", 0, 2)
+        # hw_interface.lcd.clear()
+        # hw_interface.lcd.text(f"Added: {item['name'][:14]}", 0, 2)
         return True
     
     elif key == 'A':
@@ -308,20 +244,10 @@ def handle_food_menu(key, conn):
             order_machine.menu_page = 0
             display_table_selection(conn)
         else:
-            hw_interface.lcd.clear()
-            hw_interface.lcd.text("Cart is empty!", 0, 2)
-            hw_interface.lcd.text("Add food first", 0, 4)
+            pass  # Web-based mode
         return True
     
     return False
-
-
-def find_category_index(conn, name):
-    categories = conn.execute('SELECT name FROM categories ORDER BY id').fetchall()
-    for i, cat in enumerate(categories):
-        if cat['name'].lower() == name.lower():
-            return i
-    return 0
 
 
 def handle_drink_menu(key, conn):
@@ -335,8 +261,8 @@ def handle_drink_menu(key, conn):
             'price': item['price'],
             'quantity': 1
         })
-        hw_interface.lcd.clear()
-        hw_interface.lcd.text(f"Added: {item['name'][:14]}", 0, 2)
+        # hw_interface.lcd.clear()
+        # hw_interface.lcd.text(f"Added: {item['name'][:14]}", 0, 2)
         return True
     
     elif key == 'A':
@@ -377,9 +303,7 @@ def handle_table_selection(key, conn):
             order_machine.state = OrderState.CONFIRM_ORDER
             display_confirm(conn)
         else:
-            hw_interface.lcd.clear()
-            hw_interface.lcd.text(f"Table {table['table_number']}", 0, 0)
-            hw_interface.lcd.text("is not available", 0, 2)
+            pass  # Table not available
         return True
     
     elif key == 'A':
@@ -397,8 +321,7 @@ def handle_table_selection(key, conn):
             order_machine.state = OrderState.CONFIRM_ORDER
             display_confirm(conn)
         else:
-            hw_interface.lcd.clear()
-            hw_interface.lcd.text("Select a table!", 0, 2)
+            pass  # No table selected
         return True
     
     return False
@@ -407,15 +330,15 @@ def handle_table_selection(key, conn):
 def handle_confirm_order(key, conn):
     if key == 'D':
         if not order_machine.selected_table:
-            hw_interface.lcd.clear()
-            hw_interface.lcd.text("Select table first!", 0, 2)
+            # hw_interface.lcd.clear()
+            # hw_interface.lcd.text("Select table first!", 0, 2)
             order_machine.state = OrderState.SELECT_TABLE
             display_table_selection(conn)
             return True
         
         if not order_machine.cart:
-            hw_interface.lcd.clear()
-            hw_interface.lcd.text("Cart is empty!", 0, 2)
+            # hw_interface.lcd.clear()
+            # hw_interface.lcd.text("Cart is empty!", 0, 2)
             order_machine.state = OrderState.FOOD_MENU
             display_food_menu(conn)
             return True
@@ -444,16 +367,16 @@ def handle_confirm_order(key, conn):
         
         broadcast_order(order_id, total, order_machine.cart, order_machine.selected_table)
         
-        hw_interface.lcd.clear()
-        hw_interface.lcd.text("Order Sent!", 0, 2)
-        hw_interface.lcd.text(f"Order #{order_id}", 0, 4)
+        # hw_interface.lcd.clear()
+        # hw_interface.lcd.text("Order Sent!", 0, 2)
+        # hw_interface.lcd.text(f"Order #{order_id}", 0, 4)
         
         order_machine.reset()
         return True
     
     elif key == '#':
-        hw_interface.lcd.clear()
-        hw_interface.lcd.text("Order Cancelled", 0, 2)
+        # hw_interface.lcd.clear()
+        # hw_interface.lcd.text("Order Cancelled", 0, 2)
         order_machine.reset()
         display_welcome()
         return True
@@ -462,36 +385,33 @@ def handle_confirm_order(key, conn):
 
 
 def process_keypress(key):
-    if not USE_HARDWARE or not hw_interface:
-        return
-    
-    conn = get_db()
-    
-    if key == '#':
-        if order_machine.state != OrderState.WELCOME:
-            hw_interface.lcd.clear()
-            hw_interface.lcd.text("Going back...", 0, 2)
-            order_machine.reset()
-            display_welcome()
+    conn = None
+    try:
+        conn = get_db()
+        
+        if key == '#':
+            if order_machine.state != OrderState.WELCOME:
+                order_machine.reset()
+                display_welcome()
+                return
+        
+        if order_machine.state == OrderState.WELCOME:
+            handle_welcome(key)
+        
+        elif order_machine.state == OrderState.FOOD_MENU:
+            handle_food_menu(key, conn)
+        
+        elif order_machine.state == OrderState.DRINK_MENU:
+            handle_drink_menu(key, conn)
+        
+        elif order_machine.state == OrderState.SELECT_TABLE:
+            handle_table_selection(key, conn)
+        
+        elif order_machine.state == OrderState.CONFIRM_ORDER:
+            handle_confirm_order(key, conn)
+    finally:
+        if conn:
             conn.close()
-            return
-    
-    if order_machine.state == OrderState.WELCOME:
-        handle_welcome(key)
-    
-    elif order_machine.state == OrderState.FOOD_MENU:
-        handle_food_menu(key, conn)
-    
-    elif order_machine.state == OrderState.DRINK_MENU:
-        handle_drink_menu(key, conn)
-    
-    elif order_machine.state == OrderState.SELECT_TABLE:
-        handle_table_selection(key, conn)
-    
-    elif order_machine.state == OrderState.CONFIRM_ORDER:
-        handle_confirm_order(key, conn)
-    
-    conn.close()
 
 
 @app.route('/')
@@ -719,47 +639,15 @@ def check_order_status(order_id):
 
 @app.route('/api/hardware/status')
 def hardware_status():
-    return jsonify({'hardware_enabled': USE_HARDWARE})
+    return jsonify({'hardware_enabled': False})
 
 
 def setup_hardware():
-    global hw_interface, hw_running
-    
-    print("[DEBUG] Setting up hardware...")
-    
-    if not USE_HARDWARE:
-        print("[DEBUG] Hardware disabled in config")
-        return
-    
-    try:
-        hw_interface = get_hardware_interface()
-        print(f"[DEBUG] Hardware interface created: {hw_interface}")
-        
-        if hw_interface.init():
-            print("[DEBUG] Hardware interface initialized")
-            hw_running = True
-            
-            display_welcome()
-            
-            thread = threading.Thread(target=keypad_loop, daemon=True)
-            thread.start()
-            print("[DEBUG] Keypad thread started")
-        else:
-            print("[DEBUG] Hardware init returned False")
-    except Exception as e:
-        print(f"[DEBUG] Hardware setup failed: {e}")
+    print("[DEBUG] Web-based mode only - no hardware")
 
 
 def keypad_loop():
-    global hw_running
-    print("[DEBUG] Keypad loop started")
-    while hw_running and hw_interface:
-        key = hw_interface.keypad.get_key(timeout=1)
-        if key:
-            print(f"[DEBUG] Key pressed: {key}")
-            process_keypress(key)
-        import time
-        time.sleep(0.1)
+    print("[DEBUG] Keypad disabled - web-based mode")
 
 
 if __name__ == '__main__':

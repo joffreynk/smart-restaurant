@@ -34,6 +34,11 @@
         .battery-fill { height: 100%; background: #4CAF50; border-radius: 4px; transition: 0.3s; }
         .battery-fill.low { background: #f44336; }
         .battery-fill.medium { background: #ff9800; }
+        .robot-actions { display: flex; gap: 10px; margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee; }
+        .btn { padding: 8px 12px; border: none; border-radius: 5px; cursor: pointer; font-size: 12px; }
+        .btn-primary { background: #e94560; color: white; }
+        .btn-secondary { background: #6c757d; color: white; }
+        .btn-danger { background: #dc3545; color: white; }
         
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
@@ -108,6 +113,10 @@
                                     <div class="stat-value">${r.last_seen ? new Date(r.last_seen).toLocaleTimeString() : 'N/A'}</div>
                                 </div>
                             </div>
+                            <div class="robot-actions">
+                                <button class="btn btn-primary" onclick="editRobot(${r.id}, '${r.name}', '${r.status}')">Edit</button>
+                                <button class="btn btn-danger" onclick="deleteRobot(${r.id})">Delete</button>
+                            </div>
                         </div>
                     `;
                 }).join('');
@@ -115,6 +124,21 @@
         }
         loadRobots();
         setInterval(loadRobots, 3000);
+        
+        function editRobot(id, name, status) {
+            const newName = prompt('Edit Robot Name:', name);
+            if (newName === null) return;
+            fetch('/api/robots/' + id, {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({name: newName || name})
+            }).then(() => loadRobots());
+        }
+        
+        function deleteRobot(id) {
+            if (!confirm('Delete this robot?')) return;
+            fetch('/api/robots/' + id, {method: 'DELETE'}).then(() => loadRobots());
+        }
     </script>
 </body>
 </html>

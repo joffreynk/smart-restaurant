@@ -1,7 +1,7 @@
 import os
 
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY', 'restaurant-secret-key-2026')
+    SECRET_KEY = os.environ.get('SECRET_KEY') or os.urandom(24).hex()
     
     # Database
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -9,16 +9,15 @@ class Config:
     SQLALCHEMY_DATABASE_URI = f'sqlite:///{DATABASE_PATH}'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
-    # Network
-    WEBSOCKET_PORT = 8765
-    API_PORT = 5000
-    DASHBOARD_PORT = 8080
+    # Network - All on port 3000 (Flask-SocketIO unified port)
+    WEBSOCKET_PORT = int(os.environ.get('WEBSOCKET_PORT', '3000'))
+    API_PORT = int(os.environ.get('API_PORT', '3000'))
     
-    # Computer Vision
-    CV_FPS = 10
-    CV_INFERENCE_WIDTH = 320
-    CV_INFERENCE_HEIGHT = 240
-    CV_MODEL_PATH = os.path.join(BASE_DIR, 'cv_models', 'table_status_model.tflite')
+    # Computer Vision (disabled - model not yet trained)
+    # CV_FPS = 10
+    # CV_INFERENCE_WIDTH = 320
+    # CV_INFERENCE_HEIGHT = 240
+    # CV_MODEL_PATH = os.path.join(BASE_DIR, 'cv_models', 'table_status_model.tflite')
     
     # Robot Configuration
     MAX_BATTERY_DISCHARGE = 3.0
@@ -35,13 +34,18 @@ class Config:
     WEBSOCKET_TIMEOUT = 10
     COMMAND_TIMEOUT = 30
     
-    # Customer Interface
-    SERIAL_PORT = '/dev/ttyUSB0'
+    # Customer Interface (not used in web-based mode)
+    # Cross-platform default serial port
+    if os.name == 'nt':
+        DEFAULT_SERIAL_PORT = 'COM3'
+    else:
+        DEFAULT_SERIAL_PORT = '/dev/ttyUSB0'
+    SERIAL_PORT = os.environ.get('SERIAL_PORT', DEFAULT_SERIAL_PORT)
     SERIAL_BAUDRATE = 9600
     
     # Admin Dashboard
-    ADMIN_USERNAME = 'admin'
-    ADMIN_PASSWORD = 'admin123'
+    ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME', 'admin')
+    ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'changeme')
 
 class DevelopmentConfig(Config):
     DEBUG = True

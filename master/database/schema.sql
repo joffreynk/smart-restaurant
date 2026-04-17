@@ -98,12 +98,15 @@ CREATE TABLE IF NOT EXISTS robots (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     unique_identifier TEXT NOT NULL UNIQUE,
     name TEXT NOT NULL,
-    status TEXT DEFAULT 'idle' CHECK(status IN ('idle', 'assigned', 'picking_up', 'delivering', 'serving', 'returning', 'charging', 'error', 'maintenance')),
+    status TEXT DEFAULT 'idle' CHECK(status IN ('idle', 'assigned', 'picking_up', 'delivering', 'serving', 'returning', 'charging', 'error', 'maintenance', 'stopped')),
     battery_voltage REAL DEFAULT 4.2,
     battery_percentage INTEGER DEFAULT 100,
     current_x REAL DEFAULT 0,
     current_y REAL DEFAULT 0,
     current_angle REAL DEFAULT 0,
+    current_command TEXT,
+    current_action TEXT,
+    last_error TEXT,
     last_seen DATETIME DEFAULT CURRENT_TIMESTAMP,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -165,13 +168,13 @@ CREATE INDEX IF NOT EXISTS idx_telemetry_history_time ON telemetry_history(recor
 CREATE INDEX IF NOT EXISTS idx_navigation_paths_locations ON navigation_paths(from_location, to_location);
 
 -- Insert default data
-INSERT INTO categories (name, description, display_order, is_active) VALUES 
+INSERT OR IGNORE INTO categories (name, description, display_order, is_active) VALUES 
     ('Appetizers', 'Start your meal with these delicious starters', 1, 1),
     ('Main Courses', 'Hearty main dishes to satisfy your hunger', 2, 1),
     ('Desserts', 'Sweet treats to end your meal', 3, 1),
     ('Beverages', 'Refreshing drinks', 4, 1);
 
-INSERT INTO menu_items (category_id, name, description, price, is_available, preparation_time) VALUES 
+INSERT OR IGNORE INTO menu_items (category_id, name, description, price, is_available, preparation_time) VALUES 
     (1, 'Bruschetta', 'Toasted bread with fresh tomatoes and basil', 8.99, 1, 10),
     (1, 'Caesar Salad', 'Romaine lettuce with Caesar dressing and croutons', 10.99, 1, 8),
     (1, 'Garlic Bread', 'Crispy bread with garlic butter', 5.99, 1, 5),
@@ -187,20 +190,10 @@ INSERT INTO menu_items (category_id, name, description, price, is_available, pre
     (4, 'Tea', 'Selection of herbal teas', 3.49, 1, 3),
     (4, 'Fresh Juice', 'Orange, apple, or mixed berry', 4.99, 1, 5);
 
-INSERT INTO tables (table_number, capacity, position_x, position_y, is_active) VALUES 
-    (1, 2, 1.0, 1.0, 1),
-    (2, 2, 1.0, 3.0, 1),
-    (3, 4, 3.0, 1.0, 1),
-    (4, 4, 3.0, 3.0, 1),
-    (5, 6, 5.0, 2.0, 1);
 
-INSERT INTO table_status (table_id, status) VALUES 
-    (1, 'free'),
-    (2, 'free'),
-    (3, 'free'),
-    (4, 'free'),
-    (5, 'free');
 
-INSERT INTO robots (unique_identifier, name, status) VALUES 
+
+
+INSERT OR IGNORE INTO robots (unique_identifier, name, status) VALUES 
     ('ROBOT-001', 'Waiter Bot Alpha', 'idle'),
     ('ROBOT-002', 'Waiter Bot Beta', 'idle');

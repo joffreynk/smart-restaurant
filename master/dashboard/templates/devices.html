@@ -158,6 +158,16 @@
             }
         }
         
+        function editDevice(id, name, phone) {
+            const newName = prompt('Edit Device Name:', name);
+            if (newName === null) return;
+            fetch('/api/phones/' + id, {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({customer_name: newName || name})
+            }).then(() => loadDevices());
+        }
+        
         function loadDevices() {
             fetch('/api/phones?all=true').then(r => r.json()).then(d => {
                 document.getElementById('devices-list').innerHTML = d.data.map(dev => `
@@ -169,6 +179,7 @@
                         <td><span class="badge ${dev.is_active !== false ? 'active' : 'inactive'}">${dev.is_active !== false ? 'Active' : 'Inactive'}</span></td>
                         <td>${dev.created_at ? new Date(dev.created_at).toLocaleDateString() : '-'}</td>
                         <td>
+                            <button class="btn btn-secondary" onclick="editDevice(${dev.id}, '${dev.customer_name}', '${dev.customer_phone}')">Edit</button>
                             <button class="btn btn-danger" onclick="deleteDevice(${dev.id})">Delete</button>
                         </td>
                     </tr>
